@@ -11,7 +11,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      props: true,
     },
     {
       path: '/about',
@@ -24,6 +25,7 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
+      props: true,
       component: () => import('./views/Register.vue'),
     }
   ]

@@ -77,7 +77,7 @@ class UserController extends Controller
             $result = $userAdded[0];
             $message = $userAdded[1];
         }
-        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $message]);
+        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message]);
     }
 
     public function submit(UserPost $request)

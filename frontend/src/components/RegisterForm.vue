@@ -1,5 +1,17 @@
 <template>
     <v-layout row wrap>
+        <v-flex xs9 v-if="displayAlert"></v-flex>
+        <v-flex xs3 v-if="displayAlert">
+            <v-alert
+                    v-model="displayAlert"
+                    v-if="displayAlert"
+                    dismissible
+                    type="success"
+                    id="alert"
+            >
+                {{alertMessage}}
+            </v-alert>
+        </v-flex>
         <v-flex xs3></v-flex>
         <v-flex xs6>
             <v-text-field
@@ -12,8 +24,8 @@
             ></v-text-field>
         </v-flex>
         <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.password">
             <v-text-field
                     v-model="password"
                     label="Mot de passe"
@@ -23,21 +35,21 @@
                     @click:append="show_password = !show_password"
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.password">
             <v-text-field
-                    v-model="password_confirmation"
+                    v-model="passwordConfirmation"
                     label="Mot de passe (confirmation)"
                     prepend-icon="fas fa-lock"
-                    :append-icon="show_password_confirmation ? 'fas fa-eye' : 'fas fa-eye-slash'"
-                    :type="show_password_confirmation ? 'text' : 'password'"
-                    @click:append="show_password_confirmation = !show_password_confirmation"
+                    :append-icon="show_passwordConfirmation ? 'fas fa-eye' : 'fas fa-eye-slash'"
+                    :type="show_passwordConfirmation ? 'text' : 'password'"
+                    @click:append="show_passwordConfirmation = !show_passwordConfirmation"
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.name"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.name">
             <v-text-field
                     v-model="name"
                     label="Prénom"
@@ -45,9 +57,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.name"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.surname"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.surname">
             <v-text-field
                     v-model="surname"
                     label="Nom de famille"
@@ -55,9 +67,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.surname"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.date"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.date">
             <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -79,9 +91,9 @@
                 <v-date-picker v-model="date" @input="menu = false" :allowed-dates="allowedDates"></v-date-picker>
             </v-menu>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.date"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.email"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.email">
             <v-text-field
                     v-model="email"
                     label="Email"
@@ -90,9 +102,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.email"></v-flex>
+        <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
+        <v-flex xs6 v-if="this.InterfaceSettings.phone">
             <v-text-field
                     v-model="phone"
                     label="Téléphone"
@@ -100,9 +112,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
+        <v-flex xs3 ></v-flex>
+        <v-flex xs6 >
             <v-btn
                     color="white"
                     large
@@ -116,12 +128,13 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
+
     export default {
         name: "RegisterForm",
         data: () => ({
             show_password: false,
-            show_password_confirmation: false,
+            show_passwordConfirmation: false,
             today_date: "",
             max_date_string: "",
             date: "",
@@ -134,7 +147,7 @@
             ],
             password: "",
             passwordRules: [],
-            password_confirmation: "",
+            passwordConfirmation: "",
             passwordConfirmationRules: [],
             name: "",
             nameRules: [],
@@ -145,8 +158,10 @@
             phone: "",
             phoneRules: [],
             allowed_dates: [],
+            displayAlert: false,
+            alertMessage: '',
         }),
-        computed: {},
+        computed: { ...mapGetters(['InterfaceSettings'])},
         methods: {
             getDates() {
                 var dates = [];
@@ -175,10 +190,35 @@
             allowedDates(val) {
                 return this.allowed_dates.indexOf(val) !== -1
             },
-            submitUser(){
-                this.getActualQuestion();
+            submitUser() {
+                this.displayAlert = true;
+                this.alertMessage = '';
+                var datas = {
+                    'username': this.username,
+                    'password': this.password,
+                    'passwordConfirmation': this.passwordConfirmation,
+                    'name': this.name,
+                    'surname': this.surname,
+                    'date': this.date,
+                    'phone': this.phone,
+                };
+                this.addUser({datas})
+                    .done((response) => {
+                        console.log(response);
+                        document.querySelector('#alert').setAttribute('class', `v-alert ${response.status}`);
+                        for (var property in response.message) {
+                            for (var i = 0; i < response.message[property].length; i++) {
+                                this.alertMessage += response.message[property][i].toString() + '\n';
+                            }
+                        }
+                    })
+                    .fail((error) => {
+                        document.querySelector('#alert').setAttribute('class', 'v-alert error');
+                        this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
+                        console.log(error);
+                    })
             },
-            ...mapActions(['getActualQuestion'])
+            ...mapActions(['addUser']),
         },
         mounted() {
             this.today_date = new Date();
@@ -187,6 +227,9 @@
             var displayed_max_date = this.max_date_string.split('-');
             displayed_max_date[1] = (parseInt(displayed_max_date[1]) - 1).toString();
             this.date = new Date(displayed_max_date).toISOString().substr(0, 10);
+        },
+        beforeMount(){
+            console.log(this.InterfaceSettings);
         }
     }
 </script>

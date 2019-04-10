@@ -1,13 +1,15 @@
 <template>
-  <HelloWorld />
+  <v-container fluid class="test">
+    <inputconfiguration />
+  </v-container>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import inputconfiguration from '../components/InputConfiguration'
 
   export default {
     components: {
-      HelloWorld
+      inputconfiguration
     }
   }
 </script>
