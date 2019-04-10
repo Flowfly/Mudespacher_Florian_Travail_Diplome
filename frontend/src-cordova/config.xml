@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.digitalturn.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Quiz</name>
+<widget id="com.digitalturn.com" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>quiz</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -23,7 +23,4 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="~7.1.4" />
-    <engine name="ios" spec="~4.5.5" />
-    <engine name="browser" spec="~5.0.4" />
 </widget>

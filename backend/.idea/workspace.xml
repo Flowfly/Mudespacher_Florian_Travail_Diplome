@@ -2,438 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/Mudespacher_Florian_Travail_Diplome.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/AnswerUser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/BackofficeRole.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/BackofficeUser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Console/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Exceptions/Handler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ForgotPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/LoginController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/BackofficeUserController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/Controller.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/PropositionController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/QuestionController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/SessionController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/TagController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/TeamController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/ThemeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/TypeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/UserController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Kernel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/Authenticate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/CheckForMaintenanceMode.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/EncryptCookies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/TrimStrings.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/TrustProxies.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Resources/Question.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Http/Resources/QuestionCollection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Proposition.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Providers/AppServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Providers/AuthServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Providers/BroadcastServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Providers/EventServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Providers/RouteServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Question.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Session.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Tag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Team.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/Type.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/UserSession.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/UserTeam.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../artisan" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bootstrap/app.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bootstrap/cache/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/app.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/broadcasting.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/cache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/filesystems.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/hashing.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/logging.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/mail.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/queue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/services.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/session.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../config/view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/factories/UserFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123219_create_teams_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123221_create_tags_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123222_create_types_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123223_create_questions_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123224_create_sessions_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123246_create_propositions_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123326_create_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123359_create_user_team_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123400_create_user_session_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_03_12_123428_create_answer_user_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_04_04_202435_create_backoffice_roles_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2019_04_05_202930_create_backoffice_users_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/seeds/DatabaseSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../phpunit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/css/login_style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/img/background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/img/button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/img/login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/img/pdf_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/js/components/ExampleComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ar/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ar/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ar/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ar/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/az/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/az/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/az/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/az/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/be/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/be/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/be/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/be/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bg/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bg/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bg/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bg/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bn/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bn/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bn/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bn/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bs/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bs/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bs/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/bs/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ca/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ca/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ca/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ca/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cs/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cs/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cs/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cs/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cy/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cy/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cy/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/cy/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/da/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/da/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/da/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/da/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de-CH/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de-CH/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de-CH/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de-CH/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/de/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/el/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/el/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/el/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/el/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/en/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/en/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/en/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/en/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/es/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/es/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/es/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/es/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/et/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/et/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/et/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/et/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/eu/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/eu/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/eu/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/eu/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fa/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fa/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fa/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fa/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fi/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fi/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fi/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fi/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fr/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fr/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fr/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/fr/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/gl/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/gl/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/gl/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/gl/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/he/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/he/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/he/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/he/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hi/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hi/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hi/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hi/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hr/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hr/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hr/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hr/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hu/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hu/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hu/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/hu/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/id/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/id/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/id/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/id/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/is/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/is/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/is/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/is/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/it/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/it/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/it/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/it/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ja/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ja/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ja/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ja/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ka/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ka/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ka/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ka/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kk/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kk/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kk/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kk/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/km/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/km/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/km/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/km/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kn/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kn/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kn/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/kn/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ko/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ko/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ko/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ko/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lt/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lt/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lt/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lt/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lv/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lv/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lv/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/lv/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/me/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/me/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/me/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/me/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mk/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mk/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mk/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mk/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mn/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mn/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mn/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/mn/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ms/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ms/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ms/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ms/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nb/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nb/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nb/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nb/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ne/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ne/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ne/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ne/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nl/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nl/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nl/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nl/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nn/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nn/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nn/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/nn/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pl/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pl/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pl/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pl/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt-BR/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt-BR/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt-BR/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt-BR/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/pt/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ro/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ro/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ro/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ro/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ru/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ru/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ru/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ru/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sc/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sc/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sc/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sc/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sk/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sk/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sk/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sk/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sl/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sl/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sl/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sl/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sq/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sq/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sq/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sq/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sr/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sr/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sr/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sr/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sv/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sv/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sv/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sv/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sw/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sw/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sw/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/sw/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tg/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tg/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tg/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tg/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/th/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/th/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/th/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/th/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tk/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tk/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tk/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tk/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tl/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tl/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tl/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tl/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tr/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tr/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tr/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/tr/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ug/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ug/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ug/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ug/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uk/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uk/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uk/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uk/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ur/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ur/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ur/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/ur/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-cyrillic/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-cyrillic/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-cyrillic/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-cyrillic/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-latin/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-latin/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-latin/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/uz-latin/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/vi/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/vi/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/vi/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/vi/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-CN/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-CN/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-CN/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-CN/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-HK/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-HK/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-HK/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-HK/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-TW/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-TW/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-TW/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/lang/zh-TW/validation.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/sass/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/sass/app.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/account.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/layout.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/login.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/navbar.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/propositions_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/questions_add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/questions_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/questions_update.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/register.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/tags_add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/tags_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/tags_update.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/teams_add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/teams_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/teams_update.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/theme.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/types_add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/types_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/types_update.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/user_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/users_add.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/users_pdf.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/users_read.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/backoffice/users_update.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/views/welcome.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/api.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/channels.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/console.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../routes/web.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/app/public/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/cache/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/cache/data/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/sessions/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/testing/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/framework/views/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../storage/logs/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/CreatesApplication.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/TestCase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests/Unit/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webpack.mix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/API.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/RegisterForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/views/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/hooks/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/android/icon-36-ldpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/android/icon-48-mdpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/android/icon-72-hdpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/android/icon-96-xhdpi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/bada-wac/icon-48-type5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/bada-wac/icon-50-type3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/bada-wac/icon-80-type4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/bada/icon-128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/blackberry/icon-80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/blackberry10/icon-80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/ios/icon-57-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/ios/icon-57.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/ios/icon-72-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/ios/icon-72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/tizen/icon-128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/webos/icon-64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/windows-phone/icon-173-tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/windows-phone/icon-48.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/icon/windows-phone/icon-62-tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-hdpi-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-hdpi-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-ldpi-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-ldpi-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-mdpi-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-mdpi-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-xhdpi-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/android/screen-xhdpi-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/bada-wac/screen-type3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/bada-wac/screen-type4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/bada-wac/screen-type5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/bada/screen-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/blackberry/screen-225.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/blackberry10/splash-1280x768.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/blackberry10/splash-720x720.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/blackberry10/splash-768x1280.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-ipad-landscape-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-ipad-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-ipad-portrait-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-ipad-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-iphone-landscape-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-iphone-landscape.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-iphone-portrait-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-iphone-portrait-568h-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/ios/screen-iphone-portrait.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/tizen/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/webos/screen-64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/res/screen/windows-phone/screen-portrait.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/www/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -467,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+            <state relative-caret-position="66">
+              <caret line="9" column="91" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -485,13 +126,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/UserPost.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
+            <state relative-caret-position="161">
               <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
@@ -540,9 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2019_04_04_202435_create_backoffice_roles_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_04_05_202930_create_backoffice_users_table.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/backoffice/users_pdf.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeamController.php" />
         <option value="$PROJECT_DIR$/app/Team.php" />
@@ -589,8 +236,11 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/UserEdit.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/UserPost.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/Cors.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/public/index.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
       </list>
     </option>
   </component>
@@ -678,6 +328,8 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-cors" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
@@ -692,8 +344,41 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -741,17 +426,19 @@
       <workItem from="1554648478924" duration="196000" />
       <workItem from="1554648703485" duration="51990000" />
       <workItem from="1554792362092" duration="8061000" />
-      <workItem from="1554885459046" duration="985000" />
+      <workItem from="1554885459046" duration="3387000" />
+      <workItem from="1554915951554" duration="496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151231000" />
+    <option name="totallyTimeSpent" value="154129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20067114" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2033557" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -766,7 +453,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.32794118" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49932885" weight="0.2720588" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49932885" visible="true" weight="0.2720588" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -777,27 +464,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Team.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThemeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backoffice/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="31" column="76" selection-start-line="31" selection-start-column="76" selection-end-line="31" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TagController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-621">
@@ -1123,24 +789,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/UserEdit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UserPost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1151,6 +803,41 @@
           <folding>
             <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Cors.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="9" column="91" selection-start-line="9" selection-start-column="91" selection-end-line="9" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UserPost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="43" column="45" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
         </state>
       </provider>
     </entry>
