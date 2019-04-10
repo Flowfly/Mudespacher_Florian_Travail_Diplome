@@ -24,4 +24,4 @@ Route::post('/session/{session_id}/next-question', 'SessionController@nextQuesti
 Route::post('/session/{session_id}/answer', 'SessionController@answer');
 Route::post('/session/start', 'SessionController@startSession');
 
-Route::post('/users/add', 'UserController@submit')->name('api_user_add');
+Route::post('/users/add', 'UserController@submitAPI')->name('api_user_add');

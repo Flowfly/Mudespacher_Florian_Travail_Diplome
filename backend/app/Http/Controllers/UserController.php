@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AnswerUser;
+use App\Http\Requests\UserEdit;
+use App\Http\Requests\UserPost;
 use App\Session;
 use App\User;
 use App\Team;
@@ -10,6 +12,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -30,12 +34,10 @@ class UserController extends Controller
         return view('/backoffice/users_add');
     }
 
-    public function update(Request $request)
+    public function update(UserEdit $request)
     {
-        //dd($this->getRules(true));
         $user = User::where('id', $request->id)->get()[0];
         if (!empty($user)) {
-            $request->validate($this->getRules(true));
             $user->username = isset($request->username) ? $request->username : $user->username;
             $user->password = isset($request->password) ? bcrypt($request->password) : $user->password;
             $user->email = isset($request->email) ? $request->email : $user->email;
@@ -55,28 +57,37 @@ class UserController extends Controller
         return view('/backoffice/user_read')->with(['user' => User::where('id', $request->id)->with('teams')->firstOrFail()]);
     }
 
-    public function submit(Request $request)
-    {
-        $request->validate($this->getRules(false));
+    public function submitAPI(Request $request){
 
-        $user = new User();
-        $user->username = $request->username;
-        $user->password = bcrypt($request->password);
-        $user->email = isset($request->email) ? $request->email : null;
-        $user->phone_number = isset($request->phone) ? $request->phone : null;
-        $user->name = isset($request->name) ? $request->name : null;
-        $user->surname = isset($request->surname) ? $request->surname : null;
-        $user->date_of_birth = isset($request->date) ? $request->date : null;
-        $result = $user->saveorFail();
-        $message = "L'utilisateur a été ajouté avec succès !";
-        return
-            $request->route()->getName() == 'backoffice_user_add' ? back()->with(['result' => $result, 'message' => $message])
-                : response()->json(['status' => $result ? 'success' : 'error', 'message' => $message]);
+        $validator = Validator::make($request->all(),[
+                'username' => ['required', 'min:4', 'max:15', 'string', 'unique:users,username'],
+                'password' => ['nullable', 'min:5', 'max:20', 'confirmed'],
+                'email' => ['email', 'unique:users,email', 'nullable'],
+                'phone' => ['string', 'nullable'],
+                'name' => ['min:2', 'max:30', 'string', 'nullable'],
+                'surname' => ['min:2', 'max:30', 'string', 'nullable'],
+                'date' => ['date', 'nullable']
+            ]);
+        if($validator->fails()){
+            $result = false;
+            $message = $validator->errors();
+        }
+        else{
+            $userAdded = $this->addUser($request);
+            $result = $userAdded[0];
+            $message = $userAdded[1];
+        }
+        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $message]);
+    }
+
+    public function submit(UserPost $request)
+    {
+        $userAdded = $this->addUser($request);
+        return back()->with(['result' => $userAdded[0], 'message' => $userAdded[1]]);
     }
 
     public function generate()
     {
-
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->username = "test$i";
@@ -103,17 +114,19 @@ class UserController extends Controller
         return PDF::loadView('/backoffice/users_pdf', $data)->setPaper('a4', 'landscape')->download($filename);
     }
 
-    public function getRules($isEditing)
+    private function addUser(Request $request) : array
     {
-        return [
-            'username' => ['required', 'min:4', 'max:15', 'string', $isEditing ? '' : 'unique:users,username'],
-            'password' => ['nullable', 'min:5', 'max:20', 'confirmed'],
-            'email' => ['email', $isEditing ? '' : 'unique:users,email', 'nullable'],
-            'phone' => ['string', 'nullable'],
-            'name' => ['min:2', 'max:30', 'string', 'nullable'],
-            'surname' => ['min:2', 'max:30', 'string', 'nullable'],
-            'date' => ['date', 'nullable']
-        ];
+        $user = new User();
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
+        $user->email = isset($request->email) ? $request->email : null;
+        $user->phone_number = isset($request->phone) ? $request->phone : null;
+        $user->name = isset($request->name) ? $request->name : null;
+        $user->surname = isset($request->surname) ? $request->surname : null;
+        $user->date_of_birth = isset($request->date) ? $request->date : null;
+        $result = $user->saveorFail();
+        $message = "L'utilisateur a été ajouté avec succès !";
+        return [$result, $message];
     }
     //</editor-fold>
 
