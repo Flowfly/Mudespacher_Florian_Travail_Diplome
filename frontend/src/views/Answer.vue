@@ -1,7 +1,7 @@
 <template>
     <v-container fluid fill-height d-block v-if="questionData !== null" style="height: 100%;">
-        <waiting v-if="isWaiting"/>
-        <v-layout row wrap v-if="!isWaiting">
+        <waiting v-show="isWaiting"/>
+        <v-layout row wrap v-show="!isWaiting">
             <v-layout align-center justify-center d-inline-block class="hcenter">
                 <v-flex style="text-align: center;">
                     <h1>Question à {{questionData.points}} points !</h1>
@@ -34,6 +34,7 @@
         data: () => ({
             questionData: null,
             isWaiting: false,
+            canClick: true,
         }),
         computed: {
             ...mapGetters(['SessionId', 'UserInfos']),
@@ -50,26 +51,30 @@
                     })
             },
             answerQuestion(event) {
-                this.isWaiting = !this.isWaiting;
-                var infos = {
-                    'proposition_id': event[0],
-                    'user_id': /*this.UserInfos.id*/ 24,
-                    'session_id': this.SessionId,
-                };
-                this.userAnswer(infos)
-                    .done((response) => {
-                        if(response.status === 'success')
-                        {
+                if(this.canClick)
+                {
+                    this.canClick = false;
+                    setTimeout(()=>{this.isWaiting = !this.isWaiting;}, 500);
+                    var infos = {
+                        'proposition_id': event[0],
+                        'user_id': this.UserInfos.id,
+                        'session_id': this.SessionId,
+                    };
+                    this.userAnswer(infos)
+                        .done((response) => {
+                            if(response.status === 'success')
+                            {
 
-                        }
-                        else{
+                            }
+                            else{
+                                this.isWaiting = !this.isWaiting;
+                            }
+                        })
+                        .fail((error) => {
                             this.isWaiting = !this.isWaiting;
-                        }
-                    })
-                    .fail((error) => {
-                        this.isWaiting = !this.isWaiting;
-                        console.log(error);
-                    })
+                            console.log(error);
+                        })
+                }
                 //this.isWaiting = !this.isWaiting;
             },
             ...mapActions(['getActualQuestion', 'userAnswer']),

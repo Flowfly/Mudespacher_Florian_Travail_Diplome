@@ -160,6 +160,7 @@
             allowed_dates: [],
             displayAlert: false,
             alertMessage: '',
+            canClick: true,
         }),
         computed: {...mapGetters(['InterfaceSettings', 'SessionId'])},
         methods: {
@@ -191,47 +192,52 @@
                 return this.allowed_dates.indexOf(val) !== -1
             },
             submitUser() {
-                this.displayAlert = true;
-                this.alertMessage = '';
-                var datas = {
-                    'username': this.username,
-                    'password': this.password,
-                    'passwordConfirmation': this.passwordConfirmation,
-                    'name': this.name,
-                    'surname': this.surname,
-                    'date': this.date,
-                    'phone': this.phone,
-                };
-                this.addUser({datas})
-                    .done((response) => {
-                        document.querySelector('#alert').setAttribute('class', `v-alert ${response.status}`);
-                        for (var property in response.message) {
-                            for (var i = 0; i < response.message[property].length; i++) {
-                                this.alertMessage += response.message[property][i].toString() + '\n';
+                if (this.canClick) {
+                    console.log('il a click');
+                    this.canClick = false;
+                    this.displayAlert = true;
+                    this.alertMessage = '';
+                    var datas = {
+                        'username': this.username,
+                        'password': this.password,
+                        'passwordConfirmation': this.passwordConfirmation,
+                        'name': this.name,
+                        'surname': this.surname,
+                        'date': this.date,
+                        'phone': this.phone,
+                    };
+                    this.addUser({datas})
+                        .done((response) => {
+                            document.querySelector('#alert').setAttribute('class', `v-alert ${response.status}`);
+                            for (var property in response.message) {
+                                for (var i = 0; i < response.message[property].length; i++) {
+                                    this.alertMessage += response.message[property][i].toString() + '\n';
+                                }
                             }
-                        }
-                        if (response.status === 'success') {
-                            this.setUserInfos(response.user);
-                            this.subscribeUser({
-                                'user_id': response.user.id,
-                                'session_id': this.SessionId,
-                            })
-                                .done((subscribeResponse) => {
-                                    if(subscribeResponse.status === 'success'){
-                                        //this.$router.push('');
-                                    }
-                                }).fail((error) => {
-                                document.querySelector('#alert').setAttribute('class', 'v-alert error');
-                                this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
-                                console.log(error);
-                            });
-                        }
-                    })
-                    .fail((error) => {
-                        document.querySelector('#alert').setAttribute('class', 'v-alert error');
-                        this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
-                        console.log(error);
-                    });
+                            if (response.status === 'success') {
+                                this.setUserInfos(response.user);
+                                this.subscribeUser({
+                                    'user_id': response.user.id,
+                                    'session_id': this.SessionId,
+                                })
+                                    .done((subscribeResponse) => {
+                                        if (subscribeResponse.status === 'success') {
+                                            this.$router.push('/answer');
+                                        }
+                                    }).fail((error) => {
+                                    document.querySelector('#alert').setAttribute('class', 'v-alert error');
+                                    this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
+                                    console.log(error);
+                                });
+                            }
+                        })
+                        .fail((error) => {
+                            document.querySelector('#alert').setAttribute('class', 'v-alert error');
+                            this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
+                            console.log(error);
+                        });
+                }
+
             },
             ...mapActions(['addUser', 'subscribeUser']),
             ...mapMutations(['setUserInfos']),

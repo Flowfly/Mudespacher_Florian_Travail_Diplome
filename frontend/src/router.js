@@ -32,6 +32,11 @@ export default new Router({
             path: '/answer',
             name: 'answer',
             component: () => import('./views/Answer.vue'),
+        },
+        {
+            path: '/end',
+            name: 'end',
+            component:() => import('./views/End.vue'),
         }
     ]
 })
