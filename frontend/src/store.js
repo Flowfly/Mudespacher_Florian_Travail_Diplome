@@ -14,27 +14,29 @@ export default new Vuex.Store({
         setInterface(state, params) {
             state.interfaceSettings = params;
         },
-        setSessionId(state, param){
+        setSessionId(state, param) {
             state.sessionId = param;
         },
-        setUserInfos(state, params)
-        {
+        setUserInfos(state, params) {
             state.userInfos = params;
         }
     },
     actions: {
-        getActualQuestion() {
-            return API.getActualQuestion();
+        getActualQuestion(commit, id) {
+            return API.getActualQuestion(id);
         },
         addUser({commit}, {datas}) {
             return API.addUser(datas);
         },
-        getAllNotStartedSessions(){
+        getAllNotStartedSessions() {
             return API.getAllNotStartedSessions();
         },
-        subscribeUser(commit, datas){
+        subscribeUser(commit, datas) {
             return API.subscribeUser(datas)
         },
+        userAnswer(commit, datas) {
+            return API.userAnswer(datas);
+        }
     },
     getters: {
         InterfaceSettings: state => state.interfaceSettings,

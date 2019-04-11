@@ -25,7 +25,7 @@ class SessionController extends Controller
             ->where('sessions.id', $sessionID)
             ->get();
 
-        return response()->json(['status' => count($query) == 0 ? 'error' : 'success', 'data' => $query]);
+        return response()->json(['status' => count($query) == 0 ? 'error' : 'success', 'data' => $query[0]]);
     }
 
     public function nextQuestion(Request $request)

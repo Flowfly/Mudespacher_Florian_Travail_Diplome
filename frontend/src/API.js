@@ -2,9 +2,9 @@ import JQuery from 'jquery'
 
 const API_ENDPOINT = "http://localhost/api/";
 
-function getActualQuestion() {
+function getActualQuestion(id) {
     var settings = {
-        "url": `${API_ENDPOINT}session/1/actual-question`,
+        "url": `${API_ENDPOINT}session/${id}/actual-question`,
         "method": "GET",
     };
     return JQuery.ajax(settings);
@@ -52,9 +52,24 @@ function subscribeUser(datas){
     return JQuery.ajax(settings);
 }
 
+function userAnswer(datas){
+    var settings = {
+        "url": `${API_ENDPOINT}session/${datas.session_id}/answer`,
+        "async": true,
+        "crossDomain": true,
+        "method": "POST",
+        "data": {
+            "user_id": datas.user_id,
+            "proposition_id": datas.proposition_id,
+        }
+    };
+    return JQuery.ajax(settings);
+}
+
 export default {
     getActualQuestion,
     addUser,
     getAllNotStartedSessions,
     subscribeUser,
+    userAnswer,
 }

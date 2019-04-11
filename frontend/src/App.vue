@@ -24,6 +24,8 @@ export default {
 
 <style>
   .content{
-    background-image: url('assets/background.png');
+    background-image: url('assets/img/background.png');
+    width:100%;
+    height:100%;
   }
 </style>
