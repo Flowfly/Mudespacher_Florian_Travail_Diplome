@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\AnswerUser;
 use App\Question;
 use App\Session;
+use App\User;
+use App\UserSession;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -105,6 +107,21 @@ class SessionController extends Controller
 
     public function getSessionInfos(Request $request){
         return response()->json(Session::findOrFail($request->session_id));
+    }
+
+    public function getAllNotStartedSessions(){
+        return response()->json([Session::where('status', 'Not started')->get()]);
+    }
+
+    public function subscribeUser(Request $request){
+        $session = Session::findOrFail($request->session_id);
+        $foundUser = User::findOrFail($request->user_id);
+        $session->users()->attach($request->user_id);
+        //dump(UserSession::with('users')->whereUserId(1)->first());
+        $wasCorrectlyInserted = Session::whereHas('users', function($q) use (&$foundUser){
+            $q->where('id', $foundUser->id);
+        })->first() == null ? false : true;
+        return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $wasCorrectlyInserted ? "L'utilisateur a été inscrit à la session" : "L'utilisateur n'a pas été inscrit à la session"]);
     }
     //</editor-fold>
 }

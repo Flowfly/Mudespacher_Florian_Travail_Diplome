@@ -113,8 +113,8 @@
             ></v-text-field>
         </v-flex>
         <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
-        <v-flex xs3 ></v-flex>
-        <v-flex xs6 >
+        <v-flex xs3></v-flex>
+        <v-flex xs6>
             <v-btn
                     color="white"
                     large
@@ -128,7 +128,7 @@
 </template>
 
 <script>
-    import {mapActions, mapGetters} from 'vuex';
+    import {mapActions, mapGetters, mapMutations} from 'vuex';
 
     export default {
         name: "RegisterForm",
@@ -161,7 +161,7 @@
             displayAlert: false,
             alertMessage: '',
         }),
-        computed: { ...mapGetters(['InterfaceSettings'])},
+        computed: {...mapGetters(['InterfaceSettings', 'SessionId'])},
         methods: {
             getDates() {
                 var dates = [];
@@ -204,21 +204,37 @@
                 };
                 this.addUser({datas})
                     .done((response) => {
-                        console.log(response);
                         document.querySelector('#alert').setAttribute('class', `v-alert ${response.status}`);
                         for (var property in response.message) {
                             for (var i = 0; i < response.message[property].length; i++) {
                                 this.alertMessage += response.message[property][i].toString() + '\n';
                             }
                         }
+                        if (response.status === 'success') {
+                            this.setUserInfos(response.user);
+                            this.subscribeUser({
+                                'user_id': response.user.id,
+                                'session_id': this.SessionId,
+                            })
+                                .done((subscribeResponse) => {
+                                    if(subscribeResponse.status === 'success'){
+                                        //this.$router.push('');
+                                    }
+                                }).fail((error) => {
+                                document.querySelector('#alert').setAttribute('class', 'v-alert error');
+                                this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
+                                console.log(error);
+                            });
+                        }
                     })
                     .fail((error) => {
                         document.querySelector('#alert').setAttribute('class', 'v-alert error');
                         this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
                         console.log(error);
-                    })
+                    });
             },
-            ...mapActions(['addUser']),
+            ...mapActions(['addUser', 'subscribeUser']),
+            ...mapMutations(['setUserInfos']),
         },
         mounted() {
             this.today_date = new Date();
@@ -228,9 +244,6 @@
             displayed_max_date[1] = (parseInt(displayed_max_date[1]) - 1).toString();
             this.date = new Date(displayed_max_date).toISOString().substr(0, 10);
         },
-        beforeMount(){
-            console.log(this.InterfaceSettings);
-        }
     }
 </script>
 

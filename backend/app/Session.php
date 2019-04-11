@@ -23,4 +23,8 @@ class Session extends Model
     {
         return $this->belongsTo('App\AnswserUser');
     }
+
+    public function users(){
+        return $this->belongsToMany('App\User', 'user_session');
+    }
 }

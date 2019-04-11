@@ -16,10 +16,11 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('label');
-            $table->integer('current_game_question');
+            $table->integer('current_game_question')->default(0);
+            $table->enum('status', ['Not started', 'Started', 'Ended'])->default('Not started');
+            $table->dateTime('date_of_session');
             $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->dateTime('date_of_session');
         });
     }
 

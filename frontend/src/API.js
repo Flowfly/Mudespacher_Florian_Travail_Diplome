@@ -30,7 +30,31 @@ function addUser(datas) {
     return JQuery.ajax(settings);
 }
 
+function getAllNotStartedSessions(){
+    var settings = {
+        "url": `${API_ENDPOINT}session/not-started-sessions`,
+        "method": "GET",
+    };
+    return JQuery.ajax(settings);
+}
+
+function subscribeUser(datas){
+    var settings = {
+        "url": `${API_ENDPOINT}session/subscribe-user`,
+        "async": true,
+        "crossDomain": true,
+        "method": "POST",
+        "data": {
+            "user_id": datas.user_id === '' ? '' : datas.user_id,
+            "session_id": datas.session_id === '' ? '' : datas.session_id,
+        }
+    };
+    return JQuery.ajax(settings);
+}
+
 export default {
     getActualQuestion,
     addUser,
+    getAllNotStartedSessions,
+    subscribeUser,
 }

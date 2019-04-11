@@ -76,8 +76,9 @@ class UserController extends Controller
             $userAdded = $this->addUser($request);
             $result = $userAdded[0];
             $message = $userAdded[1];
+            $user = $userAdded[2];
         }
-        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message]);
+        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message, 'user' => $result ? $user : '']);
     }
 
     public function submit(UserPost $request)
@@ -126,7 +127,7 @@ class UserController extends Controller
         $user->date_of_birth = isset($request->date) ? $request->date : null;
         $result = $user->saveorFail();
         $message = "L'utilisateur a été ajouté avec succès !";
-        return [$result, $message];
+        return [$result, $message, $user];
     }
     //</editor-fold>
 

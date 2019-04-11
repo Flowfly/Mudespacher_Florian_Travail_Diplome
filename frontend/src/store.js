@@ -7,24 +7,38 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         interfaceSettings: {},
+        sessionId: 0,
+        userInfos: {},
     },
     mutations: {
         setInterface(state, params) {
             state.interfaceSettings = params;
+        },
+        setSessionId(state, param){
+            state.sessionId = param;
+        },
+        setUserInfos(state, params)
+        {
+            state.userInfos = params;
         }
     },
     actions: {
         getActualQuestion() {
-            API.getActualQuestion()
-                .done((response) => {
-                    console.log(response);
-                });
+            return API.getActualQuestion();
         },
         addUser({commit}, {datas}) {
             return API.addUser(datas);
         },
+        getAllNotStartedSessions(){
+            return API.getAllNotStartedSessions();
+        },
+        subscribeUser(commit, datas){
+            return API.subscribeUser(datas)
+        },
     },
     getters: {
         InterfaceSettings: state => state.interfaceSettings,
+        SessionId: state => state.sessionId,
+        UserInfos: state => state.userInfos,
     }
 })
