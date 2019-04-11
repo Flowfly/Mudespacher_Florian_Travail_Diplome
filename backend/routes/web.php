@@ -1,19 +1,18 @@
 <?php
 
-
-Route::get('/', function () {
-    return view('welcome');
+//<editor-fold desc=Quiz>
+Route::get('/', function(){
+    return view('/quiz/home');
 });
+Route::get('/end', function(){
+    return view('/quiz/end');
+});
+//</editor-fold>
+
 Route::post('backoffice/change-theme', 'BackofficeUserController@changeTheme');
 Route::post('/backoffice/change-password', 'BackofficeUserController@changePassword');
 
-Route::get('/backoffice/login', 'BackofficeUserController@homeLogin');
-Route::get('/backoffice/register', 'BackofficeUserController@homeRegister');
-Route::get('/backoffice/logout', 'BackofficeUserController@logout');
-Route::get('/backoffice/my-account', 'BackofficeUserController@myAccount');
 
-Route::post('/backoffice/login', 'BackofficeUserController@login');
-Route::post('/backoffice/register', 'BackofficeUserController@register');
 
 Route::get('/backoffice', function () {
     $types = \App\Type::all();
@@ -21,6 +20,17 @@ Route::get('/backoffice', function () {
     return view('/backoffice/index', ['tags' => $tags, 'types' => $types]);
 })->name('backoffice');
 
+//<editor-fold desc=Backoffice>
+//*************************************** Backoffice Users *************************************
+//****** GET ******//
+Route::get('/backoffice/login', 'BackofficeUserController@homeLogin');
+Route::get('/backoffice/register', 'BackofficeUserController@homeRegister');
+Route::get('/backoffice/logout', 'BackofficeUserController@logout');
+Route::get('/backoffice/my-account', 'BackofficeUserController@myAccount');
+//****** POST ******//
+Route::post('/backoffice/login', 'BackofficeUserController@login');
+Route::post('/backoffice/register', 'BackofficeUserController@register');
+//**********************************************************************************************
 //******************************************* Questions ****************************************
 //****** GET ******//
 Route::get('/backoffice/questions', 'QuestionController@getAll');
@@ -96,3 +106,5 @@ Route::post('backoffice/teams/edit/{id}/update', 'TeamController@update');
 Route::get('/backoffice/theme', 'ThemeController@index');
 //****** POST ******//
 //**********************************************************************************************
+//</editor-fold>
+
