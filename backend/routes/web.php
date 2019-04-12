@@ -2,6 +2,7 @@
 
 //<editor-fold desc=Quiz>
 Route::get('/{session_id}', 'QuizController@index');
+Route::get('/{session_id}/question', 'QuizController@question');
 Route::get('/{session_id}/end', 'QuizController@end');
 Route::post('/{session_id}', 'SessionController@startSessionQuiz');
 //</editor-fold>

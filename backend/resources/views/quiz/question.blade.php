@@ -1,15 +1,18 @@
 @extends('quiz/layout')
 @section('content')
     <div class="col-12">
-        <h1>Bienvenue dans le quiz de Digital Turn !</h1>
-        <h1>Veuillez vous munir d'une tablette et vous inscrire pour participer</h1>
+        <h1>{{$question->label}}</h1>
     </div>
     <hr>
-    <div class="col-12">
-        <h2>Participants :</h2>
-        <h3>Aucun participant pour le moment</h3>
-    </div>
-    <div class="col-12">
-
-    </div>
+    @foreach($question->propositions as $proposition)
+        <div class="col-12">
+            <center>
+                <div class="bubble-container">
+                    <div class="hcenter bubble-text">
+                        <p class="hcenter">{{$proposition->label}}</p>
+                    </div>
+                </div>
+            </center>
+        </div>
+    @endforeach
 @endsection

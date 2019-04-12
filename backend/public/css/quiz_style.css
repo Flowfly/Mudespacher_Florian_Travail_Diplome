@@ -13,3 +13,84 @@ body{
 .btn-start{
     width: 20vw;
 }
+
+/* Extra small devices (portrait phones, less than 576px)*/
+
+@media (max-width: 575.98px) {
+    .bubble-container{
+        background-image: url("../img/quiz/bubble.png");
+        background-size: cover;
+        background-position: center;
+        height:20vh;
+        width:20vw;
+    }
+    .bubble-text{
+        color:black;
+        width:60%;
+        height:40%;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .bubble-container{
+        background-image: url("../img/quiz/bubble.png");
+        background-size: cover;
+        background-position: center;
+        height:18vh;
+        width:24vw;
+    }
+    .bubble-text{
+        color:black;
+        width:20%;
+        height:70%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .bubble-container{
+        background-image: url("../img/quiz/bubble.png");
+        background-size: cover;
+        background-position: center;
+        height:20vh;
+        width:60vw;
+    }
+    .bubble-text{
+        color:black;
+        width:25%;
+        height:30%;
+    }
+}
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .bubble-container{
+        background-image: url("../img/quiz/bubble.png");
+        background-size: cover;
+        background-position: center;
+        height:20vh;
+        width:60vw;
+    }
+    .bubble-text{
+        color:black;
+        width:60%;
+        height:45%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    .bubble-container{
+        background-image: url("../img/quiz/bubble.png");
+        background-size: cover;
+        background-position: center;
+        height:20vh;
+        width:20vw;
+    }
+    .bubble-text{
+        color:black;
+        width:20%;
+        height:80%;
+    }
+}
