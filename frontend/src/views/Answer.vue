@@ -9,11 +9,12 @@
                 </v-flex>
                 <v-layout row wrap align-center justify-center v-for="(value, key) in questionData.propositions"
                           style="height:160px;">
-                    <div style="text-align: -webkit-center;">
+                    <center style="width:100%; height:100%;">
                         <answercomponent :propositionNumber="key" :question="questionData"
                                          @clicked-from-child="answerQuestion"
                         />
-                    </div>
+                    </center>
+
                 </v-layout>
             </v-layout>
         </v-layout>
@@ -68,10 +69,12 @@
                             }
                             else{
                                 this.isWaiting = !this.isWaiting;
+                                this.canClick = !this.canClick;
                             }
                         })
                         .fail((error) => {
                             this.isWaiting = !this.isWaiting;
+                            this.canClick = !this.canClick;
                             console.log(error);
                         })
                 }

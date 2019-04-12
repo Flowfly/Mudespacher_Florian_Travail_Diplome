@@ -4,15 +4,12 @@
         <h1>Bienvenue dans le quiz de Digital Turn !</h1>
         <h1>Veuillez vous munir d'une tablette et vous inscrire pour participer</h1>
     </div>
-        <hr>
+    <hr>
     <div class="col-12">
         <h2>Participants :</h2>
         <h3>Aucun participant pour le moment</h3>
     </div>
     <div class="col-12">
-        <form action="/{{request('session_id')}}" method="post">
-            @csrf
-            <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" alt="button start" class="btn-start">
-        </form>
+
     </div>
 @endsection

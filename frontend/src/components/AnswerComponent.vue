@@ -28,12 +28,6 @@
 </script>
 
 <style scoped>
-    .bubble {
-        width: 400px;
-        height:200px;
-        position: relative;
-        cursor:pointer;
-    }
 
     .answer-container {
         position: absolute;
@@ -52,4 +46,45 @@
         transform: translate(-50%, -50%);
         left: 50%;
     }
+    /* Extra small devices (portrait phones, less than 576px)*/
+
+    @media (max-width: 575.98px) {
+        .bubble{
+            height:70%;
+            width:70%;
+        }
+    }
+
+    /* Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .bubble{
+            height:90%;
+            width:70%;
+        }
+    }
+
+    /* Medium devices (tablets, 768px and up)*/
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .bubble{
+            height:90%;
+            width:70%;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .bubble{
+            height:90%;
+            width:70%;
+        }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+        .bubble{
+            height:90%;
+            width:70%;
+        }
+    }
+
 </style>

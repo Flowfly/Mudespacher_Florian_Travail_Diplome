@@ -1,6 +1,6 @@
 <template>
     <v-form v-model="valid">
-        <v-container fluid class="test">
+        <v-container fluid fill-height>
             <registerform/>
         </v-container>
     </v-form>

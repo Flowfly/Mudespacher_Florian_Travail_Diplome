@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\AnswerUser;
 use App\Question;
 use App\Session;
@@ -13,6 +14,12 @@ use Illuminate\Http\Request;
 class SessionController extends Controller
 {
     const NUMBER_OF_ASKED_QUESTION = 4;
+
+    public function startSessionQuiz(Request $request)
+    {
+        $result = $this->startSession($request);
+        return $result[0] ? redirect("/" . $result[1]->id . "/end") : back()->with(['result' => $result[0]]);
+    }
 
     //<editor-fold desc="API">
     public function getActualQuestion(Request $request)
@@ -59,31 +66,7 @@ class SessionController extends Controller
         return $questions[$random]->id;
     }
 
-    public function answer(Request $request)
-    {
-        $response = "";
-        if (isset($request->user_id) && isset($request->proposition_id) && isset($request->session_id)) {
-            $session = Session::findOrFail($request->session_id);
-
-            $answer = new AnswerUser();
-            $answer->user_id = $request->user_id;
-            $answer->proposition_id = $request->proposition_id;
-            $answer->session_id = $request->session_id;
-            $answer->question_id = $session->question_id;
-            $answer->datetime_answered = Carbon::now();
-            $result = $answer->saveOrFail();
-            if ($result)
-                $response = ['status' => 'success', 'message' => 'Answer correctly added'];
-            else
-                $response = ['status' => 'error', 'message' => 'Error occurred. Please contact an administrator.'];
-        } else {
-            $response = ['status' => 'error', 'message' => 'Missing arguments keys'];
-        }
-
-        return response()->json($response);
-    }
-
-    public function startSession(Request $request)
+    public function createSession(Request $request)
     {
         $response = "";
         if (isset($request->label)) {
@@ -105,23 +88,90 @@ class SessionController extends Controller
         return response()->json($response);
     }
 
-    public function getSessionInfos(Request $request){
+    public function startSessionAPI(Request $request)
+    {
+        $result = $this->startSession($request);
+
+        return response()->json([
+            'status' => $result[0] ? 'success' : 'error',
+            'message' => $result[0] ? 'Partie correctement démarrée' : 'Un problème est survenu, veuillez contacter un administrateur',
+            'session' => $result[1]]);
+    }
+
+    public function getSessionInfos(Request $request)
+    {
         return response()->json(Session::findOrFail($request->session_id));
     }
 
-    public function getAllNotStartedSessions(){
+    public function getAllNotStartedSessions()
+    {
         return response()->json([Session::where('status', 'Not started')->get()]);
     }
 
-    public function subscribeUser(Request $request){
+    public function subscribeUser(Request $request)
+    {
         $session = Session::findOrFail($request->session_id);
         $foundUser = User::findOrFail($request->user_id);
         $session->users()->attach($request->user_id);
-        //dump(UserSession::with('users')->whereUserId(1)->first());
-        $wasCorrectlyInserted = Session::whereHas('users', function($q) use (&$foundUser){
+        $wasCorrectlyInserted = Session::whereHas('users', function ($q) use (&$foundUser) {
             $q->where('id', $foundUser->id);
         })->first() == null ? false : true;
         return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $wasCorrectlyInserted ? "L'utilisateur a été inscrit à la session" : "L'utilisateur n'a pas été inscrit à la session"]);
     }
+
+    public function getRanking(Request $request)
+    {
+        $sessionAnswers = Answer::where('session_id', $request->session_id)->with(['user', 'question', 'proposition', 'session'])->get();
+        $users = [];
+        $scores = [];
+        foreach ($sessionAnswers as $answer) {
+            if (!in_array($answer->user, $users)) {
+                array_push($users, $answer->user);
+            }
+        }
+        $count = 0;
+        foreach ($users as $user) {
+
+            array_push($scores, [$user->username, 0, 0]);//$scores[$user->username] = [0, 0];
+            $userAnswers = Answer::where('session_id', $request->session_id)->where('user_id', $user->id)->with(['question', 'proposition'])->get();
+            foreach ($userAnswers as $answer) {
+                if ($answer->proposition->is_right_answer) {
+                    $scores[$count][1] += $answer->question->points;
+                    $scores[$count][2] += 1;
+                }
+            }
+            $count++;
+        }
+        $sortedScores = [];
+
+        while (count($sortedScores) < count($scores)) {
+            $tmp = ['', 0, 0];
+            for ($i = 0; $i < count($scores); $i++) {
+                if ($scores[$i][1] >= $tmp[1])
+                {
+                    if(!in_array($scores[$i], $sortedScores))
+                        $tmp = [$scores[$i][0], $scores[$i][1], $scores[$i][2]];
+                }
+
+            }
+            array_push($sortedScores, $tmp);
+        }
+        return $sortedScores;
+    }
+
+    public function getRankingAPI(Request $request)
+    {
+        return response()->json($this->getRanking($request));
+    }
+
     //</editor-fold>
+
+    public function startSession(Request $request)
+    {
+        $session = Session::findOrFail($request->session_id);
+        $session->status = 'Started';
+        $result = $session->saveOrFail();
+
+        return [$result, $session];
+    }
 }

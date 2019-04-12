@@ -1,5 +1,5 @@
 <template>
-    <v-layout row wrap>
+    <v-layout row wrap align-center justify-center>
         <v-flex xs9 v-if="displayAlert"></v-flex>
         <v-flex xs3 v-if="displayAlert">
             <v-alert
@@ -114,7 +114,7 @@
         </v-flex>
         <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
         <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs6 style="text-align: center;">
             <v-btn
                     color="white"
                     large

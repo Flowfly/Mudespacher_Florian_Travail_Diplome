@@ -1,12 +1,9 @@
 <?php
 
 //<editor-fold desc=Quiz>
-Route::get('/', function(){
-    return view('/quiz/home');
-});
-Route::get('/end', function(){
-    return view('/quiz/end');
-});
+Route::get('/{session_id}', 'QuizController@index');
+Route::get('/{session_id}/end', 'QuizController@end');
+Route::post('/{session_id}', 'SessionController@startSessionQuiz');
 //</editor-fold>
 
 Route::post('backoffice/change-theme', 'BackofficeUserController@changeTheme');

@@ -7,8 +7,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/session/not-started-sessions', 'SessionController@getAllNotStartedSessions');
-Route::get('/session/{session_id}/actual-question', 'SessionController@getActualQuestion');
 Route::get('/session/{session_id}', 'SessionController@getSessionInfos');
+Route::get('/session/{session_id}/actual-question', 'SessionController@getActualQuestion');
+Route::get('/session/{session_id}/start', 'SessionController@startSessionAPI');
+Route::get('/session/{session_id}/ranking', 'SessionController@getRankingAPI');
 
 Route::get('/test', function () {
     return response()
@@ -22,10 +24,11 @@ Route::get('/test', function () {
             ->join('sessions', 'answer_user.session_id', '=', 'sessions.id')
             ->get());*/
 });
-Route::post('/session/start', 'SessionController@startSession');
+
+Route::post('/session/create', 'SessionController@createSession');
 Route::post('/session/subscribe-user', 'SessionController@subscribeUser');
 Route::post('/session/{session_id}/next-question', 'SessionController@nextQuestion');
-Route::post('/session/{session_id}/answer', 'SessionController@answer');
+Route::post('/session/{session_id}/answer', 'AnswerController@answer');
 
 
 Route::post('/users/add', 'UserController@submitAPI')->name('api_user_add');

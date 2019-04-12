@@ -19,12 +19,11 @@ class Session extends Model
         return $this->belongsTo('App\Question');
     }
 
-    public function answeruser()
-    {
-        return $this->belongsTo('App\AnswserUser');
-    }
-
     public function users(){
         return $this->belongsToMany('App\User', 'user_session');
+    }
+
+    public function answers(){
+        return $this->hasMany('App\Answer');
     }
 }

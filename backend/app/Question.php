@@ -30,8 +30,8 @@ class Question extends Model
     public function sessions(){
         return $this->hasMany('App\Session');
     }
-    public function answeruser()
-    {
-        return $this->belongsTo('App\AnswserUser');
+
+    public function answers(){
+        return $this->hasMany('App\Answer');
     }
 }

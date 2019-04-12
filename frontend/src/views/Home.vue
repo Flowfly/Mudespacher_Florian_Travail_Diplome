@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="test">
+  <v-container fluid fill-height>
     <inputconfiguration />
   </v-container>
 </template>

@@ -6,11 +6,13 @@
     <hr>
     <div class="col-12">
         <h1>Classement : </h1>
-        <h3>1. Florian avec 100 points !</h3>
-        <h3>2. Dylan avec 90 points !</h3>
-        <h3>3. Greg avec 80 points !</h3>
-        <h3>4. Gérard avec 70 points !</h3>
-        <h3>5. Bob avec 60 points !</h3>
+        @if(count($ranking) == 0)
+            <h3>Personne n'a participé à cette partie</h3>
+        @else
+            @for($i = 0; $i<count($ranking); $i++)
+                <h3>{{$i+1}}. {{$ranking[$i][0]}} avec {{$ranking[$i][1]}} points !</h3>
+            @endfor
+        @endif
     </div>
     <hr>
     <div class="col-12">

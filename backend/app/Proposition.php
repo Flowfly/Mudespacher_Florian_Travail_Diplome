@@ -17,8 +17,7 @@ class Proposition extends Model
     public function question(){
         return $this->belongsTo('App\Question');
     }
-    public function answeruser()
-    {
-        return $this->belongsTo('App\AnswserUser');
+    public function answers(){
+        return $this->hasMany('App\Answer');
     }
 }

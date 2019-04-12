@@ -15,13 +15,12 @@ class User extends Model
     public function teams(){
         return $this->belongsToMany('App\Team', 'user_team');
     }
-    public function answeruser()
-    {
-        return $this->belongsTo('App\AnswserUser');
-    }
     public function sessions(){
         return $this->belongsToMany('App\Session', 'user_session')
             ->as('session');
+    }
+    public function answers(){
+        return $this->hasMany('App\Answer');
     }
 
 }
