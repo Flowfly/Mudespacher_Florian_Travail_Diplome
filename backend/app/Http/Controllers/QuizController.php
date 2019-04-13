@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Session;
+use App\User;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('/quiz/home');
+        $session = Session::findOrFail($request->session_id);
+        if($session->status == 'Started')
+            return redirect($request->session_id . '/question');
+        else {
+            $users = [];
+            $query = User::query()->join('user_session', 'users.id', 'user_session.user_id')->get()->where('session_id', '=', $request->session_id);
+            foreach($query as $user)
+            {
+                array_push($users, $user);
+            }
+            return view('/quiz/home')->with(['users' => $users]);
+        }
     }
 
     public function question(Request $request){

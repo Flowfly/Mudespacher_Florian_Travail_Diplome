@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\AnswerUser;
+use App\Events\ChangeQuestion;
+use App\Events\FinishGame;
+use App\Events\StartSession;
+use App\Events\UserRegistred;
 use App\Question;
 use App\Session;
 use App\User;
@@ -18,7 +22,8 @@ class SessionController extends Controller
     public function startSessionQuiz(Request $request)
     {
         $result = $this->startSession($request);
-        return $result[0] ? redirect("/" . $result[1]->id . "/end") : back()->with(['result' => $result[0]]);
+        broadcast(new StartSession($request->session_id))->toOthers();
+        return $result[0] ? redirect("/" . $result[1]->id . "/question") : back()->with(['result' => $result[0]]);
     }
 
     //<editor-fold desc="API">
@@ -38,16 +43,29 @@ class SessionController extends Controller
     public function nextQuestion(Request $request)
     {
         $result = false;
-        $session = Session::findOrFail($request->session_id)->first();
+        $session = Session::findOrFail($request->session_id);
         $nextQuestion = $session->current_game_question + 1;
         if ($nextQuestion <= self::NUMBER_OF_ASKED_QUESTION) {
             $session->current_game_question = $nextQuestion;
             $session->question_id = isset($request->tag_id) ? $this->pickRandomQuestion($request->tag_id) : $this->pickRandomQuestion();
             $result = $session->saveOrFail();
+            broadcast(new ChangeQuestion($session))->toOthers();
         } else {
-            //game finished
+            $result = $this->finishSession($request->session_id);
+            $session = Session::findOrFail($request->session_id);
         }
         return response()->json(['status' => $result ? 'success' : 'error', 'data' => $session]);
+    }
+
+    public function finishSession($sessionId){
+        $session = Session::findOrFail($sessionId);
+        $session->status = 'Ended';
+        $result = $session->saveOrFail();
+        if($result)
+        {
+            broadcast(new FinishGame($sessionId))->toOthers();
+        }
+        return $result;
     }
 
     public function pickRandomQuestion($id = NULL)
@@ -91,7 +109,7 @@ class SessionController extends Controller
     public function startSessionAPI(Request $request)
     {
         $result = $this->startSession($request);
-
+        broadcast(new StartSession($request->session_id))->toOthers();
         return response()->json([
             'status' => $result[0] ? 'success' : 'error',
             'message' => $result[0] ? 'Partie correctement démarrée' : 'Un problème est survenu, veuillez contacter un administrateur',
@@ -116,6 +134,7 @@ class SessionController extends Controller
         $wasCorrectlyInserted = Session::whereHas('users', function ($q) use (&$foundUser) {
             $q->where('id', $foundUser->id);
         })->first() == null ? false : true;
+        broadcast(new UserRegistred($foundUser, $request->session_id))->toOthers();
         return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $wasCorrectlyInserted ? "L'utilisateur a été inscrit à la session" : "L'utilisateur n'a pas été inscrit à la session"]);
     }
 
@@ -170,7 +189,16 @@ class SessionController extends Controller
     {
         $session = Session::findOrFail($request->session_id);
         $session->status = 'Started';
+        $session->current_game_question = 1;
         $result = $session->saveOrFail();
+
+        if($result) {
+            $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $request->session_id)->get();
+            foreach($sessionUsers as $user)
+            {
+                $user->sessions()->updateExistingPivot($request->session_id, ['current_question' => 1]);
+            }
+        }
 
         return [$result, $session];
     }

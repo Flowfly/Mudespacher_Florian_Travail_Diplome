@@ -52,6 +52,7 @@
         .bubble{
             height:70%;
             width:70%;
+            cursor: pointer;
         }
     }
 
@@ -60,6 +61,7 @@
         .bubble{
             height:90%;
             width:70%;
+            cursor: pointer;
         }
     }
 
@@ -68,6 +70,7 @@
         .bubble{
             height:90%;
             width:70%;
+            cursor: pointer;
         }
     }
 
@@ -76,6 +79,7 @@
         .bubble{
             height:90%;
             width:70%;
+            cursor: pointer;
         }
     }
 
@@ -84,6 +88,7 @@
         .bubble{
             height:90%;
             width:70%;
+            cursor: pointer;
         }
     }
 

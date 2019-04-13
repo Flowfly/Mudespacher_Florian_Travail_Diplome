@@ -1,11 +1,7 @@
 <?php
 
 //<editor-fold desc=Quiz>
-Route::get('/{session_id}', 'QuizController@index');
-Route::get('/{session_id}/question', 'QuizController@question');
-Route::get('/{session_id}/end', 'QuizController@end');
-Route::post('/{session_id}', 'SessionController@startSessionQuiz');
-//</editor-fold>
+
 
 Route::post('backoffice/change-theme', 'BackofficeUserController@changeTheme');
 Route::post('/backoffice/change-password', 'BackofficeUserController@changePassword');
@@ -17,7 +13,11 @@ Route::get('/backoffice', function () {
     $tags = \App\Tag::all();
     return view('/backoffice/index', ['tags' => $tags, 'types' => $types]);
 })->name('backoffice');
-
+Route::get('/{session_id}', 'QuizController@index');
+Route::get('/{session_id}/question', 'QuizController@question');
+Route::get('/{session_id}/end', 'QuizController@end');
+Route::post('/{session_id}', 'SessionController@startSessionQuiz');
+//</editor-fold>
 //<editor-fold desc=Backoffice>
 //*************************************** Backoffice Users *************************************
 //****** GET ******//

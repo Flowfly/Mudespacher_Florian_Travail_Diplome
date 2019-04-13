@@ -7,6 +7,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/session/not-started-sessions', 'SessionController@getAllNotStartedSessions');
+
 Route::get('/session/{session_id}', 'SessionController@getSessionInfos');
 Route::get('/session/{session_id}/actual-question', 'SessionController@getActualQuestion');
 Route::get('/session/{session_id}/start', 'SessionController@startSessionAPI');

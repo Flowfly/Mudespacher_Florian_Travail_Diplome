@@ -25,6 +25,14 @@
     import waiting from '../components/Waiting';
     import answercomponent from '../components/AnswerComponent';
     import {mapActions, mapGetters, mapMutations} from 'vuex';
+    import Echo from 'laravel-echo';
+    window.Pusher = require('pusher-js');
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: 'c04beebc0bd8d8c9866f',
+        cluster: 'eu',
+        encrypted: true,
+    });
 
     export default {
         name: "Answer",
@@ -80,10 +88,28 @@
                 }
                 //this.isWaiting = !this.isWaiting;
             },
+            listen() {
+                window.Echo.channel(`session-${this.SessionId}`)
+                    .listen('StartSession', () => {
+                        this.isWaiting = false;
+                    });
+                window.Echo.channel(`change-question-${this.SessionId}`)
+                    .listen('ChangeQuestion', (response) => {
+                        this.questionData = response.question;
+                        this.isWaiting = false;
+                        this.canClick = true;
+                    });
+                window.Echo.channel(`finish-game-${this.SessionId}`)
+                    .listen('FinishGame', () => {
+                        this.$router.push('/end');
+                    });
+            },
             ...mapActions(['getActualQuestion', 'userAnswer']),
             ...mapMutations(['setSessionId']),
         },
-        mounted() {
+        mounted(){
+            this.listen();
+            this.isWaiting = true;
             this.fillAnswerComponents();
         },
         beforeMount() {
