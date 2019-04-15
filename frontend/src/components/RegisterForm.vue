@@ -193,7 +193,6 @@
             },
             submitUser() {
                 if (this.canClick) {
-                    console.log('il a click');
                     this.canClick = false;
                     this.displayAlert = true;
                     this.alertMessage = '';

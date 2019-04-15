@@ -9,6 +9,7 @@ export default new Vuex.Store({
         interfaceSettings: {},
         sessionId: 0,
         userInfos: {},
+        userResult: {},
     },
     mutations: {
         setInterface(state, params) {
@@ -19,7 +20,10 @@ export default new Vuex.Store({
         },
         setUserInfos(state, params) {
             state.userInfos = params;
-        }
+        },
+        setUserResult(state, params){
+            state.userResult = params;
+        },
     },
     actions: {
         getActualQuestion(commit, id) {
@@ -36,11 +40,15 @@ export default new Vuex.Store({
         },
         userAnswer(commit, datas) {
             return API.userAnswer(datas);
+        },
+        getScore(commit, datas) {
+            return API.getScore(datas);
         }
     },
     getters: {
         InterfaceSettings: state => state.interfaceSettings,
         SessionId: state => state.sessionId,
         UserInfos: state => state.userInfos,
+        UserResult: state => state.userResult,
     }
 })

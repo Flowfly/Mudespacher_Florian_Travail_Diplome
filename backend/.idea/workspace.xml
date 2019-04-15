@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Mudespacher_Florian_Travail_Diplome.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mudespacher_Florian_Travail_Diplome.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/AnswerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/AnswerComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/End.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/End.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1173">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="108" column="53" selection-start-line="108" selection-start-column="53" selection-end-line="108" selection-end-column="53" />
+            <state relative-caret-position="726">
+              <caret line="201" column="112" selection-start-line="201" selection-start-column="112" selection-end-line="201" selection-end-column="112" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
                 <element signature="e#300#819#0#PHP" />
@@ -50,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Events/FinishGame.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="412">
@@ -62,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="345">
+              <caret line="15" column="99" selection-start-line="15" selection-start-column="99" selection-end-line="15" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -71,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AnswerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="35" column="86" selection-start-line="35" selection-start-column="86" selection-end-line="35" selection-end-column="86" />
+            <state relative-caret-position="-117">
+              <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -118,15 +115,6 @@
               <folding>
                 <element signature="e#30#46#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/quiz/home.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="53" lean-forward="true" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -224,8 +212,6 @@
         <option value="$PROJECT_DIR$/resources/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/resources/views/quiz/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/Events/UserRegistred.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AnswerController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Events/ChangeQuestion.php" />
         <option value="$PROJECT_DIR$/app/Events/FinishGame.php" />
@@ -233,6 +219,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/QuizController.php" />
         <option value="$PROJECT_DIR$/resources/views/quiz/home.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AnswerController.php" />
       </list>
     </option>
   </component>
@@ -486,12 +474,12 @@
       <workItem from="1554648703485" duration="51990000" />
       <workItem from="1554792362092" duration="8061000" />
       <workItem from="1554885459046" duration="3387000" />
-      <workItem from="1554915951554" duration="52959000" />
+      <workItem from="1554915951554" duration="58899000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206592000" />
+    <option name="totallyTimeSpent" value="212532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -779,13 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/StartSession.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -793,13 +774,6 @@
           <folding>
             <element signature="e#30#66#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -820,6 +794,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="201" column="112" selection-start-line="201" selection-start-column="112" selection-end-line="201" selection-end-column="112" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+            <element signature="e#300#819#0#PHP" />
+            <element signature="e#1506#1988#0#PHP" />
+            <element signature="e#3026#3920#0#PHP" />
+            <element signature="e#4154#4532#0#PHP" />
+            <element signature="e#4538#4675#0#PHP" />
+            <element signature="e#4681#4818#0#PHP" />
+            <element signature="e#4824#5463#0#PHP" />
+            <element signature="e#4453#5735#0#PHP" />
+            <element signature="e#5975#6031#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="99" selection-start-line="15" selection-start-column="99" selection-end-line="15" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -837,16 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/UserRegistred.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
-          <folding>
-            <element signature="e#30#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Events/ChangeQuestion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
@@ -859,8 +849,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AnswerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="35" column="86" selection-start-line="35" selection-start-column="86" selection-end-line="35" selection-end-column="86" />
+        <state relative-caret-position="-117">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Events/UserRegistred.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
+          <folding>
+            <element signature="e#30#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -868,25 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="34" column="62" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="108" column="53" selection-start-line="108" selection-start-column="53" selection-end-line="108" selection-end-column="53" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-            <element signature="e#300#819#0#PHP" />
-            <element signature="e#1506#1988#0#PHP" />
-            <element signature="e#3026#3920#0#PHP" />
-            <element signature="e#4154#4532#0#PHP" />
-            <element signature="e#4538#4675#0#PHP" />
-            <element signature="e#4681#4818#0#PHP" />
-            <element signature="e#4824#5463#0#PHP" />
-            <element signature="e#4453#5735#0#PHP" />
-            <element signature="e#5975#6031#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>

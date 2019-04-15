@@ -66,10 +66,19 @@ function userAnswer(datas){
     return JQuery.ajax(settings);
 }
 
+function getScore(datas){
+    var settings = {
+        "url": `${API_ENDPOINT}session/${datas.session_id}/${datas.user_id}/ranking`,
+        "method": "GET",
+    };
+    return JQuery.ajax(settings);
+}
+
 export default {
     getActualQuestion,
     addUser,
     getAllNotStartedSessions,
     subscribeUser,
     userAnswer,
+    getScore,
 }

@@ -50,7 +50,6 @@
         },
         methods: {
             fillAnswerComponents() {
-                this.setSessionId(1);
                 this.getActualQuestion(this.SessionId)
                     .done((response) => {
                         this.questionData = response.data;
@@ -60,6 +59,7 @@
                     })
             },
             answerQuestion(event) {
+                console.log('session-id' ,this.SessionId);
                 if(this.canClick)
                 {
                     this.canClick = false;
@@ -101,11 +101,25 @@
                     });
                 window.Echo.channel(`finish-game-${this.SessionId}`)
                     .listen('FinishGame', () => {
-                        this.$router.push('/end');
+                        var infos = {
+                            'user_id': this.UserInfos.id,
+                            'session_id': this.SessionId,
+                        };
+                        this.getScore(infos)
+                            .done((response) => {
+                                this.setUserResult({
+                                    numberOfCorrectAnswers: response.correctAnswers,
+                                    score: response.score,
+                                });
+                                this.$router.push('/end');
+                            })
+                            .fail((error) => {
+                                console.log(error);
+                            });
                     });
             },
-            ...mapActions(['getActualQuestion', 'userAnswer']),
-            ...mapMutations(['setSessionId']),
+            ...mapActions(['getActualQuestion', 'userAnswer', 'getScore']),
+            ...mapMutations(['setSessionId', 'setUserResult']),
         },
         mounted(){
             this.listen();

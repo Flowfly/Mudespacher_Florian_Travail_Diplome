@@ -31,7 +31,7 @@ class AnswerController extends Controller
             }
             else
                 $response = ['status' => 'error', 'message' => 'Error occurred. Please contact an administrator.'];
-            if($this->didAllUsersAnswered($request->session_id))
+            if($this->didAllUsersAnswered($request))
             {
                 app('App\Http\Controllers\SessionController')->nextQuestion($request);
             }
@@ -41,10 +41,10 @@ class AnswerController extends Controller
         return response()->json($response);
     }
 
-    public function didAllUsersAnswered($sessionId)
+    public function didAllUsersAnswered(Request $request)
     {
-        $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $sessionId)->get();
-        $session = Session::with('question')->findOrFail($sessionId);
+        $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $request->session_id)->get();
+        $session = Session::with('question')->findOrFail($request->session_id);
 
         $result = false;
         foreach($sessionUsers as $user)

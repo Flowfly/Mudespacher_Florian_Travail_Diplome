@@ -183,6 +183,24 @@ class SessionController extends Controller
         return response()->json($this->getRanking($request));
     }
 
+    public function getUserRanking(Request $request){
+        $answers = Answer::with(['question', 'proposition', 'user'])
+            ->where('session_id', '=', $request->session_id)
+            ->where('user_id', '=', $request->user_id)
+            ->get();
+        $score = 0;
+        $numberOfCorrectAnswers = 0;
+        $user = null;
+        foreach($answers as $answer)
+        {
+            if($answer->proposition->is_right_answer) {
+                $score += $answer->question->points;
+                $numberOfCorrectAnswers++;
+            }
+            $user = $answer->user;
+        }
+        return response()->json(['user' => $user, 'score' => $score, 'correctAnswers' => $numberOfCorrectAnswers]);
+    }
     //</editor-fold>
 
     public function startSession(Request $request)

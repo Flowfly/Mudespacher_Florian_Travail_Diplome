@@ -80,7 +80,7 @@
                     'email': this.email,
                     'phone': this.phone,
                 });
-                this.setSessionId(this.select.split('.')[0]);
+                this.setSessionId(parseInt(this.select.split('.')[0]));
                 this.$router.push('/register');
             },
             isEmpty(obj) {
