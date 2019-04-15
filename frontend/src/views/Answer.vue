@@ -59,11 +59,26 @@
                     })
             },
             answerQuestion(event) {
-                console.log(event);
                 if(this.canClick)
                 {
+                    for(var i = 0; i < this.questionData.propositions.length; i++)
+                    {
+                        //success = bc5a2691
+                        //error = 15813d9f
+                        //normal = ff91df6b
+                        if(this.questionData.propositions[i].is_right_answer === 0)
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble_error.15813d9f.png')";
+                        else
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble_success.bc5a2691.png')";
+                    }
+                    setTimeout(()=>{
+                        for(var i = 0; i < this.questionData.propositions.length; i++)
+                        {
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble.ff91df6b.png')";
+                        }
+                    }, 500);
                     this.canClick = false;
-                    setTimeout(()=>{this.isWaiting = !this.isWaiting;}, 500);
+                    /**/
                     var infos = {
                         'proposition_id': event[0],
                         'user_id': this.UserInfos.id,
@@ -73,7 +88,7 @@
                         .done((response) => {
                             if(response.status === 'success')
                             {
-
+                                this.isWaiting = !this.isWaiting;
                             }
                             else{
                                 this.isWaiting = !this.isWaiting;
@@ -95,8 +110,9 @@
                     });
                 window.Echo.channel(`change-question-${this.SessionId}`)
                     .listen('ChangeQuestion', (response) => {
+                        console.log(response);
+                        this.isWaiting = !this.isWaiting;
                         this.questionData = response.question;
-                        this.isWaiting = false;
                         this.canClick = true;
                     });
                 window.Echo.channel(`finish-game-${this.SessionId}`)
@@ -127,7 +143,6 @@
             this.fillAnswerComponents();
         },
         beforeMount() {
-
         },
 
     }

@@ -1,14 +1,14 @@
 <template>
-        <v-img
-                :src="require('@/assets/img/bubble.png')"
+        <div
                 class="bubble"
-                alt="answer"
+                :id="`bubble-${this.propositionNumber}`"
                 @click="answer"
         >
             <div class="answer-container">
                 <p class="answer-text">{{this.question.propositions[this.propositionNumber].label}}</p>
             </div>
-        </v-img>
+
+        </div>
 </template>
 
 <script>
@@ -18,6 +18,7 @@
         props:
             ['question', 'propositionNumber'],
         mounted() {
+            //console.log(document.querySelector('#bubble').style.backgroundImage)
         },
         methods:{
             answer(){
@@ -35,8 +36,6 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
-        width: 57%;
-        height: 30%;
     }
 
     .answer-text {
@@ -45,6 +44,7 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
+        color:black;
     }
     /* Extra small devices (portrait phones, less than 576px)*/
 
@@ -53,6 +53,10 @@
             height:70%;
             width:70%;
             cursor: pointer;
+            background-image: url("../assets/img/bubble.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
         }
     }
 
@@ -62,6 +66,10 @@
             height:90%;
             width:70%;
             cursor: pointer;
+            background-image: url("../assets/img/bubble.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
         }
     }
 
@@ -71,6 +79,10 @@
             height:90%;
             width:70%;
             cursor: pointer;
+            background-image: url("../assets/img/bubble.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
         }
     }
 
@@ -80,6 +92,10 @@
             height:90%;
             width:70%;
             cursor: pointer;
+            background-image: url("../assets/img/bubble.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
         }
     }
 
@@ -89,6 +105,10 @@
             height:90%;
             width:70%;
             cursor: pointer;
+            background-image: url("../assets/img/bubble.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
         }
     }
 

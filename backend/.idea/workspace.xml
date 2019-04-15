@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/bubble_error.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/bubble_error.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/img/bubble_success.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/img/bubble_success.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/AnswerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/AnswerComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -276,7 +280,7 @@
       <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="15" />
     <option name="y" value="30" />
     <option name="width" value="1890" />
@@ -436,15 +440,15 @@
       <workItem from="1554648703485" duration="51990000" />
       <workItem from="1554792362092" duration="8061000" />
       <workItem from="1554885459046" duration="3387000" />
-      <workItem from="1554915951554" duration="59835000" />
+      <workItem from="1554915951554" duration="62236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213468000" />
+    <option name="totallyTimeSpent" value="215869000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2033557" />
