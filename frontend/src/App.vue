@@ -22,6 +22,6 @@
 <style>
     .content {
         background-image: url('../src/assets/img/background.png');
-
+        color:#fff3cc;
     }
 </style>

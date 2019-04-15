@@ -194,7 +194,6 @@
             submitUser() {
                 if (this.canClick) {
                     this.canClick = false;
-                    this.displayAlert = true;
                     this.alertMessage = '';
                     var datas = {
                         'username': this.username,
@@ -207,12 +206,6 @@
                     };
                     this.addUser({datas})
                         .done((response) => {
-                            document.querySelector('#alert').setAttribute('class', `v-alert ${response.status}`);
-                            for (var property in response.message) {
-                                for (var i = 0; i < response.message[property].length; i++) {
-                                    this.alertMessage += response.message[property][i].toString() + '\n';
-                                }
-                            }
                             if (response.status === 'success') {
                                 this.setUserInfos(response.user);
                                 this.subscribeUser({

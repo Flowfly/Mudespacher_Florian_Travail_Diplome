@@ -59,7 +59,7 @@
                     })
             },
             answerQuestion(event) {
-                console.log('session-id' ,this.SessionId);
+                console.log(event);
                 if(this.canClick)
                 {
                     this.canClick = false;

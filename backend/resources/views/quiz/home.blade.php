@@ -8,7 +8,9 @@
     <div class="col-12">
         <h2>Participants :</h2>
         @if(count($users) == 0)
-            <h3>Aucun participant pour le moment</h3>
+            <h3 v-if="users.length <= 0">Aucun participant pour le moment</h3>
+            <h3 class="animated bounceInRight" v-else v-for="(value, key) in users">
+                @{{users[key].user.username }}</h3>
         @else
             <div>
                 @for($i = 0; $i < count($users); $i++)
