@@ -16,19 +16,31 @@
 
 <script>
     import {mapActions, mapGetters} from 'vuex';
+    import Echo from 'laravel-echo';
+
+    window.Pusher = require('pusher-js');
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: 'c04beebc0bd8d8c9866f',
+        cluster: 'eu',
+        encrypted: true,
+    });
+
     export default {
         name: "End",
         datas: () => ({
             ajaxQueryTerminated: false,
         }),
         computed: {
-          ...mapGetters(['UserResult'])
+          ...mapGetters(['UserResult', 'SessionId'])
         },
         methods:{
 
         },
         mounted(){
-
+            window.Echo.leave(`finish-game-${this.SessionId}`);
+            window.Echo.leave(`session-${this.SessionId}`);
+            window.Echo.leave(`change-question-${this.SessionId}`);
         },
         beforeMount() {
         }

@@ -4,6 +4,9 @@
         <v-layout row wrap v-show="!isWaiting">
             <v-layout align-center justify-center d-inline-block class="hcenter">
                 <v-flex style="text-align: center;">
+                    <h2 v-model="timeToWait">Temps restant : {{timeToWait}}</h2>
+                </v-flex>
+                <v-flex style="text-align: center;">
                     <h1>Question à {{questionData.points}} points !</h1>
                     <h1>{{questionData.label}}</h1>
                 </v-flex>
@@ -23,6 +26,7 @@
 
 <script>
     import waiting from '../components/Waiting';
+    import CONST from '../CONST';
     import answercomponent from '../components/AnswerComponent';
     import {mapActions, mapGetters, mapMutations} from 'vuex';
     import Echo from 'laravel-echo';
@@ -44,6 +48,9 @@
             questionData: null,
             isWaiting: false,
             canClick: true,
+            timeToWait: CONST.TIME_TO_ANSWER,
+            timer: null,
+            falseAnswerId: null,
         }),
         computed: {
             ...mapGetters(['SessionId', 'UserInfos']),
@@ -63,20 +70,17 @@
                 {
                     for(var i = 0; i < this.questionData.propositions.length; i++)
                     {
-                        //success = bc5a2691
-                        //error = 15813d9f
-                        //normal = ff91df6b
                         if(this.questionData.propositions[i].is_right_answer === 0)
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble_error.15813d9f.png')";
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble_error.png')}')`;
                         else
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble_success.bc5a2691.png')";
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble_success.png')}')`;
                     }
                     setTimeout(()=>{
                         for(var i = 0; i < this.questionData.propositions.length; i++)
                         {
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = "url('../img/bubble.ff91df6b.png')";
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble.png')}')`;
                         }
-                    }, 500);
+                    }, 300);
                     this.canClick = false;
                     /**/
                     var infos = {
@@ -88,35 +92,62 @@
                         .done((response) => {
                             if(response.status === 'success')
                             {
-                                this.isWaiting = !this.isWaiting;
+                                this.clearTimer();
                             }
                             else{
-                                this.isWaiting = !this.isWaiting;
                                 this.canClick = !this.canClick;
                             }
                         })
                         .fail((error) => {
-                            this.isWaiting = !this.isWaiting;
+
                             this.canClick = !this.canClick;
                             console.log(error);
                         })
+                        .always(() => {
+                            this.isWaiting = !this.isWaiting;
+                        })
                 }
-                //this.isWaiting = !this.isWaiting;
+            },
+            waitingTimeCheck(){
+                if(this.timeToWait === 0) {
+                    this.clearTimer();
+                    for(var i = 0; i < this.questionData.propositions.length; i++)
+                    {
+                        if(this.questionData.propositions[i].is_right_answer === 0){
+                            this.falseAnswerId = this.questionData.propositions[i].id;
+                            break;
+                        }
+                    }
+                    let  infos = {
+                        'proposition_id': this.falseAnswerId,
+                        'user_id': this.UserInfos.id,
+                        'session_id': this.SessionId,
+                    };
+                    this.userAnswer(infos)
+                        .done((response) => {
+                            if(response.status === 'success')
+                            {
+                                this.isWaiting = !this.isWaiting;
+                            }
+                        })
+                        .fail((error) => {
+                           console.log(error);
+                        });
+                }else{
+                    this.timeToWait = this.timeToWait - 1;
+                }
+            },
+            clearTimer(){
+
+                window.clearInterval(this.timer);
+                this.timeToWait = CONST.TIME_TO_ANSWER;
             },
             listen() {
-                window.Echo.channel(`session-${this.SessionId}`)
-                    .listen('StartSession', () => {
-                        this.isWaiting = false;
-                    });
-                window.Echo.channel(`change-question-${this.SessionId}`)
-                    .listen('ChangeQuestion', (response) => {
-                        console.log(response);
-                        this.isWaiting = !this.isWaiting;
-                        this.questionData = response.question;
-                        this.canClick = true;
-                    });
                 window.Echo.channel(`finish-game-${this.SessionId}`)
                     .listen('FinishGame', () => {
+                        this.clearTimer();
+                        console.log('game terminée');
+                        console.log(this.timer);
                         var infos = {
                             'user_id': this.UserInfos.id,
                             'session_id': this.SessionId,
@@ -133,6 +164,22 @@
                                 console.log(error);
                             });
                     });
+                window.Echo.channel(`session-${this.SessionId}`)
+                    .listen('StartSession', () => {
+                        this.isWaiting = false;
+                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
+                    });
+                window.Echo.channel(`change-question-${this.SessionId}`)
+                    .listen('ChangeQuestion', (response) => {
+                        console.log('question changée');
+                        console.log('avant : ' , this.isWaiting);
+                        this.questionData = response.question;
+                        this.isWaiting = !this.isWaiting;
+                        console.log('après : ', this.isWaiting);
+                        this.canClick = true;
+                        this.clearTimer();
+                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
+                    });
             },
             ...mapActions(['getActualQuestion', 'userAnswer', 'getScore']),
             ...mapMutations(['setSessionId', 'setUserResult']),
@@ -143,6 +190,7 @@
             this.fillAnswerComponents();
         },
         beforeMount() {
+            //console.log(require('../assets/img/bubble_error.png'))
         },
 
     }

@@ -30,6 +30,7 @@
                     v-model="password"
                     label="Mot de passe"
                     prepend-icon="fas fa-lock"
+                    :rules="passwordRules"
                     :append-icon="show_password ? 'fas fa-eye' : 'fas fa-eye-slash'"
                     :type="show_password ? 'text' : 'password'"
                     @click:append="show_password = !show_password"
@@ -42,6 +43,7 @@
                     v-model="passwordConfirmation"
                     label="Mot de passe (confirmation)"
                     prepend-icon="fas fa-lock"
+                    :rules="passwordConfirmationRules"
                     :append-icon="show_passwordConfirmation ? 'fas fa-eye' : 'fas fa-eye-slash'"
                     :type="show_passwordConfirmation ? 'text' : 'password'"
                     @click:append="show_passwordConfirmation = !show_passwordConfirmation"
@@ -54,6 +56,7 @@
                     v-model="name"
                     label="Prénom"
                     prepend-icon="fas fa-address-book"
+                    :rules="nameRules"
                     required
             ></v-text-field>
         </v-flex>
@@ -64,6 +67,7 @@
                     v-model="surname"
                     label="Nom de famille"
                     prepend-icon="fas fa-address-book"
+                    :rules="surnameRules"
                     required
             ></v-text-field>
         </v-flex>
@@ -109,6 +113,7 @@
                     v-model="phone"
                     label="Téléphone"
                     prepend-icon="fas fa-phone"
+                    :rules="phoneRules"
                     required
             ></v-text-field>
         </v-flex>
@@ -129,6 +134,7 @@
 
 <script>
     import {mapActions, mapGetters, mapMutations} from 'vuex';
+    import CONST from '../CONST';
 
     export default {
         name: "RegisterForm",
@@ -141,22 +147,43 @@
             menu: false,
             username: "",
             usernameRules: [
-                v => !!v || "Le nom d'utilisateur est obligatoire",
-                v => v.length <= 15 || "Le nom d'utilisateur ne doit pas dépasser les 15 caractères",
-                v => v.length >= 4 || "Le nom d'utilisateur doit dépasser les 4 caractères",
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.username.required,
+                v => v.length <= CONST.REGISTRATION_RULES.username.max || CONST.REGISTRATION_ERROR_MESSAGES.username.max,
+                v => v.length >= CONST.REGISTRATION_RULES.username.min || CONST.REGISTRATION_ERROR_MESSAGES.username.min,
             ],
             password: "",
-            passwordRules: [],
+            passwordRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.password.required,
+                v => v.length <= CONST.REGISTRATION_RULES.password.max || CONST.REGISTRATION_ERROR_MESSAGES.password.max,
+                v => v.length >= CONST.REGISTRATION_RULES.password.min || CONST.REGISTRATION_ERROR_MESSAGES.password.min,
+            ],
             passwordConfirmation: "",
-            passwordConfirmationRules: [],
+            passwordConfirmationRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.password.required,
+                v => v.length <= CONST.REGISTRATION_RULES.password.max || CONST.REGISTRATION_ERROR_MESSAGES.password.max,
+                v => v.length >= CONST.REGISTRATION_RULES.password.min || CONST.REGISTRATION_ERROR_MESSAGES.password.min,
+            ],
             name: "",
-            nameRules: [],
+            nameRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.name.required,
+                v => v.length <= CONST.REGISTRATION_RULES.name.max || CONST.REGISTRATION_ERROR_MESSAGES.name.max,
+                v => v.length >= CONST.REGISTRATION_RULES.name.min || CONST.REGISTRATION_ERROR_MESSAGES.name.min,
+            ],
             surname: "",
-            surnameRules: [],
+            surnameRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.password.required,
+                v => v.length <= CONST.REGISTRATION_RULES.surname.max || CONST.REGISTRATION_ERROR_MESSAGES.surname.max,
+                v => v.length >= CONST.REGISTRATION_RULES.surname.min || CONST.REGISTRATION_ERROR_MESSAGES.surname.min,
+            ],
             email: "",
-            emailRules: [],
+            emailRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.email.required,
+                v => /.+@.+/.test(v) || "L'email doit être valide"
+            ],
             phone: "",
-            phoneRules: [],
+            phoneRules: [
+                v => !!v || CONST.REGISTRATION_ERROR_MESSAGES.phone.required,
+            ],
             allowed_dates: [],
             displayAlert: false,
             alertMessage: '',

@@ -1,5 +1,5 @@
 <template>
-        <div
+        <v-img
                 class="bubble"
                 :id="`bubble-${this.propositionNumber}`"
                 @click="answer"
@@ -8,7 +8,7 @@
                 <p class="answer-text">{{this.question.propositions[this.propositionNumber].label}}</p>
             </div>
 
-        </div>
+        </v-img>
 </template>
 
 <script>

@@ -60,6 +60,10 @@ class QuestionController extends Controller
         return view('/backoffice/questions_read', ['questions' => $questions]);
     }
 
+    public function getOne(Request $request){
+        return view('/backoffice/questions_read', ['questions' => [Question::findOrFail($request->id)]]);
+    }
+
     public function addGetInfos(){
         $types = Type::all();
         $tags = Tag::all();

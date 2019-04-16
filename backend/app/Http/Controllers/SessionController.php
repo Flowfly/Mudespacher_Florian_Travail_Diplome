@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
-use App\AnswerUser;
 use App\Events\ChangeQuestion;
 use App\Events\FinishGame;
 use App\Events\StartSession;
@@ -19,12 +18,68 @@ class SessionController extends Controller
 {
     const NUMBER_OF_ASKED_QUESTION = 4;
 
+    //<editor-fold desc="Backoffice"
     public function startSessionQuiz(Request $request)
     {
         $result = $this->startSession($request);
         broadcast(new StartSession($request->session_id))->toOthers();
         return $result[0] ? redirect("/" . $result[1]->id . "/question") : back()->with(['result' => $result[0]]);
     }
+
+    public function getAll(){
+        return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers'])->get()]);
+    }
+
+    public function addGetInfos(){
+        return view('/backoffice/sessions_add');
+    }
+
+    public function submit(Request $request){
+        $sessionToAdd = new Session();
+        $sessionToAdd->label = $request->session_label;
+        $sessionToAdd->current_game_question = 0;
+        $sessionToAdd->date_of_session = Carbon::now();
+        $sessionToAdd->question_id = $this->pickRandomQuestion();
+        $result = $sessionToAdd->saveOrFail();
+        $message = $result ? 'La session a bien été ajoutée !' : 'Un problème est survenu lors de l\'insertion de la session, veuillez réessayer.';
+        return back()->with(['result' => $result, 'message' => $message]);
+    }
+
+    public function delete(Request $request)
+    {
+        $session = Session::findOrFail($request->id);
+        if($session->status == 'Started'){
+            $result = false;
+            $message = 'Impossible de supprimer une session en cours';
+        }
+        else{
+            $result = $session->delete();
+            $message = $result ? 'La session a bien été supprimée !' : 'Erreur lors de la suppression de la session, veuillez réessayer';
+        }
+        return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
+    }
+
+    public function editGetInfos(Request $request){
+        return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id)]);
+    }
+
+    public function update(Request $request){
+        $session = Session::findOrFail($request->id);
+        $session->label = $request->session_label;
+        $result = $session->saveOrFail();
+        $message = $result ? 'La session a bien été modifiée' : 'Erreur lors de la modification de la session, veuillez réessayer';
+        return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
+    }
+
+    public function restartSession(Request $request){
+        $session = Session::findOrFail($request->session_id);
+        $session->current_game_question = 0;
+        $session->status = "Not started";
+        $result = $session->saveOrFail();
+        $session->users()->detach();
+        return back()->with(['result' => $result, 'message' => 'La session a bien été redémarrée !']);
+    }
+    //</editor-fold>
 
     //<editor-fold desc="API">
     public function getActualQuestion(Request $request)

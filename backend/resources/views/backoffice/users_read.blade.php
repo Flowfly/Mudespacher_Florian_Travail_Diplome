@@ -9,7 +9,7 @@
         </div>
         <div class="col-2">
             @if(request()->route()->getName() == "users_all")
-                <p><a href="/backoffice/users/pdf/download">Télécharger en PDF</a> <img style="width:20px; height: 25px;" src="../../../img/pdf_logo.png" alt=""></p>
+                <p><a href="/backoffice/users/pdf/download">Télécharger en PDF</a> <img style="width:20px; height: 25px;" src="../../../img/backoffice/pdf_logo.png" alt=""></p>
             @endif
         </div>
         <div class="col"></div>

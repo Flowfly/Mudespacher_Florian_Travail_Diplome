@@ -40,7 +40,6 @@
                     Echo.channel('user-registration-{!! request('session_id') !!}')
                         .listen('UserRegistred', (user) => {
                             this.users.push(user);
-                            $
                         })
                 }
             },

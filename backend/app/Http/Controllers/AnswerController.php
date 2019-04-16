@@ -31,7 +31,8 @@ class AnswerController extends Controller
             }
             else
                 $response = ['status' => 'error', 'message' => 'Error occurred. Please contact an administrator.'];
-            if($this->didAllUsersAnswered($request))
+            $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $request->session_id)->get();
+            if($this->didAllUsersAnswered($request) || count($sessionUsers) == 1)
             {
                 app('App\Http\Controllers\SessionController')->nextQuestion($request);
             }

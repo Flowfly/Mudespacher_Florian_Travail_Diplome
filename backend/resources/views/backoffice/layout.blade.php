@@ -20,7 +20,7 @@
 
     <title>Premier backoffice</title>
 </head>
-
+@yield('scripts')
 <body>
 <div class="container-fluid">
     <div class="row">
@@ -36,7 +36,7 @@
             </div>
             <div class="col-1" style="text-align: right">
                 <a href="#" class="dropdown-toggle login-link hcenter" data-toggle="dropdown">
-                    <img src="{{asset('../../img/login.png')}}" alt="login" class="login-img">
+                    <img src="{{asset('../../img/backoffice/login.png')}}" alt="login" class="login-img">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     @if(auth()->check())
@@ -72,58 +72,7 @@
 </div>
 
 </body>
-<script>
-    const MIN_PROPOSITION_NUMBER = 1; //0 means 1 answer, 1 means 2 answers etc.
-    const MAX_PROPOSITION_NUMBER = 3; //3 means 4 answers, 5 means 6 answers etc.
 
-    function addProposition() {
-        var group = document.querySelector('#proposition-group');
-        var lastId = (parseInt(group.lastElementChild.id.split('-')[1]) + 1);
-        if (lastId <= MAX_PROPOSITION_NUMBER) {
-            //Creation of the text input that allows to add the text of the proposition
-            var inputTextToAdd = document.createElement('input');
-            inputTextToAdd.setAttribute('type', 'text');
-            inputTextToAdd.setAttribute('class', 'form-control col-10');
-            inputTextToAdd.setAttribute('name', 'prop-' + lastId);
-            inputTextToAdd.setAttribute('required', true);
-
-            //Creation of the radio input that allows to set if the proposition is the right one or not
-            var inputRadioToAdd = document.createElement('input');
-            inputRadioToAdd.setAttribute('type', 'radio');
-            inputRadioToAdd.setAttribute('name', 'isGoodAnswer');
-            inputRadioToAdd.setAttribute('class', 'form-control col-1');
-            inputRadioToAdd.setAttribute('value', lastId);
-
-            //Creation of the container
-            var container = document.createElement('div');
-            container.setAttribute('id', 'prop-' + lastId);
-            container.setAttribute('style', 'display:flex;');
-            container.setAttribute('class', 'form-group');
-
-            //Adding the elements into the container
-            container.appendChild(inputTextToAdd);
-            container.appendChild(inputRadioToAdd);
-            container.innerHTML += "Bonne réponse";
-            //Adding the container to the group
-            group.appendChild(container);
-
-
-            //Changing the text "Number of elements"
-            document.querySelector('#proposition-number').innerHTML = parseInt(lastId) + 1;
-        }
-
-    }
-
-    function removeProposition() {
-        var group = document.querySelector('#proposition-group');
-        var lastId = group.lastElementChild.id.split('-')[1];
-        if (lastId > MIN_PROPOSITION_NUMBER) {
-            var lastElement = group.lastElementChild;
-            group.removeChild(lastElement);
-            document.querySelector('#proposition-number').innerHTML = lastId;
-        }
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

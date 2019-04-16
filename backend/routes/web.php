@@ -32,6 +32,7 @@ Route::post('/backoffice/register', 'BackofficeUserController@register');
 //******************************************* Questions ****************************************
 //****** GET ******//
 Route::get('/backoffice/questions', 'QuestionController@getAll');
+Route::get('/backoffice/questions/{id}', 'QuestionController@getOne');
 Route::get('/backoffice/questions/edit/{id}', 'QuestionController@editGetInfos');
 Route::get('/backoffice/questions/add', 'QuestionController@addGetInfos');
 Route::get('/backoffice/questions/delete/{id}', 'QuestionController@delete');
@@ -46,7 +47,17 @@ Route::post('backoffice/questions/edit/{id}/update', 'QuestionController@update'
 Route::get('/backoffice/propositions/read/{id}', 'PropositionController@getAllFromQuestion');
 //****** POST ******//
 //**********************************************************************************************
-
+//******************************************** Sessions ****************************************
+//****** GET ******//
+Route::get('/backoffice/sessions/', 'SessionController@getAll');
+Route::get('/backoffice/sessions/add', 'SessionController@addGetInfos');
+Route::get('/backoffice/sessions/edit/{id}', 'SessionController@editGetInfos');
+Route::get('/backoffice/sessions/{session_id}/restart', 'SessionController@restartSession');
+Route::get('/backoffice/sessions/delete/{id}', 'SessionController@delete');
+//****** POST ******//
+Route::post('/backoffice/post-session', 'SessionController@submit');
+Route::post('/backoffice/sessions/edit/{id}/update', 'SessionController@update');
+//**********************************************************************************************
 //********************************************** Tags ******************************************
 //****** GET ******//
 Route::get('/backoffice/tags/add', 'TagController@addGetInfos');
@@ -57,6 +68,19 @@ Route::get('/backoffice/tags/{id}/questions', 'QuestionController@getAll')->name
 //****** POST ******//
 Route::post('backoffice/post-tag', 'TagController@submit');
 Route::post('backoffice/tags/edit/{id}/update', 'TagController@update');
+//**********************************************************************************************
+
+//********************************************** Teams *****************************************
+//****** GET ******//
+Route::get('/backoffice/teams/add', 'TeamController@addGetInfos');
+Route::get('/backoffice/teams', 'TeamController@getAll');
+Route::get('/backoffice/teams/edit/{id}', 'TeamController@editGetInfos');
+Route::get('/backoffice/teams/delete/{id}', 'TeamController@delete');
+Route::get('/backoffice/teams/user/delete/{id}', 'TeamController@deleteUser');
+Route::get('/backoffice/teams/{id}/users', 'UserController@getAll')->name('team_users');
+//****** POST ******//
+Route::post('backoffice/post-team', 'TeamController@submit');
+Route::post('backoffice/teams/edit/{id}/update', 'TeamController@update');
 //**********************************************************************************************
 
 //********************************************** Types *****************************************
@@ -84,19 +108,6 @@ Route::get('/backoffice/users/{id}', 'UserController@getUserInfos');
 //****** POST ******//
 Route::post('backoffice/post-user', 'UserController@submit')->name('backoffice_user_add');
 Route::post('backoffice/users/edit/{id}/update', 'UserController@update');
-//**********************************************************************************************
-
-//********************************************** Teams *****************************************
-//****** GET ******//
-Route::get('/backoffice/teams/add', 'TeamController@addGetInfos');
-Route::get('/backoffice/teams', 'TeamController@getAll');
-Route::get('/backoffice/teams/edit/{id}', 'TeamController@editGetInfos');
-Route::get('/backoffice/teams/delete/{id}', 'TeamController@delete');
-Route::get('/backoffice/teams/user/delete/{id}', 'TeamController@deleteUser');
-Route::get('/backoffice/teams/{id}/users', 'UserController@getAll')->name('team_users');
-//****** POST ******//
-Route::post('backoffice/post-team', 'TeamController@submit');
-Route::post('backoffice/teams/edit/{id}/update', 'TeamController@update');
 //**********************************************************************************************
 
 //********************************************** Theme *****************************************

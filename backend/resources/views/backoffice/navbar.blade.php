@@ -73,10 +73,10 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false"><i class="fas fa-spinner fa-spin navigation-link"></i> Sessions</a>
                 <div class="dropdown-menu">
-                    <a href="/backoffice/users" class="dropdown-item"><i class="fas fa-eye navigation-link"></i> Voir</a>
+                    <a href="/backoffice/sessions" class="dropdown-item"><i class="fas fa-eye navigation-link"></i> Voir</a>
                     @if(auth()->check())
                         @if(auth()->user()->role_id == 3)
-                            <a href="/backoffice/users/add" class="dropdown-item"><i class="fas fa-plus navigation-link"></i>
+                            <a href="/backoffice/sessions/add" class="dropdown-item"><i class="fas fa-plus navigation-link"></i>
                                 Ajouter</a>
                         @endif
                     @endif
