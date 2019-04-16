@@ -110,6 +110,7 @@
             },
             waitingTimeCheck(){
                 if(this.timeToWait === 0) {
+                    console.log('timer fini');
                     this.clearTimer();
                     for(var i = 0; i < this.questionData.propositions.length; i++)
                     {
@@ -146,8 +147,6 @@
                 window.Echo.channel(`finish-game-${this.SessionId}`)
                     .listen('FinishGame', () => {
                         this.clearTimer();
-                        console.log('game terminée');
-                        console.log(this.timer);
                         var infos = {
                             'user_id': this.UserInfos.id,
                             'session_id': this.SessionId,
@@ -171,14 +170,10 @@
                     });
                 window.Echo.channel(`change-question-${this.SessionId}`)
                     .listen('ChangeQuestion', (response) => {
-                        console.log('question changée');
-                        console.log('avant : ' , this.isWaiting);
+                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
                         this.questionData = response.question;
                         this.isWaiting = !this.isWaiting;
-                        console.log('après : ', this.isWaiting);
                         this.canClick = true;
-                        this.clearTimer();
-                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
                     });
             },
             ...mapActions(['getActualQuestion', 'userAnswer', 'getScore']),

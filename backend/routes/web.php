@@ -114,6 +114,7 @@ Route::post('backoffice/users/edit/{id}/update', 'UserController@update');
 //****** GET ******//
 Route::get('/backoffice/theme', 'ThemeController@index');
 //****** POST ******//
+Route::post('/backoffice/update-image', 'ThemeController@changeImage');
 //**********************************************************************************************
 //</editor-fold>
 

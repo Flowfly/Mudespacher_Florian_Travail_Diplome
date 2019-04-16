@@ -32,13 +32,13 @@
                             <td>{{$session->label}}</td>
                             @switch($session->status)
                                 @case('Not started')
-                                <td><i class="fas fa-stop-circle" style="color:#db3434;"></i></td>
+                                <td><i class="fas fa-stop-circle" style="color:#db3434;" data-toggle="tooltip" data-placement="right" title="Pas démarrée"></i></td>
                                 @break
                                 @case('Started')
-                                <td><i class="fas fa-spinner fa-spin" style="color:#f9a54a;"></i></td>
+                                <td><i class="fas fa-spinner fa-spin" style="color:#f9a54a;" data-toggle="tooltip" data-placement="right" title="En cours"></i></td>
                                 @break
                                 @case('Ended')
-                                <td><i class="fas fa-check-circle" style="color: #35cc5a;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color: #35cc5a;" data-toggle="tooltip" data-placement="right" title="Terminée"></i></td>
                                 @break
                             @endswitch
                             <td>
@@ -63,4 +63,12 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 @endsection

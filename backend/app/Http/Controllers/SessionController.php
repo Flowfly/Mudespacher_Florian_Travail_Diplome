@@ -114,12 +114,18 @@ class SessionController extends Controller
 
     public function finishSession($sessionId){
         $session = Session::findOrFail($sessionId);
-        $session->status = 'Ended';
-        $result = $session->saveOrFail();
-        if($result)
+        $result = false;
+        if($session->status != 'Ended')
         {
-            broadcast(new FinishGame($sessionId))->toOthers();
+            $session->status = 'Ended';
+            $result = $session->saveOrFail();
+            if($result)
+            {
+                broadcast(new FinishGame($sessionId))->toOthers();
+            }
         }
+        else
+            $result = true;
         return $result;
     }
 
