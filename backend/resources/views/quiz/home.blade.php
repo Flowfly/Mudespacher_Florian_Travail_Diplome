@@ -29,7 +29,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
+    <script defer>
         const app = new Vue({
             el: '#app',
             data: () => ({

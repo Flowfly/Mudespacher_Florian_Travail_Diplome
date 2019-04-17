@@ -26,4 +26,8 @@ class Session extends Model
     public function answers(){
         return $this->hasMany('App\Answer');
     }
+
+    public function tag(){
+        return $this->belongsTo('App\Tag');
+    }
 }

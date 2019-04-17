@@ -9,8 +9,8 @@ use App\Events\StartSession;
 use App\Events\UserRegistred;
 use App\Question;
 use App\Session;
+use App\Tag;
 use App\User;
-use App\UserSession;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -27,19 +27,31 @@ class SessionController extends Controller
     }
 
     public function getAll(){
-        return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers'])->get()]);
+        return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers', 'tag'])->get()]);
     }
 
     public function addGetInfos(){
-        return view('/backoffice/sessions_add');
+        return view('/backoffice/sessions_add')->with(['tags' => Tag::all()]);
     }
 
     public function submit(Request $request){
+        $request->validate([
+            'session_label' => ['required', 'min:4', 'max:25'],
+            'tag' => ['required', 'numeric']
+        ]);
+        $tagId = 0;
+        if($request->tag != 0)
+        {
+            $tag = Tag::findOrFail($request->tag);
+            $tagId = $tag->id;
+        }
+
         $sessionToAdd = new Session();
         $sessionToAdd->label = $request->session_label;
         $sessionToAdd->current_game_question = 0;
         $sessionToAdd->date_of_session = Carbon::now();
-        $sessionToAdd->question_id = $this->pickRandomQuestion();
+        $sessionToAdd->tag_id = $tagId == 0 ? null : $tagId;
+        $sessionToAdd->question_id = $tagId == 0 ? $this->pickRandomQuestion() : $this->pickRandomQuestion($tagId);
         $result = $sessionToAdd->saveOrFail();
         $message = $result ? 'La session a bien été ajoutée !' : 'Un problème est survenu lors de l\'insertion de la session, veuillez réessayer.';
         return back()->with(['result' => $result, 'message' => $message]);
@@ -60,12 +72,24 @@ class SessionController extends Controller
     }
 
     public function editGetInfos(Request $request){
-        return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id)]);
+        return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id), 'tags' => Tag::all()]);
     }
 
     public function update(Request $request){
+        $request->validate([
+            'session_label' => ['required', 'min:4', 'max:25'],
+            'tag' => ['required', 'numeric']
+        ]);
+        $tagId = 0;
+        if($request->tag != 0)
+        {
+            $tag = Tag::findOrFail($request->tag);
+            $tagId = $tag->id;
+        }
         $session = Session::findOrFail($request->id);
         $session->label = $request->session_label;
+        $session->tag_id = $tagId == 0 ? null : $tagId;
+        $session->question_id = $tagId == 0 ? $this->pickRandomQuestion() : $this->pickRandomQuestion($tagId);
         $result = $session->saveOrFail();
         $message = $result ? 'La session a bien été modifiée' : 'Erreur lors de la modification de la session, veuillez réessayer';
         return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
@@ -102,7 +126,7 @@ class SessionController extends Controller
         $nextQuestion = $session->current_game_question + 1;
         if ($nextQuestion <= self::NUMBER_OF_ASKED_QUESTION) {
             $session->current_game_question = $nextQuestion;
-            $session->question_id = isset($request->tag_id) ? $this->pickRandomQuestion($request->tag_id) : $this->pickRandomQuestion();
+            $session->question_id = $session->tag_id != null ? $this->pickRandomQuestion($session->tag_id) : $this->pickRandomQuestion();
             $result = $session->saveOrFail();
             broadcast(new ChangeQuestion($session))->toOthers();
         } else {

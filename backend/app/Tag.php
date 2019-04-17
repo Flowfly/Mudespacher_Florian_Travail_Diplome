@@ -13,4 +13,7 @@ class Tag extends Model
     public function questions(){
         return $this->hasMany('App\Question');
     }
+    public function sessions(){
+        return $this->hasMany('App\Session');
+    }
 }

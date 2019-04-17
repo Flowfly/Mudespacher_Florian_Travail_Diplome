@@ -19,6 +19,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Question actuelle</th>
                         <th scope="col">Question associée</th>
+                        <th scope="col">Catégorie</th>
                         <th scope="col">Date de création</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -32,13 +33,13 @@
                             <td>{{$session->label}}</td>
                             @switch($session->status)
                                 @case('Not started')
-                                <td><i class="fas fa-stop-circle" style="color:#db3434;" data-toggle="tooltip" data-placement="right" title="Pas démarrée"></i></td>
+                                <td style="color:#3fc12e;">Pas démarrée</td>
                                 @break
                                 @case('Started')
-                                <td><i class="fas fa-spinner fa-spin" style="color:#f9a54a;" data-toggle="tooltip" data-placement="right" title="En cours"></i></td>
+                                <td style="color:#ffa319;">En cours</td>
                                 @break
                                 @case('Ended')
-                                <td><i class="fas fa-check-circle" style="color: #35cc5a;" data-toggle="tooltip" data-placement="right" title="Terminée"></i></td>
+                                <td style="color:#f23535;">Terminée</td>
                                 @break
                             @endswitch
                             <td>
@@ -47,6 +48,11 @@
                             <td>
                                 <a href="/backoffice/questions/{{$session->question->id}}">{{$session->question->label}}</a>
                             </td>
+                            @if($session->tag == null)
+                                <td>Aucun</td>
+                            @else
+                                <td><a href="/backoffice/tags/{{$session->tag->id}}/questions">{{$session->tag->label}}</a></td>
+                            @endif
                             <td>{{$session->date_of_session}}</td>
                             <td><a href="/backoffice/sessions/{{$session->id}}/restart"><i class="fas fa-undo"
                                                                                            style="color:#a446e2;"></i></a>
@@ -63,12 +69,4 @@
             @endif
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
 @endsection

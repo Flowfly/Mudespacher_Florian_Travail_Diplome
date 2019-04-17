@@ -21,6 +21,8 @@ class CreateSessionsTable extends Migration
             $table->dateTime('date_of_session');
             $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->unsignedBigInteger('tag_id')->nullable()->default(null);
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
     }
 

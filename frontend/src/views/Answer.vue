@@ -37,6 +37,7 @@
         cluster: 'eu',
         encrypted: true,
     });
+    var timerTest = null;
 
     export default {
         name: "Answer",
@@ -135,17 +136,21 @@
                            console.log(error);
                         });
                 }else{
+                    console.log('timer -1');
                     this.timeToWait = this.timeToWait - 1;
                 }
             },
             clearTimer(){
-
-                window.clearInterval(this.timer);
+                console.log('timer cleared');
+                clearInterval(this.timer);
                 this.timeToWait = CONST.TIME_TO_ANSWER;
             },
             listen() {
                 window.Echo.channel(`finish-game-${this.SessionId}`)
                     .listen('FinishGame', () => {
+                        window.Echo.leave(`session-${this.SessionId}`);
+                        window.Echo.leave(`change-question-${this.SessionId}`);
+                        console.log('partie terminée');
                         this.clearTimer();
                         var infos = {
                             'user_id': this.UserInfos.id,
@@ -165,12 +170,14 @@
                     });
                 window.Echo.channel(`session-${this.SessionId}`)
                     .listen('StartSession', () => {
+                        console.log('session démarrée');
                         this.isWaiting = false;
                         this.timer = window.setInterval(this.waitingTimeCheck, 1000);
                     });
                 window.Echo.channel(`change-question-${this.SessionId}`)
                     .listen('ChangeQuestion', (response) => {
-                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
+                        console.log('question changée');
+                        this.timer = setInterval(this.waitingTimeCheck, 1000);
                         this.questionData = response.question;
                         this.isWaiting = !this.isWaiting;
                         this.canClick = true;
