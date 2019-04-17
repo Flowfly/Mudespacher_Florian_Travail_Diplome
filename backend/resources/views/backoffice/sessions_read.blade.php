@@ -16,7 +16,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Libellé</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Statut</th>
                         <th scope="col">Question actuelle</th>
                         <th scope="col">Question associée</th>
                         <th scope="col">Catégorie</th>
@@ -49,7 +49,7 @@
                                 <a href="/backoffice/questions/{{$session->question->id}}">{{$session->question->label}}</a>
                             </td>
                             @if($session->tag == null)
-                                <td>Aucun</td>
+                                <td>Aucune</td>
                             @else
                                 <td><a href="/backoffice/tags/{{$session->tag->id}}/questions">{{$session->tag->label}}</a></td>
                             @endif

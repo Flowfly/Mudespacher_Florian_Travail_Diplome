@@ -13,8 +13,15 @@
             @endif
         </div>
         <div class="col"></div>
-        <div class="col-12" style="text-align: center;">
-            <table class="table table-striped">
+        <div class="col-12">
+            @if(session('result'))
+                @if(session('result') == 1)
+                    <div class="alert alert-success animated bounceInRight">
+                        {{session('message')}}
+                    </div>
+                @endif
+            @endif
+            <table class="table table-striped" style="text-align: center;">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -48,13 +55,6 @@
                 @endforeach
                 </tbody>
             </table>
-            @if(session('result'))
-                @if(session('result') == 1)
-                    <div class="alert alert-success animated bounceInRight">
-                        {{session('message')}}
-                    </div>
-                @endif
-            @endif
         </div>
         <div class="col"></div>
         <div class="col-4">

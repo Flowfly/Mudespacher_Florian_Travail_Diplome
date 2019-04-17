@@ -103,6 +103,7 @@ class SessionController extends Controller
         $session->users()->detach();
         return back()->with(['result' => $result, 'message' => 'La session a bien été redémarrée !']);
     }
+
     //</editor-fold>
 
     //<editor-fold desc="API">

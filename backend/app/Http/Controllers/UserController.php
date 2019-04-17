@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\AnswerUser;
 use App\Http\Requests\UserEdit;
 use App\Http\Requests\UserPost;
-use App\Session;
 use App\User;
 use App\Team;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -50,6 +48,13 @@ class UserController extends Controller
             return back()->with(['result' => $result, 'message' => $message]);
         }
         return back()->withErrors(['user' => 'Utilisateur introuvable']);
+    }
+    public function delete(Request $request){
+        $userToDelete = User::findOrFail($request->id);
+        $result = $userToDelete->delete();
+        $message = $result ? "L'utilisateur a bien été supprimé !" : "Un problème est survenu, veuillez réessayer";
+
+        return back()->with(['result' => $result, 'message' => $message]);
     }
 
     public function getUserInfos(Request $request)
