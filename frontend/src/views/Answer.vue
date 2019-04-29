@@ -10,15 +10,15 @@
                     <h1>Question à {{questionData.points}} points !</h1>
                     <h1>{{questionData.label}}</h1>
                 </v-flex>
-                <v-layout row wrap align-center justify-center v-for="(value, key) in questionData.propositions"
-                          style="height:160px;">
-                    <center style="width:100%; height:100%;">
-                        <answercomponent :propositionNumber="key" :question="questionData"
-                                         @clicked-from-child="answerQuestion"
-                        />
-                    </center>
+                <center>
+                    <v-flex v-for="(value, key) in questionData.propositions"
+                            style="height:160px;" class="answer" :id="`bubble-${key}`">
+                            <answercomponent :propositionNumber="key" :question="questionData"
+                                             @clicked-from-child="answerQuestion"
+                            />
+                    </v-flex>
+                </center>
 
-                </v-layout>
             </v-layout>
         </v-layout>
     </v-container>
@@ -33,10 +33,10 @@
 
     window.Pusher = require('pusher-js');
     window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: 'c04beebc0bd8d8c9866f',
-        cluster: 'eu',
-        encrypted: true,
+        broadcaster: CONST.WEB_SOCKET_SERVICE.broadcaster,
+        key: CONST.WEB_SOCKET_SERVICE.key,
+        cluster: CONST.WEB_SOCKET_SERVICE.cluster,
+        encrypted: CONST.WEB_SOCKET_SERVICE.encrypted,
     });
     var timerTest = null;
 
@@ -68,7 +68,9 @@
                     })
             },
             answerQuestion(event) {
+                console.log(this.canClick);
                 if (this.canClick) {
+
                     this.canClick = false;
                     for (var i = 0; i < this.questionData.propositions.length; i++) {
                         if (this.questionData.propositions[i].is_right_answer === 0)
@@ -101,7 +103,7 @@
                                     document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer.png')}')`;
                                 }
                             })
-                    }, 500);
+                    }, 1000);
                 }
             },
             waitingTimeCheck() {
@@ -181,7 +183,7 @@
         },
         mounted() {
             this.listen();
-            this.isWaiting = false;
+            this.isWaiting = true;
             this.fillAnswerComponents();
         },
         beforeMount() {
@@ -205,26 +207,66 @@
     }
 
     @media (max-width: 575.98px) {
-
+        .answer{
+            height:70%;
+            width:70%;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
     }
 
     /* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) and (max-width: 767.98px) {
-
+        .answer{
+            height:90%;
+            width:70%;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
     }
 
     /* Medium devices (tablets, 768px and up)*/
     @media (min-width: 768px) and (max-width: 991.98px) {
-
+        .answer{
+            height:90%;
+            width:70%;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
     }
 
     /* Large devices (desktops, 992px and up)*/
     @media (min-width: 992px) and (max-width: 1199.98px) {
-
+        .answer{
+            height:90%;
+            width:70%;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
     }
 
     /* Extra large devices (large desktops, 1200px and up)*/
     @media (min-width: 1200px) {
-
+        .answer{
+            height:77%;
+            width:65%;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
     }
 </style>

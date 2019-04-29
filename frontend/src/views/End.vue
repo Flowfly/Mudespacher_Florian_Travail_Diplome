@@ -17,18 +17,19 @@
 <script>
     import {mapActions, mapGetters} from 'vuex';
     import Echo from 'laravel-echo';
+    import CONST from '../CONST';
 
     window.Pusher = require('pusher-js');
     window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: 'c04beebc0bd8d8c9866f',
-        cluster: 'eu',
-        encrypted: true,
+        broadcaster: CONST.WEB_SOCKET_SERVICE.broadcaster,
+        key: CONST.WEB_SOCKET_SERVICE.key,
+        cluster: CONST.WEB_SOCKET_SERVICE.cluster,
+        encrypted: CONST.WEB_SOCKET_SERVICE.encrypted,
     });
 
     export default {
         name: "End",
-        datas: () => ({
+        data: () => ({
             ajaxQueryTerminated: false,
         }),
         computed: {
@@ -41,6 +42,9 @@
             window.Echo.leave(`finish-game-${this.SessionId}`);
             window.Echo.leave(`session-${this.SessionId}`);
             window.Echo.leave(`change-question-${this.SessionId}`);
+            setTimeout(() => {
+                this.$router.push('/home');
+            }, 10000)
         },
         beforeMount() {
         }

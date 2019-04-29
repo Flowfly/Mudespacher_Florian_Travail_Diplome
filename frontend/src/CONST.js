@@ -1,5 +1,10 @@
-const TIME_TO_ANSWER = 10;//in seconds
-const FIRST_CHAR_CODE = 65;
+const TIME_TO_ANSWER = 50;//in seconds
+const WEB_SOCKET_SERVICE = {
+    broadcaster: 'pusher',
+    key: 'c04beebc0bd8d8c9866f',
+    cluster: 'eu',
+    encrypted: true,
+};
 const REGISTRATION_RULES = {
     username: {
         min: 4,
@@ -59,5 +64,5 @@ export default {
     TIME_TO_ANSWER,
     REGISTRATION_RULES,
     REGISTRATION_ERROR_MESSAGES,
-    FIRST_CHAR_CODE,
+    WEB_SOCKET_SERVICE,
 }

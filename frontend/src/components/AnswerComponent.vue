@@ -1,28 +1,24 @@
 <template>
-        <v-img
-                class="bubble"
-                :id="`bubble-${this.propositionNumber}`"
-                @click="answer"
-        >
-            <div class="answer-container">
-                <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label }}</p>
-            </div>
-        </v-img>
+
+    <div class="answer-container"
+         @click="answer">
+        <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label }}</p>
+    </div>
 </template>
 
 <script>
     import CONST from '../CONST';
+
     export default {
         name: "AnswerComponent",
-        data: () => ({
-        }),
+        data: () => ({}),
         props:
             ['question', 'propositionNumber'],
         mounted() {
             //console.log(document.querySelector('#bubble').style.backgroundImage)
         },
-        methods:{
-            answer(){
+        methods: {
+            answer() {
                 this.$emit('clicked-from-child', [this.question.propositions[this.propositionNumber].id, this.question.propositions[this.propositionNumber].is_right_answer]);
             }
         }
@@ -37,6 +33,8 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
+        height:100%;
+        width:100%;
     }
 
     .answer-text {
@@ -45,73 +43,11 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
-        color:#fff3cc;
+        color: #fff3cc;
         font-size: 20pt;
     }
+
     /* Extra small devices (portrait phones, less than 576px)*/
 
-    @media (max-width: 575.98px) {
-        .bubble{
-            height:70%;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
-        }
-    }
-
-    /* Small devices (landscape phones, 576px and up)*/
-    @media (min-width: 576px) and (max-width: 767.98px) {
-        .bubble{
-            height:90%;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
-        }
-    }
-
-    /* Medium devices (tablets, 768px and up)*/
-    @media (min-width: 768px) and (max-width: 991.98px) {
-        .bubble{
-            height:90%;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
-        }
-    }
-
-    /* Large devices (desktops, 992px and up)*/
-    @media (min-width: 992px) and (max-width: 1199.98px) {
-        .bubble{
-            height:90%;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
-        }
-    }
-
-    /* Extra large devices (large desktops, 1200px and up)*/
-    @media (min-width: 1200px) {
-        .bubble{
-            height:90%;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
-        }
-    }
 
 </style>
