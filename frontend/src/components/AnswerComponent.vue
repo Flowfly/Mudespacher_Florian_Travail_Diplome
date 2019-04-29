@@ -5,16 +5,17 @@
                 @click="answer"
         >
             <div class="answer-container">
-                <p class="answer-text">{{this.question.propositions[this.propositionNumber].label}}</p>
+                <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label }}</p>
             </div>
-
         </v-img>
 </template>
 
 <script>
+    import CONST from '../CONST';
     export default {
         name: "AnswerComponent",
-        data: () => ({}),
+        data: () => ({
+        }),
         props:
             ['question', 'propositionNumber'],
         mounted() {
@@ -44,7 +45,8 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
-        color:black;
+        color:#fff3cc;
+        font-size: 20pt;
     }
     /* Extra small devices (portrait phones, less than 576px)*/
 
@@ -53,7 +55,7 @@
             height:70%;
             width:70%;
             cursor: pointer;
-            background-image: url("../assets/img/bubble.png");
+            background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
@@ -66,7 +68,7 @@
             height:90%;
             width:70%;
             cursor: pointer;
-            background-image: url("../assets/img/bubble.png");
+            background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
@@ -79,7 +81,7 @@
             height:90%;
             width:70%;
             cursor: pointer;
-            background-image: url("../assets/img/bubble.png");
+            background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
@@ -92,7 +94,7 @@
             height:90%;
             width:70%;
             cursor: pointer;
-            background-image: url("../assets/img/bubble.png");
+            background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
@@ -105,7 +107,7 @@
             height:90%;
             width:70%;
             cursor: pointer;
-            background-image: url("../assets/img/bubble.png");
+            background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;

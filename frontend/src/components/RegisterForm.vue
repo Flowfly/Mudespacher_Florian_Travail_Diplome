@@ -19,8 +19,8 @@
                     label="Nom d'utilisateur"
                     prepend-icon="fas fa-user"
                     color="white"
+                    outline
                     :rules="usernameRules"
-                    class="input-register"
             ></v-text-field>
         </v-flex>
         <v-flex xs3></v-flex>
@@ -30,6 +30,8 @@
                     v-model="password"
                     label="Mot de passe"
                     prepend-icon="fas fa-lock"
+                    outline
+                    color="white"
                     :rules="passwordRules"
                     :append-icon="show_password ? 'fas fa-eye' : 'fas fa-eye-slash'"
                     :type="show_password ? 'text' : 'password'"
@@ -43,6 +45,8 @@
                     v-model="passwordConfirmation"
                     label="Mot de passe (confirmation)"
                     prepend-icon="fas fa-lock"
+                    color="white"
+                    outline
                     :rules="passwordConfirmationRules"
                     :append-icon="show_passwordConfirmation ? 'fas fa-eye' : 'fas fa-eye-slash'"
                     :type="show_passwordConfirmation ? 'text' : 'password'"
@@ -56,6 +60,8 @@
                     v-model="name"
                     label="Prénom"
                     prepend-icon="fas fa-address-book"
+                    outline
+                    color="white"
                     :rules="nameRules"
                     required
             ></v-text-field>
@@ -67,6 +73,8 @@
                     v-model="surname"
                     label="Nom de famille"
                     prepend-icon="fas fa-address-book"
+                    outline
+                    color="white"
                     :rules="surnameRules"
                     required
             ></v-text-field>
@@ -88,6 +96,8 @@
                     <v-text-field
                             v-model="date"
                             prepend-icon="event"
+                            color="white"
+                            outline
                             readonly
                             v-on="on"
                     ></v-text-field>
@@ -102,6 +112,7 @@
                     v-model="email"
                     label="Email"
                     prepend-icon="fas fa-at"
+                    outline
                     :rules="emailRules"
                     required
             ></v-text-field>
@@ -113,6 +124,7 @@
                     v-model="phone"
                     label="Téléphone"
                     prepend-icon="fas fa-phone"
+                    outline
                     :rules="phoneRules"
                     required
             ></v-text-field>
@@ -273,6 +285,8 @@
 </script>
 
 <style scoped>
-
-
+    .input-register{
+        /*color:white;
+        caret-color: white;*/
+    }
 </style>

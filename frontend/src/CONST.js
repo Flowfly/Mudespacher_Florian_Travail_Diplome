@@ -1,4 +1,5 @@
 const TIME_TO_ANSWER = 10;//in seconds
+const FIRST_CHAR_CODE = 65;
 const REGISTRATION_RULES = {
     username: {
         min: 4,
@@ -58,4 +59,5 @@ export default {
     TIME_TO_ANSWER,
     REGISTRATION_RULES,
     REGISTRATION_ERROR_MESSAGES,
+    FIRST_CHAR_CODE,
 }

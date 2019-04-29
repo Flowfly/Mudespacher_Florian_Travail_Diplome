@@ -12,7 +12,7 @@
     export default {
         name: "Register",
         data: () => ({
-            valid:false,
+            valid: false,
         }),
         components: {
             registerform,
@@ -22,5 +22,11 @@
 </script>
 
 <style scoped>
-
+    .register-container {
+        height: 100%;
+    }
+    /*.v-input .input-register .v-text-field .v-text-field--enclosed .v-text-field--outline {
+        color:white !important;
+        caret-color: white !important;
+    }*/
 </style>

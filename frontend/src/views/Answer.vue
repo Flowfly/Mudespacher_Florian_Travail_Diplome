@@ -1,7 +1,7 @@
 <template>
-    <v-container fluid fill-height d-block v-if="questionData !== null" style="height: 100%;">
+    <v-container fluid fill-height d-block v-if="questionData !== null" class="answer-main">
         <waiting v-show="isWaiting"/>
-        <v-layout row wrap v-show="!isWaiting">
+        <v-layout row wrap v-show="!isWaiting" class="answer-container">
             <v-layout align-center justify-center d-inline-block class="hcenter">
                 <v-flex style="text-align: center;">
                     <h2 v-model="timeToWait">Temps restant : {{timeToWait}}</h2>
@@ -30,6 +30,7 @@
     import answercomponent from '../components/AnswerComponent';
     import {mapActions, mapGetters, mapMutations} from 'vuex';
     import Echo from 'laravel-echo';
+
     window.Pusher = require('pusher-js');
     window.Echo = new Echo({
         broadcaster: 'pusher',
@@ -67,80 +68,72 @@
                     })
             },
             answerQuestion(event) {
-                if(this.canClick)
-                {
-                    for(var i = 0; i < this.questionData.propositions.length; i++)
-                    {
-                        if(this.questionData.propositions[i].is_right_answer === 0)
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble_error.png')}')`;
-                        else
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble_success.png')}')`;
-                    }
-                    setTimeout(()=>{
-                        for(var i = 0; i < this.questionData.propositions.length; i++)
-                        {
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/bubble.png')}')`;
-                        }
-                    }, 300);
+                if (this.canClick) {
                     this.canClick = false;
-                    /**/
-                    var infos = {
-                        'proposition_id': event[0],
-                        'user_id': this.UserInfos.id,
-                        'session_id': this.SessionId,
-                    };
-                    this.userAnswer(infos)
-                        .done((response) => {
-                            if(response.status === 'success')
-                            {
-                                this.clearTimer();
-                            }
-                            else{
-                                this.canClick = !this.canClick;
-                            }
-                        })
-                        .fail((error) => {
+                    for (var i = 0; i < this.questionData.propositions.length; i++) {
+                        if (this.questionData.propositions[i].is_right_answer === 0)
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer_error.png')}')`;
+                        else
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer_success.png')}')`;
+                    }
+                    setTimeout(() => {
+                        var infos = {
+                            'proposition_id': event[0],
+                            'user_id': this.UserInfos.id,
+                            'session_id': this.SessionId,
+                        };
+                        this.userAnswer(infos)
+                            .done((response) => {
+                                if (response.status === 'success') {
+                                    this.clearTimer();
+                                } else {
+                                    this.canClick = !this.canClick;
+                                }
+                            })
+                            .fail((error) => {
 
-                            this.canClick = !this.canClick;
-                            console.log(error);
-                        })
-                        .always(() => {
-                            this.isWaiting = !this.isWaiting;
-                        })
+                                this.canClick = !this.canClick;
+                                console.log(error);
+                            })
+                            .always(() => {
+                                this.isWaiting = !this.isWaiting;
+                                for (var i = 0; i < this.questionData.propositions.length; i++) {
+                                    document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer.png')}')`;
+                                }
+                            })
+                    }, 500);
                 }
             },
-            waitingTimeCheck(){
-                if(this.timeToWait === 0) {
+            waitingTimeCheck() {
+                if (this.timeToWait === 0) {
                     console.log('timer fini');
                     this.clearTimer();
-                    for(var i = 0; i < this.questionData.propositions.length; i++)
-                    {
-                        if(this.questionData.propositions[i].is_right_answer === 0){
+                    for (var i = 0; i < this.questionData.propositions.length; i++) {
+                        if (this.questionData.propositions[i].is_right_answer === 0) {
                             this.falseAnswerId = this.questionData.propositions[i].id;
                             break;
                         }
                     }
-                    let  infos = {
+                    let infos = {
                         'proposition_id': this.falseAnswerId,
                         'user_id': this.UserInfos.id,
                         'session_id': this.SessionId,
                     };
                     this.userAnswer(infos)
                         .done((response) => {
-                            if(response.status === 'success')
-                            {
+                            if (response.status === 'success') {
                                 this.isWaiting = !this.isWaiting;
                             }
                         })
                         .fail((error) => {
-                           console.log(error);
+                            console.log(error);
                         });
-                }else{
+                } else {
                     console.log('timer -1');
                     this.timeToWait = this.timeToWait - 1;
                 }
             },
-            clearTimer(){
+            clearTimer() {
                 console.log('timer cleared');
                 clearInterval(this.timer);
                 this.timeToWait = CONST.TIME_TO_ANSWER;
@@ -186,9 +179,9 @@
             ...mapActions(['getActualQuestion', 'userAnswer', 'getScore']),
             ...mapMutations(['setSessionId', 'setUserResult']),
         },
-        mounted(){
+        mounted() {
             this.listen();
-            this.isWaiting = true;
+            this.isWaiting = false;
             this.fillAnswerComponents();
         },
         beforeMount() {
@@ -205,5 +198,33 @@
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
+    }
+
+    .answer-main {
+        height: 100%;
+    }
+
+    @media (max-width: 575.98px) {
+
+    }
+
+    /* Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) and (max-width: 767.98px) {
+
+    }
+
+    /* Medium devices (tablets, 768px and up)*/
+    @media (min-width: 768px) and (max-width: 991.98px) {
+
+    }
+
+    /* Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+
+    }
+
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+
     }
 </style>

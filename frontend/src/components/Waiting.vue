@@ -1,5 +1,5 @@
 <template>
-    <v-layout row wrap>
+    <v-layout row wrap class="waiting-container">
             <v-layout align-center justify-center>
                 <div style="text-align: -webkit-center;">
                     <h1>En attente des autres joueurs</h1>
@@ -26,4 +26,5 @@
         max-width: 200px;
         margin: 10px;
     }
+    
 </style>
