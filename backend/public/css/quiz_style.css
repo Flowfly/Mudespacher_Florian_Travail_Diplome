@@ -2,6 +2,7 @@ body{
     background-image: url('../img/quiz/background.png');
     color:#fff3cc;
     text-align: center;
+    font-family: "Font";
 }
 .hcenter{
     position: absolute;
@@ -13,19 +14,25 @@ body{
 .btn-start{
     width: 20vw;
 }
+.bubble-text{
+    color:#fff3cc;
+    font-size: 20pt;
+}
 
+@font-face {
+    font-family: "Font";
+    src: url("../assets/font.otf");
+}
 /*Extra small devices (portrait phones, less than 576px)*/
 
 @media (max-width: 575.98px) {
     .bubble-container{
-        background-image: url("../img/quiz/bubble.png");
         background-size: cover;
         background-position: center;
         height:20vh;
         width:20vw;
     }
     .bubble-text{
-        color:black;
         width:60%;
         height:40%;
     }
@@ -41,7 +48,6 @@ body{
         width:24vw;
     }
     .bubble-text{
-        color:black;
         width:20%;
         height:70%;
     }
@@ -57,7 +63,6 @@ body{
         width:60vw;
     }
     .bubble-text{
-        color:black;
         width:25%;
         height:30%;
     }
@@ -73,7 +78,6 @@ body{
         width:60vw;
     }
     .bubble-text{
-        color:black;
         width:60%;
         height:45%;
     }
@@ -89,7 +93,6 @@ body{
         width:20vw;
     }
     .bubble-text{
-        color:black;
         width:20%;
         height:80%;
     }

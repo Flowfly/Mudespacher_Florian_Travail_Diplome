@@ -1,14 +1,14 @@
 @extends('quiz/layout')
 @section('content')
     <div class="col-12">
-        <h1 id="question-label">{{$question->label}}</h1>
+        <h1 id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
     </div>
     <hr>
     <div class="col-12" id="propositions">
         @for($i = 0; $i < count($question->propositions); $i++)
             <div class="col-12">
                 <center>
-                    <div class="bubble-container">
+                    <div class="bubble-container" style="background-image: url({{asset("../../img/quiz/answer" . ($i+1) . ".png")}})">
                         <div class="hcenter bubble-text">
                             <p class="hcenter" id="proposition-{{$i}}">{{$question->propositions[$i]->label}}</p>
                         </div>
