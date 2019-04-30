@@ -53,6 +53,7 @@
             timeToWait: CONST.TIME_TO_ANSWER,
             timer: null,
             falseAnswerId: null,
+            sound: null,
         }),
         computed: {
             ...mapGetters(['SessionId', 'UserInfos']),
@@ -70,7 +71,14 @@
             answerQuestion(event) {
                 console.log(this.canClick);
                 if (this.canClick) {
-
+                    if(event[1] === 1){
+                        this.sound = new Audio(require('../assets/sounds/success.mp3'));
+                        this.sound.play();
+                    }
+                    else {
+                        this.sound = new Audio(require('../assets/sounds/error.mp3'));
+                        this.sound.play();
+                    }
                     this.canClick = false;
                     for (var i = 0; i < this.questionData.propositions.length; i++) {
                         if (this.questionData.propositions[i].is_right_answer === 0)
