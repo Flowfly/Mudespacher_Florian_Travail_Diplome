@@ -95,12 +95,10 @@ class SessionController extends Controller
         return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
     }
 
-    public function restartSession(Request $request){
-        $session = Session::findOrFail($request->session_id);
-        $session->current_game_question = 0;
-        $session->status = "Not started";
-        $result = $session->saveOrFail();
-        $session->users()->detach();
+
+
+    public function restartSessionBackoffice(Request $request){
+        $result = $this->restartSession($request);
         return back()->with(['result' => $result, 'message' => 'La session a bien été redémarrée !']);
     }
 
@@ -306,4 +304,15 @@ class SessionController extends Controller
 
         return [$result, $session];
     }
+
+    public static function restartSession(Request $request){
+        $session = Session::findOrFail($request->session_id);
+        $session->current_game_question = 0;
+        $session->status = "Not started";
+        $result = $session->saveOrFail();
+        $session->users()->detach();
+        return $result;
+    }
+
+
 }

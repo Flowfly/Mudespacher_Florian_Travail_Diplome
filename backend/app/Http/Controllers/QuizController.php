@@ -37,6 +37,7 @@ class QuizController extends Controller
     }
 
     public function end(Request $request){
+        app('App\Http\Controllers\SessionController')->restartSession($request);
         $ranking = app('App\Http\Controllers\SessionController')->getRanking($request);
         return view('/quiz/end')->with(['ranking' => $ranking]);
     }

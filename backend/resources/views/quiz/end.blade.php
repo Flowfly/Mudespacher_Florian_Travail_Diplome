@@ -18,4 +18,5 @@
     <div class="col-12">
         <h4>Veuillez s'il vous plaît rendre les tablettes au responsable</h4>
     </div>
+    <div style="display: none">{{ \App\Http\Controllers\SessionController::restartSession(request()) }}</div>
 @endsection

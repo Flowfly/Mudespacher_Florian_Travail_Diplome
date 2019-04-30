@@ -52,7 +52,7 @@ Route::get('/backoffice/propositions/read/{id}', 'PropositionController@getAllFr
 Route::get('/backoffice/sessions/', 'SessionController@getAll');
 Route::get('/backoffice/sessions/add', 'SessionController@addGetInfos');
 Route::get('/backoffice/sessions/edit/{id}', 'SessionController@editGetInfos');
-Route::get('/backoffice/sessions/{session_id}/restart', 'SessionController@restartSession');
+Route::get('/backoffice/sessions/{session_id}/restart', 'SessionController@restartSessionBackoffice');
 Route::get('/backoffice/sessions/delete/{id}', 'SessionController@delete');
 //****** POST ******//
 Route::post('/backoffice/post-session', 'SessionController@submit');
