@@ -10,9 +10,9 @@
                     <h1>Question à {{questionData.points}} points !</h1>
                     <h1>{{questionData.label}}</h1>
                 </v-flex>
-                <center>
+                <center class="answer-box-container">
                     <v-flex v-for="(value, key) in questionData.propositions"
-                            style="height:160px;" class="answer" :id="`bubble-${key}`">
+                            class="answer" :id="`bubble-${key}`">
                             <answercomponent :propositionNumber="key" :question="questionData"
                                              @clicked-from-child="answerQuestion"
                             />
@@ -224,7 +224,7 @@
 
     @media (max-width: 575.98px) {
         .answer{
-            height:70%;
+            height:10rem;
             width:70%;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
@@ -237,33 +237,40 @@
     /* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) and (max-width: 767.98px) {
         .answer{
-            height:90%;
-            width:70%;
+            height:15rem;
+            width:12rem;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
         }
+        .answer-box-container{
+            display:flex;
+        }
+
     }
 
     /* Medium devices (tablets, 768px and up)*/
     @media (min-width: 768px) and (max-width: 991.98px) {
         .answer{
-            height:90%;
-            width:70%;
+            height:15rem;
+            width:15rem;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
+        }
+        .answer-box-container{
+            display:flex;
         }
     }
 
     /* Large devices (desktops, 992px and up)*/
     @media (min-width: 992px) and (max-width: 1199.98px) {
         .answer{
-            height:90%;
+            height:15rem;
             width:70%;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
@@ -276,7 +283,7 @@
     /* Extra large devices (large desktops, 1200px and up)*/
     @media (min-width: 1200px) {
         .answer{
-            height:77%;
+            height:12rem;
             width:65%;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");

@@ -12,8 +12,8 @@
                 {{alertMessage}}
             </v-alert>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6>
+        <v-flex xs1></v-flex>
+        <v-flex xs10>
             <v-text-field
                     v-model="username"
                     label="Nom d'utilisateur"
@@ -23,9 +23,9 @@
                     :rules="usernameRules"
             ></v-text-field>
         </v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.password">
+        <v-flex xs1></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.password">
             <v-text-field
                     v-model="password"
                     label="Mot de passe"
@@ -38,9 +38,9 @@
                     @click:append="show_password = !show_password"
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.password">
+        <v-flex xs1 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.password">
             <v-text-field
                     v-model="passwordConfirmation"
                     label="Mot de passe (confirmation)"
@@ -53,9 +53,9 @@
                     @click:append="show_passwordConfirmation = !show_passwordConfirmation"
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.password"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.name"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.name">
+        <v-flex xs1 v-if="this.InterfaceSettings.password"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.name"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.name">
             <v-text-field
                     v-model="name"
                     label="Prénom"
@@ -66,9 +66,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.name"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.surname"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.surname">
+        <v-flex xs1 v-if="this.InterfaceSettings.name"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.surname"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.surname">
             <v-text-field
                     v-model="surname"
                     label="Nom de famille"
@@ -79,9 +79,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.surname"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.date"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.date">
+        <v-flex xs1 v-if="this.InterfaceSettings.surname"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.date"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.date">
             <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -105,9 +105,9 @@
                 <v-date-picker v-model="date" @input="menu = false" :allowed-dates="allowedDates"></v-date-picker>
             </v-menu>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.date"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.email"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.email">
+        <v-flex xs1 v-if="this.InterfaceSettings.date"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.email"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.email">
             <v-text-field
                     v-model="email"
                     label="Email"
@@ -117,9 +117,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.email"></v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
-        <v-flex xs6 v-if="this.InterfaceSettings.phone">
+        <v-flex xs1 v-if="this.InterfaceSettings.email"></v-flex>
+        <v-flex xs1 v-if="this.InterfaceSettings.phone"></v-flex>
+        <v-flex xs10 v-if="this.InterfaceSettings.phone">
             <v-text-field
                     v-model="phone"
                     label="Téléphone"
@@ -129,9 +129,9 @@
                     required
             ></v-text-field>
         </v-flex>
-        <v-flex xs3 v-if="this.InterfaceSettings.phone"></v-flex>
-        <v-flex xs3></v-flex>
-        <v-flex xs6 style="text-align: center;">
+        <v-flex xs1 v-if="this.InterfaceSettings.phone"></v-flex>
+        <v-flex xs1></v-flex>
+        <v-flex xs10 style="text-align: center;">
             <v-btn
                     color="white"
                     large
@@ -140,7 +140,7 @@
                 JOUER
             </v-btn>
         </v-flex>
-        <v-flex xs3></v-flex>
+        <v-flex xs1></v-flex>
     </v-layout>
 </template>
 
