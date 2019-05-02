@@ -38,7 +38,6 @@
         cluster: CONST.WEB_SOCKET_SERVICE.cluster,
         encrypted: CONST.WEB_SOCKET_SERVICE.encrypted,
     });
-    var timerTest = null;
 
     export default {
         name: "Answer",
@@ -54,6 +53,9 @@
             timer: null,
             falseAnswerId: null,
             sound: null,
+            errorImg: new Image(),
+            successImg: new Image(),
+            defaultImg: new Image(),
         }),
         computed: {
             ...mapGetters(['SessionId', 'UserInfos']),
@@ -82,9 +84,9 @@
                     this.canClick = false;
                     for (var i = 0; i < this.questionData.propositions.length; i++) {
                         if (this.questionData.propositions[i].is_right_answer === 0)
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer_error.png')}')`;
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('${this.errorImg.src}')`;
                         else
-                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer_success.png')}')`;
+                            document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('${this.successImg.src}')`;
                     }
                     setTimeout(() => {
                         var infos = {
@@ -108,43 +110,47 @@
                             .always(() => {
                                 this.isWaiting = !this.isWaiting;
                                 for (var i = 0; i < this.questionData.propositions.length; i++) {
-                                    document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('../${require('../assets/img/answer.png')}')`;
+                                    document.querySelector(`#bubble-${i}`).style.backgroundImage = `url('${this.defaultImg.src}')`;
                                 }
                             })
                     }, 1000);
                 }
             },
             waitingTimeCheck() {
-                if (this.timeToWait === 0) {
-                    console.log('timer fini');
-                    this.clearTimer();
-                    for (var i = 0; i < this.questionData.propositions.length; i++) {
-                        if (this.questionData.propositions[i].is_right_answer === 0) {
-                            this.falseAnswerId = this.questionData.propositions[i].id;
-                            break;
-                        }
-                    }
-                    let infos = {
-                        'proposition_id': this.falseAnswerId,
-                        'user_id': this.UserInfos.id,
-                        'session_id': this.SessionId,
-                    };
-                    this.userAnswer(infos)
-                        .done((response) => {
-                            if (response.status === 'success') {
-                                this.isWaiting = !this.isWaiting;
+                if(this.$route.name === 'answer'){
+                    if (this.timeToWait === 0) {
+                        this.clearTimer();
+                        for (var i = 0; i < this.questionData.propositions.length; i++) {
+                            if (this.questionData.propositions[i].is_right_answer === 0) {
+                                this.falseAnswerId = this.questionData.propositions[i].id;
+                                break;
                             }
-                        })
-                        .fail((error) => {
-                            console.log(error);
-                        });
-                } else {
-                    console.log('timer -1');
-                    this.timeToWait = this.timeToWait - 1;
+                        }
+                        let infos = {
+                            'proposition_id': this.falseAnswerId,
+                            'user_id': this.UserInfos.id,
+                            'session_id': this.SessionId,
+                        };
+                        this.userAnswer(infos)
+                            .done((response) => {
+                                if (response.status === 'success') {
+                                    this.isWaiting = !this.isWaiting;
+                                }
+                            })
+                            .fail((error) => {
+                                console.log(error);
+                            });
+                    } else {
+                        console.log('timer -1');
+                        this.timeToWait = this.timeToWait - 1;
+                    }
+                }else{
+                    this.clearTimer();
+                    this.timer =
+                        null;
                 }
             },
             clearTimer() {
-                console.log('timer cleared');
                 clearInterval(this.timer);
                 this.timeToWait = CONST.TIME_TO_ANSWER;
             },
@@ -153,7 +159,6 @@
                     .listen('FinishGame', () => {
                         window.Echo.leave(`session-${this.SessionId}`);
                         window.Echo.leave(`change-question-${this.SessionId}`);
-                        console.log('partie terminée');
                         this.clearTimer();
                         var infos = {
                             'user_id': this.UserInfos.id,
@@ -173,9 +178,8 @@
                     });
                 window.Echo.channel(`session-${this.SessionId}`)
                     .listen('StartSession', () => {
-                        console.log('session démarrée');
                         this.isWaiting = false;
-                        this.timer = window.setInterval(this.waitingTimeCheck, 1000);
+                        this.timer = setInterval(this.waitingTimeCheck, 1000);
                     });
                 window.Echo.channel(`change-question-${this.SessionId}`)
                     .listen('ChangeQuestion', (response) => {
@@ -193,10 +197,14 @@
             this.listen();
             this.isWaiting = true;
             this.fillAnswerComponents();
+            this.errorImg.src = require('../assets/img/answer_error.png');
+            this.successImg.src = require('../assets/img/answer_success.png');
+            this.defaultImg.src = require('../assets/img/answer.png');
         },
-        beforeMount() {
-            //console.log(require('../assets/img/bubble_error.png'))
-        },
+        destroyed() {
+            this.clearTimer();
+            console.log('timer destroyed');
+        }
 
     }
 </script>

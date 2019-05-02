@@ -39,14 +39,16 @@
 
         },
         mounted(){
-            window.Echo.leave(`finish-game-${this.SessionId}`);
-            window.Echo.leave(`session-${this.SessionId}`);
-            window.Echo.leave(`change-question-${this.SessionId}`);
             setTimeout(() => {
                 this.$router.push('/home');
             }, 10000)
         },
         beforeMount() {
+        },
+        beforeCreate() {
+            window.Echo.leave(`finish-game-${this.SessionId}`);
+            window.Echo.leave(`session-${this.SessionId}`);
+            window.Echo.leave(`change-question-${this.SessionId}`);
         }
     }
 </script>

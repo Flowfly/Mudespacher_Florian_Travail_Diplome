@@ -32,9 +32,9 @@ Route::post('/backoffice/register', 'BackofficeUserController@register');
 //******************************************* Questions ****************************************
 //****** GET ******//
 Route::get('/backoffice/questions', 'QuestionController@getAll');
+Route::get('/backoffice/questions/add', 'QuestionController@addGetInfos');
 Route::get('/backoffice/questions/{id}', 'QuestionController@getOne');
 Route::get('/backoffice/questions/edit/{id}', 'QuestionController@editGetInfos');
-Route::get('/backoffice/questions/add', 'QuestionController@addGetInfos');
 Route::get('/backoffice/questions/delete/{id}', 'QuestionController@delete');
 //****** POST ******//
 Route::post('backoffice/post-question', 'QuestionController@submit');

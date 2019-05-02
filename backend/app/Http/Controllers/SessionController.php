@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 class SessionController extends Controller
 {
     const NUMBER_OF_ASKED_QUESTION = 4;
+    const NUMBER_OF_DISPLAYED_USERS = 5;
 
     //<editor-fold desc="Backoffice"
     public function startSessionQuiz(Request $request)
@@ -26,22 +27,24 @@ class SessionController extends Controller
         return $result[0] ? redirect("/" . $result[1]->id . "/question") : back()->with(['result' => $result[0]]);
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers', 'tag'])->get()]);
     }
 
-    public function addGetInfos(){
+    public function addGetInfos()
+    {
         return view('/backoffice/sessions_add')->with(['tags' => Tag::all()]);
     }
 
-    public function submit(Request $request){
+    public function submit(Request $request)
+    {
         $request->validate([
             'session_label' => ['required', 'min:4', 'max:25'],
             'tag' => ['required', 'numeric']
         ]);
         $tagId = 0;
-        if($request->tag != 0)
-        {
+        if ($request->tag != 0) {
             $tag = Tag::findOrFail($request->tag);
             $tagId = $tag->id;
         }
@@ -60,29 +63,29 @@ class SessionController extends Controller
     public function delete(Request $request)
     {
         $session = Session::findOrFail($request->id);
-        if($session->status == 'Started'){
+        if ($session->status == 'Started') {
             $result = false;
             $message = 'Impossible de supprimer une session en cours';
-        }
-        else{
+        } else {
             $result = $session->delete();
             $message = $result ? 'La session a bien été supprimée !' : 'Erreur lors de la suppression de la session, veuillez réessayer';
         }
         return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
     }
 
-    public function editGetInfos(Request $request){
+    public function editGetInfos(Request $request)
+    {
         return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id), 'tags' => Tag::all()]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'session_label' => ['required', 'min:4', 'max:25'],
             'tag' => ['required', 'numeric']
         ]);
         $tagId = 0;
-        if($request->tag != 0)
-        {
+        if ($request->tag != 0) {
             $tag = Tag::findOrFail($request->tag);
             $tagId = $tag->id;
         }
@@ -96,8 +99,8 @@ class SessionController extends Controller
     }
 
 
-
-    public function restartSessionBackoffice(Request $request){
+    public function restartSessionBackoffice(Request $request)
+    {
         $result = $this->restartSession($request);
         return back()->with(['result' => $result, 'message' => 'La session a bien été redémarrée !']);
     }
@@ -135,19 +138,17 @@ class SessionController extends Controller
         return response()->json(['status' => $result ? 'success' : 'error', 'data' => $session]);
     }
 
-    public function finishSession($sessionId){
+    public function finishSession($sessionId)
+    {
         $session = Session::findOrFail($sessionId);
         $result = false;
-        if($session->status != 'Ended')
-        {
+        if ($session->status != 'Ended') {
             $session->status = 'Ended';
             $result = $session->saveOrFail();
-            if($result)
-            {
+            if ($result) {
                 broadcast(new FinishGame($sessionId))->toOthers();
             }
-        }
-        else
+        } else
             $result = true;
         return $result;
     }
@@ -250,16 +251,16 @@ class SessionController extends Controller
         while (count($sortedScores) < count($scores)) {
             $tmp = ['', 0, 0];
             for ($i = 0; $i < count($scores); $i++) {
-                if ($scores[$i][1] >= $tmp[1])
-                {
-                    if(!in_array($scores[$i], $sortedScores))
+                if ($scores[$i][1] >= $tmp[1]) {
+                    if (!in_array($scores[$i], $sortedScores))
                         $tmp = [$scores[$i][0], $scores[$i][1], $scores[$i][2]];
                 }
 
             }
             array_push($sortedScores, $tmp);
         }
-        return $sortedScores;
+
+        return array_slice($sortedScores, 0, self::NUMBER_OF_DISPLAYED_USERS);
     }
 
     public function getRankingAPI(Request $request)
@@ -267,7 +268,8 @@ class SessionController extends Controller
         return response()->json($this->getRanking($request));
     }
 
-    public function getUserRanking(Request $request){
+    public function getUserRanking(Request $request)
+    {
         $answers = Answer::with(['question', 'proposition', 'user'])
             ->where('session_id', '=', $request->session_id)
             ->where('user_id', '=', $request->user_id)
@@ -275,9 +277,8 @@ class SessionController extends Controller
         $score = 0;
         $numberOfCorrectAnswers = 0;
         $user = null;
-        foreach($answers as $answer)
-        {
-            if($answer->proposition->is_right_answer) {
+        foreach ($answers as $answer) {
+            if ($answer->proposition->is_right_answer) {
                 $score += $answer->question->points;
                 $numberOfCorrectAnswers++;
             }
@@ -285,6 +286,7 @@ class SessionController extends Controller
         }
         return response()->json(['user' => $user, 'score' => $score, 'correctAnswers' => $numberOfCorrectAnswers]);
     }
+
     //</editor-fold>
 
     public function startSession(Request $request)
@@ -294,10 +296,9 @@ class SessionController extends Controller
         $session->current_game_question = 1;
         $result = $session->saveOrFail();
 
-        if($result) {
+        if ($result) {
             $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $request->session_id)->get();
-            foreach($sessionUsers as $user)
-            {
+            foreach ($sessionUsers as $user) {
                 $user->sessions()->updateExistingPivot($request->session_id, ['current_question' => 1]);
             }
         }
@@ -305,7 +306,8 @@ class SessionController extends Controller
         return [$result, $session];
     }
 
-    public static function restartSession(Request $request){
+    public static function restartSession(Request $request)
+    {
         $session = Session::findOrFail($request->session_id);
         $session->current_game_question = 0;
         $session->status = "Not started";

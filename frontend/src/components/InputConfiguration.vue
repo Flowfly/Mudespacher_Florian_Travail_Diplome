@@ -12,7 +12,8 @@
                 </v-toolbar>
 
                 <v-card-text>
-                    <h3 class="headline mb-0"><i class="fas fa-info-circle" style="color:#3d5aff; margin-right:1%;"></i> Séléction des informations à demander au client</h3>
+                    <h3 class="headline mb-0"><i class="fas fa-info-circle" style="color:#3d5aff; margin-right:1%;"></i>
+                        Séléction des informations à demander au client</h3>
                     <v-layout row wrap align-center>
                         <v-switch v-model="password" :label="`Mot de passe`" color="primary"></v-switch>
                         <v-switch v-model="name" :label="`Prénom`" color="primary"></v-switch>
@@ -26,7 +27,9 @@
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-text>
-                    <h3 class="headline mb-0"><i class="fas fa-spinner fa-spin" style="color:#3d5aff; margin-right:1%;"></i> Séléctionner la partie</h3>
+                    <h3 class="headline mb-0"><i class="fas fa-spinner fa-spin"
+                                                 style="color:#3d5aff; margin-right:1%;"></i> Séléctionner la partie
+                    </h3>
                     <v-layout row wrap>
                         <v-flex xs12>
                             <v-combobox
@@ -40,6 +43,7 @@
                 <v-divider></v-divider>
 
                 <v-card-actions>
+                    <p>{{test}}</p>
                     <v-spacer></v-spacer>
                     <v-btn
                             color="success"
@@ -69,6 +73,7 @@
             phone: false,
             items: [],
             select: "",
+            test: "",
         }),
         methods: {
             goToQuiz() {
@@ -90,22 +95,27 @@
                 }
                 return true;
             },
-            fillSessionCombobox(){
+            fillSessionCombobox() {
                 this.getAllNotStartedSessions()
                     .done((response) => {
                         var result = response[0];
-                        for(var i = 0; i < result.length; i++)
-                        {
+                        for (var i = 0; i < result.length; i++) {
                             this.items.push(`${result[i].id}.${result[i].label}`);
                         }
+                    })
+                    .fail((error) => {
+                        this.test = error;
                     })
             },
             ...mapMutations(['setInterface', 'setSessionId']),
             ...mapActions(['getAllNotStartedSessions'])
-        },
+        }
+        ,
         computed: {
-            ...mapGetters(['InterfaceSettings'])
-        },
+            ...
+                mapGetters(['InterfaceSettings'])
+        }
+        ,
         mounted() {
             if (!this.isEmpty(this.InterfaceSettings)) {
                 this.password = this.InterfaceSettings.password;

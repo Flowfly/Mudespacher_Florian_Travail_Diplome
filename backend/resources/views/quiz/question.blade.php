@@ -41,6 +41,7 @@
                                 var center = document.createElement('center');
                                 var bubbleContainer = document.createElement('div');
                                 bubbleContainer.setAttribute('class', 'bubble-container');
+                                bubbleContainer.setAttribute('style', `background-image: url(../../img/quiz/answer${parseInt(i+1)}.png)`);
                                 var bubbleText = document.createElement('div');
                                 bubbleText.setAttribute('class', 'hcenter bubble-text');
                                 var proposition = document.createElement('p');
