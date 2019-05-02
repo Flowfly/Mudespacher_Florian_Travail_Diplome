@@ -20,3 +20,10 @@
     </div>
     <div style="display: none">{{ \App\Http\Controllers\SessionController::restartSession(request()) }}</div>
 @endsection
+@section('scripts')
+    <script>
+        setTimeout(() => {
+            document.location.href="/{!! request('session_id') !!}";
+        }, 20000);
+    </script>
+@endsection

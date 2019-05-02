@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('label');
             $table->integer('points');
+            $table->bigInteger('number_of_times_asked')->default(0);
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->unsignedBigInteger('tag_id');

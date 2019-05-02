@@ -13,10 +13,11 @@ use App\Tag;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
-    const NUMBER_OF_ASKED_QUESTION = 4;
+    const NUMBER_OF_ASKED_QUESTION = 5;
     const NUMBER_OF_DISPLAYED_USERS = 5;
 
     //<editor-fold desc="Backoffice"
@@ -156,17 +157,17 @@ class SessionController extends Controller
     public function pickRandomQuestion($id = NULL)
     {
         if ($id != NULL) {
-            $questions = Question::query()
-                ->where('id', '!=', 8)
-                ->where('tag_id', $id)
-                ->get();
+            $questions = DB::table('questions')->where('tag_id', '=', $id)->orderBy('number_of_times_asked', 'asc')->get();
         } else {
-            $questions = Question::where('id', '!=', 8)->get();
+            $questions = DB::table('questions')->orderBy('number_of_times_asked', 'asc')->get();
         }
-        // /!\ Problem to solve -> when tag id is not correct /!\
-        $random = mt_rand(0, count($questions) - 1);
 
-        return $questions[$random]->id;
+        // /!\ Problem to solve -> when tag id is not correct /!\
+
+        $pickedQuestion = Question::where('id', $questions[0]->id)->firstOrFail();
+        $pickedQuestion->number_of_times_asked += 1;
+        $pickedQuestion->save();
+        return $questions[0]->id;
     }
 
     public function createSession(Request $request)
