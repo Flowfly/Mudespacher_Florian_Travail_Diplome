@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="" />
+    <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src-cordova/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src-cordova/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/InputConfiguration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/InputConfiguration.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/End.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/End.vue" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
-              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+            <state relative-caret-position="437">
+              <caret line="149" column="66" lean-forward="true" selection-start-line="149" selection-start-column="66" selection-end-line="149" selection-end-column="66" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
                 <element signature="e#415#447#0#PHP" />
@@ -39,13 +44,12 @@
                 <element signature="e#2816#3707#0#PHP" />
                 <element signature="e#3714#3938#0#PHP" />
                 <element signature="e#3997#4516#0#PHP" />
-                <element signature="e#5364#5798#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="573">
@@ -406,12 +410,12 @@
       <workItem from="1554885459046" duration="3387000" />
       <workItem from="1554915951554" duration="62298000" />
       <workItem from="1555342218285" duration="34847000" />
-      <workItem from="1556525662839" duration="14149000" />
+      <workItem from="1556525662839" duration="14775000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264927000" />
+    <option name="totallyTimeSpent" value="265553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -740,10 +744,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="58" column="88" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="437">
+          <caret line="149" column="66" lean-forward="true" selection-start-line="149" selection-start-column="66" selection-end-line="149" selection-end-column="66" />
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />
             <element signature="e#415#447#0#PHP" />
@@ -756,22 +774,7 @@
             <element signature="e#2816#3707#0#PHP" />
             <element signature="e#3714#3938#0#PHP" />
             <element signature="e#3997#4516#0#PHP" />
-            <element signature="e#5364#5798#0#PHP" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="58" column="88" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
         </state>
       </provider>
     </entry>

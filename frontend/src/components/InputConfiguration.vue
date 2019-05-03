@@ -1,7 +1,7 @@
 <template>
     <v-layout row wrap align-center justify-center>
-        <v-flex xs2></v-flex>
-        <v-flex xs8>
+        <v-flex xs1></v-flex>
+        <v-flex xs10>
             <v-card>
                 <v-toolbar
                         card
@@ -55,7 +55,7 @@
                 </v-card-actions>
             </v-card>
         </v-flex>
-        <v-flex xs2></v-flex>
+        <v-flex xs1></v-flex>
     </v-layout>
 </template>
 

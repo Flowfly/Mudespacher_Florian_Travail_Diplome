@@ -67,6 +67,7 @@ function userAnswer(datas){
 }
 
 function getScore(datas){
+    console.log('user id : ' + datas.user_id);
     var settings = {
         "url": `${API_ENDPOINT}session/${datas.session_id}/${datas.user_id}/ranking`,
         "method": "GET",
