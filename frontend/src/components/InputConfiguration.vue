@@ -86,7 +86,7 @@
                     'phone': this.phone,
                 });
                 this.setSessionId(parseInt(this.select.split('.')[0]));
-                this.$router.push('/register');
+                this.$router.push('/home');
             },
             isEmpty(obj) {
                 for (var key in obj) {

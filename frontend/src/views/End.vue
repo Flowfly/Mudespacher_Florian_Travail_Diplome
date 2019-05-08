@@ -48,7 +48,7 @@
             }, 10000)
         },
         destroyed() {
-            this.UserResult(null);
+            this.setUserResult(null);
         },
         beforeCreate() {
             window.Echo.leave(`finish-game-${this.SessionId}`);

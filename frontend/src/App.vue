@@ -15,6 +15,9 @@
         data() {
             return {}
         },
+        mounted() {
+            AndroidFullScreen.immersiveMode();
+        }
 
     }
 </script>
