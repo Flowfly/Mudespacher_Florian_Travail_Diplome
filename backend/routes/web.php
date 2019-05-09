@@ -29,6 +29,11 @@ Route::get('/backoffice/my-account', 'BackofficeUserController@myAccount');
 Route::post('/backoffice/login', 'BackofficeUserController@login');
 Route::post('/backoffice/register', 'BackofficeUserController@register');
 //**********************************************************************************************
+//*************************************** Configuration *************************************
+Route::get('/backoffice/configuration', 'ConfigurationController@index');
+
+Route::post('/backoffice/update-config', 'ConfigurationController@update');
+//**********************************************************************************************
 //******************************************* Questions ****************************************
 //****** GET ******//
 Route::get('/backoffice/questions', 'QuestionController@getAll');

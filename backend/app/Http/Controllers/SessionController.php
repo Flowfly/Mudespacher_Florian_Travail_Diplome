@@ -15,12 +15,11 @@ use App\Tag;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
-    const NUMBER_OF_ASKED_QUESTION = 5;
-    const NUMBER_OF_DISPLAYED_USERS = 5;
 
     //<editor-fold desc="Backoffice"
     public function startSessionQuiz(Request $request)
@@ -121,7 +120,7 @@ class SessionController extends Controller
         $result = false;
         $session = Session::findOrFail($request->session_id);
         $nextQuestion = $session->current_game_question + 1;
-        if ($nextQuestion <= self::NUMBER_OF_ASKED_QUESTION) {
+        if ($nextQuestion <= Config::get('constants.sessions.NUMBER_OF_ASKED_QUESTION')) {
             $session->current_game_question = $nextQuestion;
             $session->question_id = $session->tag_id != null ? $this->pickRandomQuestion($session->tag_id) : $this->pickRandomQuestion();
             $result = $session->saveOrFail();
@@ -255,7 +254,7 @@ class SessionController extends Controller
             array_push($sortedScores, $tmp);
         }
 
-        return array_slice($sortedScores, 0, self::NUMBER_OF_DISPLAYED_USERS);
+        return array_slice($sortedScores, 0, Config::get('constants.sessions.NUMBER_OF_DISPLAYED_USERS'));
     }
 
     public function getRankingAPI(Request $request)

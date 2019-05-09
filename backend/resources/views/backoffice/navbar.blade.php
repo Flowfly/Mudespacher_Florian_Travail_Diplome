@@ -86,6 +86,10 @@
                 <a href="/backoffice/theme" class="nav-link" role="button" aria-haspopup="true"
                    aria-expanded="false"><i class="fas fa-palette navigation-link"></i> Apparence</a>
             </li>
+            <li class="nav-item">
+                <a href="/backoffice/configuration" class="nav-link" role="button" aria-haspopup="true"
+                   aria-expanded="false"><i class="fas fa-wrench navigation-link"></i> Configuration</a>
+            </li>
         </ul>
 
     </div>
