@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TypeEdit;
+use App\Http\Requests\TypeSubmit;
 use App\Type;
 use App\Question;
 use Illuminate\Http\Request;
@@ -9,12 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
-    public function submit(Request $request){
-        $request->validate($this->getRules());
-
+    public function submit(TypeSubmit $request){
         $type = new Type();
 
-        $type->label = $request->type_name;
+        $type->label = $request->name;
 
         $result = $type->saveOrFail();
         if($result)
@@ -31,16 +31,15 @@ class TypeController extends Controller
         return view('/backoffice/types_update', ['type' => Type::where('id', $request->id)->get()[0]]);
     }
 
-    public function update(Request $request)
+    public function update(TypeEdit $request)
     {
-        $request->validate($this->getRules());
         $result = 0;
         $message = '';
         $typeToUpdate = Type::where('id', $request->id)->get()[0];
 
         if(!empty($typeToUpdate))
         {
-            $typeToUpdate->label = $request->type_name;
+            $typeToUpdate->label = $request->name;
             $result = $typeToUpdate->saveOrFail();
             if($result)
                 $message = "Type modifié avec succès !";
@@ -73,12 +72,5 @@ class TypeController extends Controller
         }
 
         return back()->with(['result' => $result , 'message' => $messsage]);
-    }
-
-    public function getRules()
-    {
-        return [
-            'type_name' => ['required', 'min:3', 'max:30'],
-        ];
     }
 }

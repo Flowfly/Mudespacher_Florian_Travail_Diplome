@@ -7,6 +7,8 @@ use App\Events\ChangeQuestion;
 use App\Events\FinishGame;
 use App\Events\StartSession;
 use App\Events\UserRegistred;
+use App\Http\Requests\SessionEdit;
+use App\Http\Requests\SessionSubmit;
 use App\Question;
 use App\Session;
 use App\Tag;
@@ -38,12 +40,8 @@ class SessionController extends Controller
         return view('/backoffice/sessions_add')->with(['tags' => Tag::all()]);
     }
 
-    public function submit(Request $request)
+    public function submit(SessionSubmit $request)
     {
-        $request->validate([
-            'session_label' => ['required', 'min:4', 'max:25'],
-            'tag' => ['required', 'numeric']
-        ]);
         $tagId = 0;
         if ($request->tag != 0) {
             $tag = Tag::findOrFail($request->tag);
@@ -79,12 +77,8 @@ class SessionController extends Controller
         return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id), 'tags' => Tag::all()]);
     }
 
-    public function update(Request $request)
+    public function update(SessionEdit $request)
     {
-        $request->validate([
-            'session_label' => ['required', 'min:4', 'max:25'],
-            'tag' => ['required', 'numeric']
-        ]);
         $tagId = 0;
         if ($request->tag != 0) {
             $tag = Tag::findOrFail($request->tag);

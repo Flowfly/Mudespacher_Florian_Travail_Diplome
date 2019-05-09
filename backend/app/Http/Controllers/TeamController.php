@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamEdit;
+use App\Http\Requests\TeamSubmit;
 use App\Team;
 use App\User;
 use Illuminate\Http\Request;
@@ -19,12 +21,10 @@ class TeamController extends Controller
 
     public function editGetInfos(Request $request)
     {
-        return view('/backoffice/teams_update', ['team' => Team::findOrFail($request->id)->with('users')->get()[0]]);
+        return view('/backoffice/teams_update', ['team' => Team::where('id' , '=', $request->id)->with('users')->firstOrFail()]);
     }
 
-    public function update(Request $request){
-        $request->validate($this->getRules(true));
-
+    public function update(TeamEdit $request){
         $team = Team::find($request->id);
         $team->name = $request->name;
 
@@ -42,9 +42,7 @@ class TeamController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
-    public function submit(Request $request){
-        $request->validate($this->getRules(false));
-
+    public function submit(TeamSubmit $request){
         $team = new Team();
         $team->name = $request->name;
         $result = $team->saveOrFail();
@@ -53,9 +51,4 @@ class TeamController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
-    public function getRules($isEditing){
-        return [
-          'name' => ['min:3', 'max:15', 'required', 'string', $isEditing ? '' : 'unique:teams,name']
-        ];
-    }
 }

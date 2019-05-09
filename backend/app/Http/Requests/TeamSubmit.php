@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Config;
 
-class PropositionSubmit extends FormRequest
+class TeamSubmit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class PropositionSubmit extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,7 @@ class PropositionSubmit extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['min:' . Config::get('constants.teams.MINIMUM_TEAM_NAME_LENGTH'), 'max:' .  Config::get('constants.teams.MAXIMUM_TEAM_NAME_LENGTH'), 'required', 'string', 'unique:teams,name']
         ];
     }
 }

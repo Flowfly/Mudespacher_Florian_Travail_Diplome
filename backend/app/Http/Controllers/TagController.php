@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TagEdit;
+use App\Http\Requests\TagSubmit;
 use App\Question;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -9,9 +11,8 @@ use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
-    public function submit(Request $request)
+    public function submit(TagEdit $request)
     {
-        $request->validate($this->getRules());
         $tag = new Tag;
 
         $tag->label = $request->tag_name;
@@ -51,9 +52,8 @@ class TagController extends Controller
         return view('/backoffice/tags_update', ['tag' => Tag::where('id', $request->id)->get()[0]]);
     }
 
-    public function update(Request $request)
+    public function update(TagSubmit $request)
     {
-        $request->validate($this->getRules());
         $result = 0;
         $message = '';
         $tagToUpdate = Tag::where('id', $request->id)->get()[0];
@@ -72,13 +72,5 @@ class TagController extends Controller
     public function addGetInfos()
     {
         return view('/backoffice/tags_add');
-    }
-
-    public function getRules()
-    {
-        $rules = [
-            'tag_name' => ['required', 'min:3', 'max:30'],
-        ];
-        return $rules;
     }
 }

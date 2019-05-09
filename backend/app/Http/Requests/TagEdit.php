@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Config;
 
-class PropositionEdit extends FormRequest
+class TagEdit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class PropositionEdit extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,7 @@ class PropositionEdit extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tag_name' => ['required', 'min:' . Config::get('constants.tags.MINIMUM_TAG_NAME_LENGTH'), 'max:' . Config::get('constants.tags.MAXIMUM_TAG_NAME_LENGTH')],
         ];
     }
 }

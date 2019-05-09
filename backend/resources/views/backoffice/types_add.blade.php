@@ -7,7 +7,7 @@
                 @csrf
                 <div class="form-group">
                     <h3>
-                        <label label for="type_name">Ajouter un nouveau type :</label>
+                        <label label for="name">Ajouter un nouveau type :</label>
                     </h3>
                     @if(session('result'))
                         @if(session('result') == 1)
@@ -18,10 +18,10 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <input class="form-control {{$errors->has('type_name') ? 'is-invalid' : ''}}" type="text" required name="type_name" id="type_name"
-                           value="{{old('type_name')}}">
-                    @if($errors->has('type_name'))
-                        @foreach($errors->get('type_name') as $message)
+                    <input class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" type="text" required name="name" id="name"
+                           value="{{old('name')}}">
+                    @if($errors->has('name'))
+                        @foreach($errors->get('name') as $message)
                             <p class="animated shake invalid-feedback">{{$message}}</p>
                         @endforeach
                     @endif
