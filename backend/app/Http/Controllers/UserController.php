@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AnswerUser;
 use App\Http\Requests\UserEdit;
-use App\Http\Requests\UserPost;
+use App\Http\Requests\UserSubmit;
 use App\User;
 use App\Team;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -49,7 +49,9 @@ class UserController extends Controller
         }
         return back()->withErrors(['user' => 'Utilisateur introuvable']);
     }
-    public function delete(Request $request){
+
+    public function delete(Request $request)
+    {
         $userToDelete = User::findOrFail($request->id);
         $result = $userToDelete->delete();
         $message = $result ? "L'utilisateur a bien été supprimé !" : "Un problème est survenu, veuillez réessayer";
@@ -62,31 +64,16 @@ class UserController extends Controller
         return view('/backoffice/user_read')->with(['user' => User::where('id', $request->id)->with('teams')->firstOrFail()]);
     }
 
-    public function submitAPI(Request $request){
-
-        $validator = Validator::make($request->all(),[
-                'username' => ['required', 'min:4', 'max:15', 'string', 'unique:users,username'],
-                'password' => ['nullable', 'min:5', 'max:20', 'confirmed'],
-                'email' => ['email', 'unique:users,email', 'nullable'],
-                'phone' => ['string', 'nullable'],
-                'name' => ['min:2', 'max:30', 'string', 'nullable'],
-                'surname' => ['min:2', 'max:30', 'string', 'nullable'],
-                'date' => ['date', 'nullable']
-            ]);
-        if($validator->fails()){
-            $result = false;
-            $message = $validator->errors();
-        }
-        else{
-            $userAdded = $this->addUser($request);
-            $result = $userAdded[0];
-            $message = $userAdded[1];
-            $user = $userAdded[2];
-        }
+    public function submitAPI(UserSubmit $request)
+    {
+        $userAdded = $this->addUser($request);
+        $result = $userAdded[0];
+        $message = $userAdded[1];
+        $user = $userAdded[2];
         return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message, 'user' => $result ? $user : '']);
     }
 
-    public function submit(UserPost $request)
+    public function submit(UserSubmit $request)
     {
         $userAdded = $this->addUser($request);
         return back()->with(['result' => $userAdded[0], 'message' => $userAdded[1]]);
@@ -120,7 +107,7 @@ class UserController extends Controller
         return PDF::loadView('/backoffice/users_pdf', $data)->setPaper('a4', 'landscape')->download($filename);
     }
 
-    private function addUser(Request $request) : array
+    private function addUser(Request $request): array
     {
         $user = new User();
         $user->username = $request->username;

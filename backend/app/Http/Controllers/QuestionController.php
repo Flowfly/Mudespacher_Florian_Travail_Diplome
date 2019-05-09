@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionEdit;
+use App\Http\Requests\QuestionSubmit;
 use App\Proposition;
 use App\Question;
 use App\Session;
+use Validator;
 use App\Type;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -13,17 +16,10 @@ use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
-    const MINIMUM_QUESTION_LABEL_LENGTH = 5;
-    const MAXIMUM_QUESTION_LABEL_LENGTH = 70;
-    const MINIMUM_PROPOSITION_LABEL_LENGTH = 1;
-    const MAXIMUM_PROPOSITION_LABEL_LENGTH = 20;
-
     //<editor-fold desc="Backoffice">
 
-    public function submit(Request $request)
+    public function submit(QuestionSubmit $request)
     {
-        $rules = $this->getRules($request, false);
-        $request->validate($rules);
         $questionToAdd = new Question();
         $questionToAdd->label = $request->question_label;
         $questionToAdd->points = $request->question_points;
@@ -78,11 +74,9 @@ class QuestionController extends Controller
         return view('/backoffice/questions_update')->with(['question' => $question[0] , 'types' => $types , 'tags'=> $tags]);
     }
 
-    public function update(Request $request)
+    public function update(QuestionEdit $request)
     {
         $message = "";
-        $rules = $this->getRules($request, true);
-        $request->validate($rules);
         $editedQuestion = Question::where('id', $request->id)->with(['type', 'tag', 'propositions'])->get()[0];
         $editedQuestion->label = $request->question_label;
         $editedQuestion->points = $request->question_points;
@@ -127,28 +121,6 @@ class QuestionController extends Controller
         }
 
         return back()->with(['result' => $result , 'message' => $messsage]);
-    }
-
-    public function getRules(Request $request, $isEditing)
-    {
-
-        $rules = [
-            'question_label' => ['min:' . self::MINIMUM_QUESTION_LABEL_LENGTH, 'max:' . self::MAXIMUM_QUESTION_LABEL_LENGTH, 'required', 'string', 'filled'],
-            'question_points' => ['required', 'numeric', 'between:0,100'],
-            'question_type' => ['required', 'numeric'],
-            'question_tag' => ['required', 'numeric'],
-            'isGoodAnswer' => [$isEditing == true ? '' : 'required', 'numeric'],
-        ];
-
-        for ($i = 0; $i < count($request->all()); $i++) {
-            $tmp = explode('-', $request->keys()[$i])[0];
-            if ($tmp == 'prop') {
-                $rules[$request->keys()[$i]] = ['min:' . self::MINIMUM_PROPOSITION_LABEL_LENGTH, 'max:' . self::MAXIMUM_PROPOSITION_LABEL_LENGTH, 'required', 'string', 'filled'];
-            }
-
-        }
-        return $rules;
-
     }
     //</editor-fold>
 

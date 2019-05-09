@@ -6,6 +6,13 @@
                 <input class="form-control" type="text" placeholder="Rechercher" aria-label="Search">
             </div>
             <br>
+            @if(session('result'))
+                @if(session('result') == 1)
+                    <div class="alert alert-success animated bounceInRight">
+                        {{session('message')}}
+                    </div>
+                @endif
+            @endif
         </div>
         <div class="col-12" style="text-align: center;">
             <br>
@@ -47,13 +54,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            @endif
-            @if(session('result'))
-                @if(session('result') == 1)
-                    <div class="alert alert-success animated bounceInRight">
-                        {{session('message')}}
-                    </div>
-                @endif
             @endif
         </div>
         <div class="col"></div>

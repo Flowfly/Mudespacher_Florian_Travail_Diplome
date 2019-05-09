@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UserEdit extends FormRequest
 {
@@ -14,6 +16,14 @@ class UserEdit extends FormRequest
     public function authorize()
     {
         return true;
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        if(self::route()->getPrefix() == "api")
+            throw new HttpResponseException(response()->json($validator->errors(), 422));
+        else{
+            parent::failedValidation($validator);
+        }
     }
 
     /**

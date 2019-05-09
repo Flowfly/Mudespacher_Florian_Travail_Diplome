@@ -5,11 +5,19 @@
             <h2>Modifier la question</h2>
         </div>
         <div class="col-12">
+            @if(session('result'))
+                @if(session('result') == 1)
+                    <div class="alert alert-success animated bounceInRight col-12">
+                        {{session('message')}}
+                    </div>
+                @endif
+            @endif
             <form action="{{request('id')}}/update" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="question_label">Question :</label>
-                    <input type="text" class="form-control {{$errors->has('question_label') ? 'is-invalid' : ''}}" id="question_label" name="question_label"
+                    <input type="text" class="form-control {{$errors->has('question_label') ? 'is-invalid' : ''}}"
+                           id="question_label" name="question_label"
                            value="{{$question->label}}">
                     @if($errors->has('question_label'))
                         @foreach($errors->get('question_label') as $message)
@@ -19,7 +27,8 @@
                 </div>
                 <div class="form-group">
                     <label for="question_points">Points :</label>
-                    <input type="number" class="form-control {{$errors->has('question_points') ? 'is-invalid' : ''}}" id="question_points" name="question_points" min="0"
+                    <input type="number" class="form-control {{$errors->has('question_points') ? 'is-invalid' : ''}}"
+                           id="question_points" name="question_points" min="0"
                            max="100" value="{{$question->points}}">
                     @if($errors->has('question_points'))
                         @foreach($errors->get('question_points') as $message)
@@ -29,7 +38,8 @@
                 </div>
                 <div class="form-group">
                     <label for="question_type">Type :</label>
-                    <select type="text" class="form-control {{$errors->has('question_type') ? 'is-invalid' : ''}}" id="question_type" name="question_type">
+                    <select type="text" class="form-control {{$errors->has('question_type') ? 'is-invalid' : ''}}"
+                            id="question_type" name="question_type">
                         @foreach($types as $type)
                             <option value="{{$type->id}}" {{$type->id == $question->type->id ? "selected" : ""}}>{{$type->label}}</option>
                         @endforeach
@@ -40,7 +50,8 @@
                         @endforeach
                     @endif
                     <label for="question_tag">Catégorie :</label>
-                    <select type="text" class="form-control {{$errors->has('question_tag') ? 'is-invalid' : ''}}" id="question_tag" name="question_tag">
+                    <select type="text" class="form-control {{$errors->has('question_tag') ? 'is-invalid' : ''}}"
+                            id="question_tag" name="question_tag">
                         @foreach($tags as $tag)
                             <option value="{{$tag->id}}" {{$tag->id == $question->tag->id ? "selected" : ""}}>{{$tag->label}}</option>
                         @endforeach
@@ -58,7 +69,9 @@
                 @else
                     @foreach($question->propositions as $proposition)
                         <div class="form-group" style="display: flex;">
-                            <input type="text" class="form-control {{$errors->has("prop-$proposition->id") ? 'is-invalid' : ''}} col-10" id="prop-{{$proposition->id}}"
+                            <input type="text"
+                                   class="form-control {{$errors->has("prop-$proposition->id") ? 'is-invalid' : ''}} col-10"
+                                   id="prop-{{$proposition->id}}"
                                    name="prop-{{$proposition->id}}" value="{{$proposition->label}}">
                             <input type="radio" name="isGoodAnswer"
                                    {{$proposition->is_right_answer == 1 ? 'checked' : ''}} value="{{$proposition->id}}"
@@ -83,13 +96,7 @@
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Modifier</button>
                 </div>
             </form>
-            @if(session('result'))
-                @if(session('result') == 1)
-                    <div class="alert alert-success animated bounceInRight col-12">
-                        {{session('message')}}
-                    </div>
-                @endif
-            @endif
+
         </div>
 
         @foreach($errors->all() as $error)
