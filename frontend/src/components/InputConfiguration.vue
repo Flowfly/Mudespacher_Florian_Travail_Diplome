@@ -35,7 +35,9 @@
                             <v-combobox
                                     v-model="select"
                                     :items="items"
-                                    label="Laisser vide pour prendre une aléatoire"
+                                    label="Sélectionnez une partie"
+                                    type="button"
+                                    style="text-align: left !important; "
                             ></v-combobox>
                         </v-flex>
                     </v-layout>

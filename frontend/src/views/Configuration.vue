@@ -14,4 +14,7 @@
   }
 </script>
 <style>
+  input{
+    text-align: left;
+  }
 </style>
