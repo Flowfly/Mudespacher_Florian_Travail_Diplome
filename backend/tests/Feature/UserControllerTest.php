@@ -166,7 +166,7 @@ class UserControllerTest extends TestCase
     /** @test */
     public function is_submitAPI_method_display_errors_when_bad_data_given(){
         $response = $this->json('POST','/api/users/add',  [
-            'username' => 'test_adduser_dipsajdhsanjdnsandlasn',
+            'username' => '',
             'password' => 'Super',
             'password_confirmation' => 'Super',
             'email' => 'test@test.com',

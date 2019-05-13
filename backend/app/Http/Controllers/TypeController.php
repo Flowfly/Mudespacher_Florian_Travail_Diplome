@@ -13,7 +13,6 @@ class TypeController extends Controller
 {
     public function submit(TypeSubmit $request){
         $type = new Type();
-
         $type->label = $request->name;
 
         $result = $type->saveOrFail();
