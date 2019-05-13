@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function update(UserEdit $request)
     {
-        $user = User::where('id', $request->id)->get()[0];
+        $user = User::findOrFail($request->id);
         if (!empty($user)) {
             $user->username = isset($request->username) ? $request->username : $user->username;
             $user->password = isset($request->password) ? bcrypt($request->password) : $user->password;
@@ -107,7 +107,7 @@ class UserController extends Controller
         return PDF::loadView('/backoffice/users_pdf', $data)->setPaper('a4', 'landscape')->download($filename);
     }
 
-    private function addUser(Request $request): array
+    private function addUser(UserSubmit $request): array
     {
         $user = new User();
         $user->username = $request->username;
