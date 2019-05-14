@@ -1,5 +1,5 @@
 <template>
-    <v-layout row wrap align-center justify-center>
+    <v-layout row wrap align-center justify-center @keydown.enter="submitUser">
         <v-flex xs9 v-if="displayAlert"></v-flex>
         <v-flex xs3 v-if="displayAlert">
             <v-alert
@@ -231,7 +231,9 @@
                 return this.allowed_dates.indexOf(val) !== -1
             },
             submitUser() {
+
                 if (this.canClick) {
+                    console.log('salut');
                     this.canClick = false;
                     this.alertMessage = '';
                     var datas = {
@@ -252,6 +254,7 @@
                                     'session_id': this.SessionId,
                                 })
                                     .done((subscribeResponse) => {
+                                        console.log('ca va jusquici');
                                         if (subscribeResponse.status === 'success') {
                                             this.$router.push('/answer');
                                         }

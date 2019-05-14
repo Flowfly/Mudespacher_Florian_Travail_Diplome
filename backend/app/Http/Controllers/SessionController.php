@@ -149,6 +149,7 @@ class SessionController extends Controller
 
     public function pickRandomQuestion($id = NULL)
     {
+
         if ($id != NULL) {
             $questions = DB::table('questions')->where('tag_id', '=', $id)->orderBy('number_of_times_asked', 'asc')->get();
         } else {

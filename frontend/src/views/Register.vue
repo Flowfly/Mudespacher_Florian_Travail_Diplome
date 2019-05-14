@@ -1,9 +1,9 @@
 <template>
-    <v-form v-model="valid">
+    <v-container v-model="valid">
         <v-container fluid fill-height hcenter>
             <registerform/>
         </v-container>
-    </v-form>
+    </v-container>
 </template>
 
 <script>
@@ -17,7 +17,6 @@
         components: {
             registerform,
         },
-
     }
 </script>
 
