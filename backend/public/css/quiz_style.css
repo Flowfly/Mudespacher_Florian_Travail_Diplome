@@ -31,6 +31,7 @@ body{
         background-position: center;
         height:20vh;
         width:20vw;
+        position:relative;
     }
     .bubble-text{
         width:60%;
@@ -43,12 +44,17 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:18vh;
-        width:24vw;
+        height:20rem;
+        width:60rem;
+        max-width:100% !important;
+        position:relative;
     }
     .bubble-text{
         width:20%;
         height:70%;
+    }
+    .propositions{
+        display:flex;
     }
 }
 
@@ -57,8 +63,10 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:20vh;
-        width:60vw;
+        height:20rem;
+        width:60rem;
+        max-width:100% !important;
+        position:relative;
     }
     .bubble-text{
         width:25%;
@@ -71,8 +79,10 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:20vh;
-        width:60vw;
+        height:25rem;
+        width:60rem;
+        max-width:100% !important;
+        position:relative;
     }
     .bubble-text{
         width:60%;
@@ -85,11 +95,15 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:20vh;
-        width:20vw;
+        height:10rem;
+        width:20rem;
+        position:relative;
     }
     .bubble-text{
-        width:20%;
-        height:80%;
+        width:70%;
+        height:70%;
+    }
+    .propositions{
+        display:flex;
     }
 }

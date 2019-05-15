@@ -4,17 +4,17 @@
         <v-layout row wrap v-show="!isWaiting" class="answer-container">
             <v-layout align-center justify-center d-inline-block class="hcenter">
                 <v-flex style="text-align: center;">
-                    <h2 v-model="timeToWait">Temps restant : {{timeToWait}}</h2>
+                    <h2 v-model="timeToWait" class="remaining-time">Temps restant : {{timeToWait}}</h2>
                 </v-flex>
                 <v-flex style="text-align: center;">
-                    <h1>Question à {{questionData.points}} points !</h1>
-                    <h1>{{questionData.label}}</h1>
+                    <h1 class="question-title">Question à {{questionData.points}} points !</h1>
+                    <h1 class="question-text">{{questionData.label}}</h1>
                 </v-flex>
                 <center class="answer-box-container">
                     <v-flex v-for="(value, key) in questionData.propositions"
-                            class="answer" :id="`bubble-${key}`">
+                            class="answer" :id="`bubble-${key}`" @click="answerQuestion(key)" >
                             <answercomponent :propositionNumber="key" :question="questionData"
-                                             @clicked-from-child="answerQuestion"
+
                             />
                     </v-flex>
                 </center>
@@ -70,10 +70,10 @@
                         console.log(error);
                     })
             },
-            answerQuestion(event) {
+            answerQuestion(key) {
                 console.log(this.canClick);
                 if (this.canClick) {
-                    if(event[1] === 1){
+                    if(this.questionData.propositions[key].is_right_answer === 1){
                         this.sound = new Audio(require('../assets/sounds/success.mp3'));
                         this.sound.play();
                     }
@@ -90,7 +90,7 @@
                     }
                     setTimeout(() => {
                         var infos = {
-                            'proposition_id': event[0],
+                            'proposition_id': this.questionData.propositions[key].id,
                             'user_id': this.UserInfos.id,
                             'session_id': this.SessionId,
                         };
@@ -195,7 +195,7 @@
         },
         mounted() {
             this.listen();
-            this.isWaiting = true;
+            this.isWaiting = false;
             this.fillAnswerComponents();
             this.errorImg.src = require('../assets/img/answer_error.png');
             this.successImg.src = require('../assets/img/answer_success.png');
@@ -221,23 +221,31 @@
     .answer-main {
         height: 100%;
     }
+    .question-text{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin: 1rem 0 1rem 0;
+    }
 
     @media (max-width: 575.98px) {
         .answer{
-            height:10rem;
-            width:70%;
+            height:11rem;
+            width:25rem;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
             position:relative;
         }
+        .question-text{
+            font-size:15pt;
+        }
     }
 
     /* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) and (max-width: 767.98px) {
         .answer{
-            height:15rem;
+            height:14rem;
             width:12rem;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
@@ -248,14 +256,61 @@
         .answer-box-container{
             display:flex;
         }
+        .question-text{
+            font-size:15pt;
+        }
 
     }
 
     /* Medium devices (tablets, 768px and up)*/
     @media (min-width: 768px) and (max-width: 991.98px) {
         .answer{
+            height:13rem;
+            width:30rem;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
+        .question-text{
+            font-size:25pt;
+        }
+        .question-title{
+            font-size: 40pt;
+        }
+        .remaining-time{
+            font-size: 20pt;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .answer{
+            height:20rem;
+            width:40rem;
+            cursor: pointer;
+            background-image: url("../assets/img/answer.png");
+            background-position: center;
+            background-size: cover;
+            position:relative;
+        }
+        .question-text{
+            font-size:30pt;
+        }
+        .question-title{
+            font-size: 50pt;
+        }
+        .remaining-time{
+            font-size: 30pt;
+        }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+        .answer{
             height:15rem;
-            width:15rem;
+            width:25rem;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
@@ -265,31 +320,11 @@
         .answer-box-container{
             display:flex;
         }
-    }
-
-    /* Large devices (desktops, 992px and up)*/
-    @media (min-width: 992px) and (max-width: 1199.98px) {
-        .answer{
-            height:15rem;
-            width:70%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
+        .question-title{
+            font-size: 40pt;
         }
-    }
-
-    /* Extra large devices (large desktops, 1200px and up)*/
-    @media (min-width: 1200px) {
-        .answer{
-            height:12rem;
-            width:65%;
-            cursor: pointer;
-            background-image: url("../assets/img/answer.png");
-            background-position: center;
-            background-size: cover;
-            position:relative;
+        .remaining-time{
+            font-size: 20pt;
         }
     }
 </style>

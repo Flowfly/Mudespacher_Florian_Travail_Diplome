@@ -1,22 +1,28 @@
 @extends('quiz/layout')
 @section('content')
-    <div class="col-12">
-        <h1 id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10">
+            <h1 id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
+            <hr>
+        </div>
+        <div class="col"></div>
     </div>
-    <hr>
-    <div class="col-12" id="propositions">
-        @for($i = 0; $i < count($question->propositions); $i++)
-            <div class="col-12">
-                <center>
-                    <div class="bubble-container" style="background-image: url({{asset("../../img/quiz/answer" . ($i+1) . ".png")}})">
-                        <div class="hcenter bubble-text">
-                            <p class="hcenter" id="proposition-{{$i}}">{{$question->propositions[$i]->label}}</p>
-                        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="propositions col-10" id="propositions">
+                @for($i = 0; $i < count($question->propositions); $i++)
+                    <div class="bubble-container col-{{12/count($question->propositions)}}"
+                         style="background-image: url({{asset("../../img/quiz/answer" . ($i+1) . ".png")}})">
+                        <p class="hcenter bubble-text"
+                           id="proposition-{{$i}}">{{$question->propositions[$i]->label}}</p>
                     </div>
-                </center>
+                @endfor
             </div>
-        @endfor
-    </div>
+            <div class="col"></div>
+        </div>
+
+
 @endsection
 
 @section('scripts')
@@ -34,14 +40,13 @@
                             document.querySelector('#question-label').innerHTML = this.question.label;
                             var propositions = document.querySelector('#propositions');
                             propositions.innerHTML = "";
-                            for(var i = 0; i < this.question.propositions.length; i++)
-                            {
+                            for (var i = 0; i < this.question.propositions.length; i++) {
                                 var col12 = document.createElement('div');
                                 col12.setAttribute('class', 'col-12');
                                 var center = document.createElement('center');
                                 var bubbleContainer = document.createElement('div');
                                 bubbleContainer.setAttribute('class', 'bubble-container');
-                                bubbleContainer.setAttribute('style', `background-image: url(../../img/quiz/answer${parseInt(i+1)}.png)`);
+                                bubbleContainer.setAttribute('style', `background-image: url(../../img/quiz/answer${parseInt(i + 1)}.png)`);
                                 var bubbleText = document.createElement('div');
                                 bubbleText.setAttribute('class', 'hcenter bubble-text');
                                 var proposition = document.createElement('p');
@@ -56,7 +61,7 @@
                         });
                     Echo.channel('finish-game-{!! request('session_id') !!}')
                         .listen('FinishGame', () => {
-                            document.location.href="/{!! request('session_id') !!}/end";
+                            document.location.href = "/{!! request('session_id') !!}/end";
                         });
                 }
             },

@@ -17,14 +17,8 @@
 </head>
 
 <body>
-<div class="container-fluid" id="app">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-8 hcenter">
-            @yield('content')
-        </div>
-        <div class="col"></div>
-    </div>
+<div class="container-fluid hcenter" id="app">
+    @yield('content')
 </div>
 
 </body>

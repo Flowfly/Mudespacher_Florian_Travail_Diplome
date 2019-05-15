@@ -1,9 +1,7 @@
 <template>
+        <p class="hcenter answer-text">{{ this.question.propositions[this.propositionNumber].label
+            }}</p>
 
-    <div class="answer-container"
-         @click="answer">
-        <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label }}</p>
-    </div>
 </template>
 
 <script>
@@ -15,21 +13,21 @@
         props:
             ['question', 'propositionNumber'],
         mounted() {
+            //console.log(this.question.propositions[this.propositionNumber].label.length > 30);
+            /*if (this.question.propositions[this.propositionNumber].label.length > 30) {
+                document.querySelector(".answer-text").setAttribute('style', 'font-size: 170%;');
+            }*/
             //console.log(document.querySelector('#bubble').style.backgroundImage)
         },
         methods: {
-            answer() {
-                this.$emit('clicked-from-child', [this.question.propositions[this.propositionNumber].id, this.question.propositions[this.propositionNumber].is_right_answer]);
-            }
         }
     }
 </script>
 
 <style scoped>
 
-    .answer-container {
+    /*.answer-container {
         position: absolute;
-        top: 50%;
         margin: 0 -50% 0 0;
         transform: translate(-50%, -50%);
         left: 50%;
@@ -44,10 +42,46 @@
         transform: translate(-50%, -50%);
         left: 50%;
         color: #fff3cc;
-        font-size: 20pt;
+
+    }*/
+    .answer-text{
+        width:70%;
     }
 
     /* Extra small devices (portrait phones, less than 576px)*/
+    @media (max-width: 575.98px) {
+        .answer-text{
+            font-size: 15pt;
+        }
+    }
+
+    /* Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .answer-text{
+            font-size: 10pt;
+        }
+    }
+
+    /* Medium devices (tablets, 768px and up)*/
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .answer-text{
+            font-size: 20pt;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .answer-text{
+            font-size: 30pt;
+        }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+        .answer-text{
+            font-size: 15pt;
+        }
+    }
 
 
 </style>
