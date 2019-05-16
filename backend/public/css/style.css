@@ -74,6 +74,15 @@ nav div ul li a {
     margin-right: 5px;
 }
 
+.configuration-text{
+    text-align: left;
+}
+
+.configuration-title{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (min-width: 576px) and (max-width: 767.98px){
     .login-container{
