@@ -95,13 +95,18 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:10rem;
+        height:14rem;
         width:20rem;
         position:relative;
     }
     .bubble-text{
-        width:70%;
-        height:70%;
+        max-width:70%;
+        max-height:70%;
+        /*margin:0;
+        transform: translate(0, -50%);
+        position:absolute;
+        top:50%;
+        left:15%;*/
     }
     .propositions{
         display:flex;

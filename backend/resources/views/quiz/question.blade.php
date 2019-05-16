@@ -37,26 +37,40 @@
                     Echo.channel('change-question-{!! request('session_id') !!}')
                         .listen('ChangeQuestion', (result) => {
                             this.question = result.question;
+                            var fontSize = "";
+
                             document.querySelector('#question-label').innerHTML = this.question.label;
                             var propositions = document.querySelector('#propositions');
                             propositions.innerHTML = "";
                             for (var i = 0; i < this.question.propositions.length; i++) {
-                                var col12 = document.createElement('div');
-                                col12.setAttribute('class', 'col-12');
-                                var center = document.createElement('center');
+                                if(this.question.propositions[i].label.length <= 10)
+                                {
+                                    fontSize = `font-size:30pt`;
+                                }
+                                else if(this.question.propositions[i].label.length <= 20)
+                                {
+                                    fontSize = `font-size:25pt`;
+                                }
+                                else if(this.question.propositions[i].label.length <= 30)
+                                {
+                                    fontSize = `font-size:20pt`;
+                                }
+                                else if(this.question.propositions[i].label.length <= 40)
+                                {
+                                    fontSize = `font-size:15pt`;
+                                }
+                                else{
+                                    fontSize = `font-size:10pt`;
+                                }
                                 var bubbleContainer = document.createElement('div');
-                                bubbleContainer.setAttribute('class', 'bubble-container');
-                                bubbleContainer.setAttribute('style', `background-image: url(../../img/quiz/answer${parseInt(i + 1)}.png)`);
-                                var bubbleText = document.createElement('div');
-                                bubbleText.setAttribute('class', 'hcenter bubble-text');
+                                bubbleContainer.setAttribute('class', `bubble-container col-${12 / parseInt(this.question.propositions.length)}`);
+                                bubbleContainer.setAttribute('style', `background-image: url(../../img/quiz/answer${parseInt(i + 1)}.png);`);
                                 var proposition = document.createElement('p');
-                                proposition.setAttribute('class', 'hcenter');
+                                proposition.setAttribute('class', 'hcenter bubble-text');
+                                proposition.setAttribute('style', `${fontSize}`);
                                 proposition.innerHTML = this.question.propositions[i].label;
-                                bubbleText.appendChild(proposition);
-                                bubbleContainer.appendChild(bubbleText);
-                                center.appendChild(bubbleContainer);
-                                col12.appendChild(center);
-                                propositions.appendChild(col12);
+                                bubbleContainer.appendChild(proposition);
+                                propositions.appendChild(bubbleContainer);
                             }
                         });
                     Echo.channel('finish-game-{!! request('session_id') !!}')

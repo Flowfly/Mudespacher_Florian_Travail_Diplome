@@ -58,13 +58,43 @@
             defaultImg: new Image(),
         }),
         computed: {
+
             ...mapGetters(['SessionId', 'UserInfos']),
         },
         methods: {
+            answerStyle(propositions) {
+                var fontSize = "";
+                for(var i = 0; i < propositions.length; i++)
+                {
+                    if(propositions[i].label.length <= 10)
+                    {
+                        fontSize = `font-size:30pt`;
+                    }
+                    else if(propositions[i].label.length <= 20)
+                    {
+                        fontSize = `font-size:25pt`;
+                    }
+                    else if(propositions[i].label.length <= 30)
+                    {
+                        fontSize = `font-size:20pt`;
+                    }
+                    else if(propositions[i].label.length <= 40)
+                    {
+                        fontSize = `font-size:15pt`;
+                    }
+                    else{
+                        fontSize = `font-size:10pt`;
+                    }
+                    var div = document.querySelector(`#bubble-${i}`);
+                    if(div !== null)
+                        div.setAttribute('style', fontSize);
+                }
+            },
             fillAnswerComponents() {
                 this.getActualQuestion(this.SessionId)
                     .done((response) => {
                         this.questionData = response.data;
+                        this.answerStyle(response.data.propositions);
                     })
                     .fail((error) => {
                         console.log(error);
@@ -186,6 +216,7 @@
                         console.log('question changée');
                         this.timer = setInterval(this.waitingTimeCheck, 1000);
                         this.questionData = response.question;
+                        this.answerStyle(response.question.propositions);
                         this.isWaiting = !this.isWaiting;
                         this.canClick = true;
                     });
@@ -325,6 +356,9 @@
         }
         .remaining-time{
             font-size: 20pt;
+        }
+        .question-text{
+            font-size:23pt;
         }
     }
 </style>
