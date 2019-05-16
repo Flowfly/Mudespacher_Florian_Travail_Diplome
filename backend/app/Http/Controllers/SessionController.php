@@ -31,7 +31,7 @@ class SessionController extends Controller
 
     public function getAll()
     {
-        return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers', 'tag'])->get()]);
+        return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers', 'tag'])->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_SESSIONS_PER_PAGE'))]);
     }
 
     public function addGetInfos()

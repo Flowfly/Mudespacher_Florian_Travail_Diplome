@@ -7,6 +7,7 @@ use App\Http\Requests\QuestionSubmit;
 use App\Proposition;
 use App\Question;
 use App\Session;
+use Illuminate\Support\Facades\Config;
 use Validator;
 use App\Type;
 use App\Tag;
@@ -48,11 +49,11 @@ class QuestionController extends Controller
     public function getAll(Request $request)
     {
         if($request->route()->getName() == "types_questions")
-            $questions = Type::where('id', $request->id)->with('questions')->firstOrFail()->questions;
+            $questions = Question::where('type_id', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
         else if($request->route()->getName() == "tags_questions")
-            $questions = Tag::where('id', $request->id)->with('questions')->firstOrFail()->questions;
+            $questions = Question::where('tag_id', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
         else
-            $questions = Question::with(['type', 'tag', 'propositions'])->get();
+            $questions = Question::with(['type', 'tag', 'propositions'])->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
         return view('/backoffice/questions_read', ['questions' => $questions]);
     }
 

@@ -7,6 +7,7 @@ use App\Http\Requests\TagSubmit;
 use App\Question;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
@@ -22,7 +23,7 @@ class TagController extends Controller
     }
 
     public function getAll(){
-        return view('/backoffice/tags_read')->with('tags', Tag::with('questions')->get());
+        return view('/backoffice/tags_read')->with('tags', Tag::with('questions')->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_TAGS_PER_PAGE')));
     }
 
     public function delete(Request $request){

@@ -10,15 +10,18 @@ use App\Team;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
 {
+    const NUMBER_OF_DISPLAYED_USERS_PER_PAGE = 10;
     //<editor-fold desc="Backoffice">
     public function getAll(Request $request)
     {
-        return view('/backoffice/users_read', ['users' => isset($request->id) ? Team::where('id', $request->id)->with('users')->firstOrFail()->users : User::all()]);
+        return view('/backoffice/users_read', ['users' => isset($request->id) ? DB::table('teams')->select('users.*')->join('users', 'teams.id', 'users.id')->where('teams.id', '=', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_USERS_PER_PAGE')) : User::paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_USERS_PER_PAGE'))]);
 
     }
 

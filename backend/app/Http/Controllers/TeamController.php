@@ -7,12 +7,13 @@ use App\Http\Requests\TeamSubmit;
 use App\Team;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
     public function getAll(){
-        return view('/backoffice/teams_read', ['teams' => Team::with('users')->get()]);
+        return view('/backoffice/teams_read', ['teams' => Team::with('users')->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_TEAMS_PER_PAGE'))]);
     }
 
     public function addGetInfos(){

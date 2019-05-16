@@ -41,5 +41,14 @@
                 @endif
             @endif
         </div>
+        <div class="col"></div>
+        <div class="col-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {{$tags->links()}}
+                </ul>
+            </nav>
+        </div>
+        <div class="col"></div>
     </div>
 @endsection

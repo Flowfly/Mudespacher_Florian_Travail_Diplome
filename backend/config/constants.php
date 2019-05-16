@@ -1,6 +1,16 @@
 <?php
+
 use App\Configuration;
+
 return [
+    'backoffice' => [
+        'NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE' => 10,
+        'NUMBER_OF_DISPLAYED_TAGS_PER_PAGE' => 10,
+        'NUMBER_OF_DISPLAYED_TEAMS_PER_PAGE' => 10,
+        'NUMBER_OF_DISPLAYED_USERS_PER_PAGE' => 10,
+        'NUMBER_OF_DISPLAYED_SESSIONS_PER_PAGE' => 10,
+
+    ],
     'propositions' => [
         'MINIMUM_PROPOSITION_LABEL_LENGTH' => null,
         'MAXIMUM_PROPOSITION_LABEL_LENGTH' => null,
