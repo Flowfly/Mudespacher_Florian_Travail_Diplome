@@ -55,8 +55,7 @@ class UserController extends Controller
 
     public function delete(Request $request)
     {
-        $userToDelete = User::findOrFail($request->id);
-        $result = $userToDelete->delete();
+        $result = $this->deleteUser($request);
         $message = $result ? "L'utilisateur a bien été supprimé !" : "Un problème est survenu, veuillez réessayer";
 
         return back()->with(['result' => $result, 'message' => $message]);
@@ -67,14 +66,7 @@ class UserController extends Controller
         return view('/backoffice/user_read')->with(['user' => User::where('id', $request->id)->with('teams')->firstOrFail()]);
     }
 
-    public function submitAPI(UserSubmit $request)
-    {
-        $userAdded = $this->addUser($request);
-        $result = $userAdded[0];
-        $message = $userAdded[1];
-        $user = $userAdded[2];
-        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message, 'user' => $result ? $user : '']);
-    }
+
 
     public function submit(UserSubmit $request)
     {
@@ -110,6 +102,21 @@ class UserController extends Controller
         return PDF::loadView('/backoffice/users_pdf', $data)->setPaper('a4', 'landscape')->download($filename);
     }
 
+    //</editor-fold>
+    public function submitAPI(UserSubmit $request)
+    {
+        $userAdded = $this->addUser($request);
+        $result = $userAdded[0];
+        $message = $userAdded[1];
+        $user = $userAdded[2];
+        return response()->json(['status' => $result ? 'success' : 'error', 'message' => $result ? ['user' => [$message]] : $message, 'user' => $result ? $user : '']);
+    }
+
+    public function deleteAPI(Request $request){
+        $result = $this->deleteUser($request);
+        return response()->json(['status' => $result ? 'success': 'error', 'message' => $result ? "L'utilisateur a bien été supprimé !" : "Une erreur s'est produite lors de la suppression de l'utilisateur."], $result ? 200 : 422);
+    }
+
     private function addUser(UserSubmit $request): array
     {
         $user = new User();
@@ -124,6 +131,10 @@ class UserController extends Controller
         $message = "L'utilisateur a été ajouté avec succès !";
         return [$result, $message, $user];
     }
-    //</editor-fold>
+    private function deleteUser(Request $request){
+        $userToDelete = User::findOrFail($request->id);
+        $result = $userToDelete->delete();
+        return $result;
+    }
 
 }

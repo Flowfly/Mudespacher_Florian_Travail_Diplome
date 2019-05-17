@@ -8,6 +8,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/users/add', 'UserController@submitAPI')->name('api_user_add');
+Route::post('/users/delete', 'UserController@deleteAPI');
 
 Route::get('/session/not-started-sessions', 'SessionController@getAllNotStartedSessions');
 Route::get('/session/{session_id}', 'SessionController@getSessionInfos');

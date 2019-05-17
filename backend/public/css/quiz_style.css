@@ -12,7 +12,7 @@ body{
     transform: translate(-50%,-50%);
 }
 .btn-start{
-    width: 20vw;
+    width: 20rem;
 }
 .bubble-text{
     color:#fff3cc;
@@ -36,8 +36,11 @@ body{
         position:relative;
     }
     .bubble-text{
-        width:60%;
-        height:40%;
+        max-width:60%;
+        max-height:40%;
+    }
+    .home-text{
+
     }
 }
 
@@ -52,8 +55,8 @@ body{
         position:relative;
     }
     .bubble-text{
-        width:20%;
-        height:70%;
+        max-width:20%;
+        max-height:70%;
     }
     .propositions{
         display:flex;
@@ -71,8 +74,8 @@ body{
         position:relative;
     }
     .bubble-text{
-        width:25%;
-        height:30%;
+        max-width:25%;
+        max-height:30%;
     }
 }
 
@@ -82,13 +85,34 @@ body{
         background-size: cover;
         background-position: center;
         height:25rem;
-        width:60rem;
+        width:50rem;
         max-width:100% !important;
         position:relative;
     }
     .bubble-text{
-        width:60%;
-        height:45%;
+        max-width:60%;
+        max-height:45%;
+    }
+    .welcome-text{
+        font-size:4.5rem;
+    }
+    .instructions-text{
+        font-size:3.5rem;
+    }
+    .users-title{
+        font-size:2.5rem;
+    }
+    .participants{
+        font-size:2rem;
+    }
+    .ranking-title{
+        font-size:4.5rem;
+    }
+    .ranked-user{
+        font-size: 3.5rem;
+    }
+    .question-title{
+        font-size: 3.5rem;
     }
 }
 
@@ -97,7 +121,7 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:14rem;
+        height:15rem;
         width:20rem;
         position:relative;
     }

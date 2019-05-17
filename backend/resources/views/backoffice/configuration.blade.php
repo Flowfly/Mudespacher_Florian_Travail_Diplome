@@ -4,7 +4,7 @@
         <div class="row" style="text-align: center;">
 
             @csrf
-            <div class="col-12">
+            <div class="col-12" id="update-btn">
                 @if(session('result'))
                     @if(session('result') == 1)
                         <div class="alert alert-success animated bounceInRight">
@@ -258,5 +258,3 @@
         </div>
     </form>
 @endsection
-@section('scripts')
-@endsection 

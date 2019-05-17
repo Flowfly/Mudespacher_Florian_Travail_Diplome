@@ -29,6 +29,18 @@ function addUser(datas) {
     };
     return JQuery.ajax(settings);
 }
+function deleteUser(datas) {
+    var settings = {
+        "url": `${API_ENDPOINT}users/delete`,
+        "async": true,
+        "crossDomain": true,
+        "method": "POST",
+        "data": {
+            "id": datas.user_id,
+        }
+    };
+    return JQuery.ajax(settings);
+}
 
 function getAllNotStartedSessions(){
     var settings = {
@@ -78,6 +90,7 @@ function getScore(datas){
 export default {
     getActualQuestion,
     addUser,
+    deleteUser,
     getAllNotStartedSessions,
     subscribeUser,
     userAnswer,

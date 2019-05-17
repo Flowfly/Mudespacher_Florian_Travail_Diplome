@@ -112,7 +112,7 @@ class SessionController extends Controller
             ->where('sessions.id', $sessionID)
             ->get();
 
-        return response()->json(['status' => count($query) == 0 ? 'error' : 'success', 'data' => $query[0]]);
+        return response()->json(['status' => count($query) == 0 ? 'error' : 'success', 'message' => count($query) == 0 ? 'Impossible de récupérer la question de la session. Veuillez contacter un administrateur.' : 'Question récupérée.', 'data' => count($query) == 0 ? '' : $query[0]], count($query) == 0 ? 422 : 200);
     }
 
     public function nextQuestion(Request $request)
@@ -208,14 +208,34 @@ class SessionController extends Controller
 
     public function subscribeUser(Request $request)
     {
-        $session = Session::findOrFail($request->session_id);
-        $foundUser = User::findOrFail($request->user_id);
-        $session->users()->attach($request->user_id);
-        $wasCorrectlyInserted = Session::whereHas('users', function ($q) use (&$foundUser) {
-            $q->where('id', $foundUser->id);
-        })->first() == null ? false : true;
-        broadcast(new UserRegistred($foundUser, $request->session_id))->toOthers();
-        return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $wasCorrectlyInserted ? "L'utilisateur a été inscrit à la session" : "L'utilisateur n'a pas été inscrit à la session"]);
+        $session = Session::find($request->session_id);
+        if($session != null){
+            $foundUser = User::find($request->user_id);
+            if($foundUser != null) {
+                $session->users()->attach($request->user_id);
+                $wasCorrectlyInserted = Session::whereHas('users', function ($q) use (&$foundUser) {
+                    $q->where('id', $foundUser->id);
+                })->first() == null ? false : true;
+                if($wasCorrectlyInserted)
+                {
+                    broadcast(new UserRegistred($foundUser, $request->session_id))->toOthers();
+                    $message = "Vous avez bien été inscrit à la partie !";
+                }
+                else{
+                    $message = "Une erreur s'est produite au moment de l'inscription. Veuillez contacter un administrateur.";
+                }
+            }
+            else{
+                $message = "L'utilisateur avec lequel vous voulez jouer n'a pas été trouvé. Veuillez contacter un administrateur.";
+                $wasCorrectlyInserted = false;
+            }
+        }
+        else{
+            $wasCorrectlyInserted = false;
+            $message = "La session de jeu sur laquelle vous essayez de jouer n'existe pas. Veuillez contacter un administrateur.";
+        }
+
+        return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $message], $wasCorrectlyInserted ? 200 : 422);
     }
 
     public function getRanking(Request $request)

@@ -26,24 +26,6 @@
 
 <style scoped>
 
-    /*.answer-container {
-        position: absolute;
-        margin: 0 -50% 0 0;
-        transform: translate(-50%, -50%);
-        left: 50%;
-        height:100%;
-        width:100%;
-    }
-
-    .answer-text {
-        position: absolute;
-        top: 50%;
-        margin: 0 -50% 0 0;
-        transform: translate(-50%, -50%);
-        left: 50%;
-        color: #fff3cc;
-
-    }*/
     .answer-text{
         width:70%;
     }

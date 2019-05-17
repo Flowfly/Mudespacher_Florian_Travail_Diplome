@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col"></div>
         <div class="col-10">
-            <h1 id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
+            <h1 class="question-title" id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
             <hr>
         </div>
         <div class="col"></div>
@@ -45,22 +45,22 @@
                             for (var i = 0; i < this.question.propositions.length; i++) {
                                 if(this.question.propositions[i].label.length <= 10)
                                 {
-                                    fontSize = `font-size:30pt`;
+                                    fontSize = `font-size:4.5rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 20)
                                 {
-                                    fontSize = `font-size:25pt`;
+                                    fontSize = `font-size:4rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 30)
                                 {
-                                    fontSize = `font-size:20pt`;
+                                    fontSize = `font-size:3.5rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 40)
                                 {
-                                    fontSize = `font-size:15pt`;
+                                    fontSize = `font-size:3rem`;
                                 }
                                 else{
-                                    fontSize = `font-size:10pt`;
+                                    fontSize = `font-size:2.5rem`;
                                 }
                                 var bubbleContainer = document.createElement('div');
                                 bubbleContainer.setAttribute('class', `bubble-container col-${12 / parseInt(this.question.propositions.length)}`);

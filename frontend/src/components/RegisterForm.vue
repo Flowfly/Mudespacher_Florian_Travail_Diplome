@@ -1,17 +1,24 @@
 <template>
     <v-layout row wrap align-center justify-center @keydown.enter="submitUser">
-        <v-flex xs9 v-if="displayAlert"></v-flex>
-        <v-flex xs3 v-if="displayAlert">
-            <v-alert
-                    v-model="displayAlert"
-                    v-if="displayAlert"
-                    dismissible
-                    type="success"
-                    id="alert"
-            >
+        <v-flex v-show="displayAlert" xs8></v-flex>
+        <v-flex v-show="displayAlert" xs3>
+            <v-alert id="alert-box" :dismissible="true" @click="closeAlert" :value="true" color="error">
                 {{alertMessage}}
             </v-alert>
         </v-flex>
+        <v-flex v-show="displayAlert" xs1></v-flex>
+        <v-flex xs1></v-flex>
+        <v-flex xs10 style="text-align: center;">
+            <v-btn
+                    color="white"
+                    large
+                    fab
+                    style="color:#181945; font-weight: bold;"
+                    @click="submitUser">
+                JOUER
+            </v-btn>
+        </v-flex>
+        <v-flex xs1></v-flex>
         <v-flex xs1></v-flex>
         <v-flex xs10>
             <v-text-field
@@ -130,17 +137,6 @@
             ></v-text-field>
         </v-flex>
         <v-flex xs1 v-if="this.InterfaceSettings.phone"></v-flex>
-        <v-flex xs1></v-flex>
-        <v-flex xs10 style="text-align: center;">
-            <v-btn
-                    color="white"
-                    large
-                    outline
-                    @click="submitUser">
-                JOUER
-            </v-btn>
-        </v-flex>
-        <v-flex xs1></v-flex>
     </v-layout>
 </template>
 
@@ -233,7 +229,6 @@
             submitUser() {
 
                 if (this.canClick) {
-                    console.log('salut');
                     this.canClick = false;
                     this.alertMessage = '';
                     var datas = {
@@ -259,21 +254,39 @@
                                             this.$router.push('/answer');
                                         }
                                     }).fail((error) => {
-                                    document.querySelector('#alert').setAttribute('class', 'v-alert error');
-                                    this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
-                                    console.log(error);
+                                    this.displayAlert = true;
+                                    document.querySelector("#alert-box").setAttribute("style", "display:flex;");
+                                    this.alertMessage = error.responseJSON.message;
+                                    this.canClick = true;
+                                    this.deleteUser({
+                                        'user_id': response.user.id,
+                                    })
+                                        .fail((error) => {
+                                            console.log(error);
+                                            this.canClick = true;
+                                        })
                                 });
                             }
                         })
                         .fail((error) => {
-                            document.querySelector('#alert').setAttribute('class', 'v-alert error');
-                            this.alertMessage = "Une erreur s'est produite, veuillez contacter un administrateur";
-                            console.log(error);
+                            this.displayAlert = true;
+                            document.querySelector("#alert-box").setAttribute("style", "display:flex;");
+                            var errorMessage = "";
+                            for(var key in error.responseJSON){
+                                for(var i = 0; i < error.responseJSON[key].length; i++){
+                                    errorMessage += error.responseJSON[key][i] + "\n";
+                                }
+                            }
+                            this.alertMessage = errorMessage;
+                            this.canClick = true;
                         });
                 }
 
             },
-            ...mapActions(['addUser', 'subscribeUser']),
+            closeAlert() {
+                this.displayAlert = false;
+            },
+            ...mapActions(['addUser', 'deleteUser', 'subscribeUser']),
             ...mapMutations(['setUserInfos']),
         },
         mounted() {
@@ -288,7 +301,7 @@
 </script>
 
 <style scoped>
-    .input-register{
+    .input-register {
         /*color:white;
         caret-color: white;*/
     }

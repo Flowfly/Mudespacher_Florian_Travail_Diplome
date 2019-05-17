@@ -32,6 +32,9 @@ export default new Vuex.Store({
         addUser({commit}, {datas}) {
             return API.addUser(datas);
         },
+        deleteUser(commit, datas){
+            return API.deleteUser(datas);
+        },
         getAllNotStartedSessions() {
             return API.getAllNotStartedSessions();
         },

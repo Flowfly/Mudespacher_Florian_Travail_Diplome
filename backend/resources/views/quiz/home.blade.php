@@ -8,23 +8,28 @@
     </div>
     <div class="col-12" v-show="!isGameStarting">
         <div class="col-12">
-            <h1>Bienvenue dans le quiz de Digital Turn !</h1>
-            <h1>Veuillez vous munir d'une tablette et vous inscrire pour participer</h1>
+            <h1 class="welcome-text">Bienvenue dans le quiz de Digital Turn !</h1>
+            <h1 class="instructions-text">Veuillez vous munir d'une tablette et vous inscrire pour participer</h1>
         </div>
         <hr>
         <div class="col-12">
-            <h2>Participants :</h2>
+            <h2 class="users-title">Participants :</h2>
             @if(count($users) == 0)
-                <h3 v-if="users.length <= 0">Aucun participant pour le moment</h3>
-                <h3 class="animated bounceInRight" v-else v-for="(value, key) in users">
+                <h3 class="participants" v-if="users.length <= 0">Aucun participant pour le moment</h3>
+                <h3 class="animated bounceInRight participants" v-else v-for="(value, key) in users">
                     @{{users[key].user.username }}</h3>
+                <input v-if="users.length > 0" type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn_start"
+                       class="btn-start" @click="startGame">
             @else
                 <div>
                     @for($i = 0; $i < count($users); $i++)
                         <h3 class="animated {{$i % 2 == 0 ? 'bounceInRight' : 'bounceInLeft'}}">{{$users[$i]->username}}</h3>
                     @endfor
-                    <h3 class="animated bounceInRight" v-if="users.length > 0" v-for="(value, key) in users">
+                    <h3 class="animated bounceInRight participants" v-if="users.length > 0"
+                        v-for="(value, key) in users">
                         @{{users[key].user.username }}</h3>
+                        <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn_start"
+                               class="btn-start" @click="startGame">
                 </div>
             @endif
         </div>
@@ -33,7 +38,7 @@
             csrf
             <input type="image" src="" alt="button start" class="btn-start">
         </form>-->
-            <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn_start" class="btn-start" @click="startGame">
+
             </input>
         </div>
     </div>
@@ -62,13 +67,12 @@
                             this.users.push(user);
                         })
                 },
-                startGame(){
+                startGame() {
                     this.isGameStarting = true;
                     this.gameTimer = setInterval(this.timerCheck, 1000);
                 },
-                timerCheck(){
-                    if(this.leftTime === 0)
-                    {
+                timerCheck() {
+                    if (this.leftTime === 0) {
                         var settings = {
                             "url": URI,
                             "async": true,
@@ -77,14 +81,12 @@
                         };
                         $.ajax(settings)
                             .done((response) => {
-                                if(response.status === 'success')
-                                {
+                                if (response.status === 'success') {
                                     clearInterval(this.gameTimer);
-                                    document.location.href="/{!! request('session_id') !!}/question";
+                                    document.location.href = "/{!! request('session_id') !!}/question";
                                 }
                             });
-                    }
-                    else {
+                    } else {
                         var container = document.querySelector('#left-time-container');
                         container.removeChild(document.querySelector('#left-time'));
                         this.leftTime = this.leftTime - 1;
