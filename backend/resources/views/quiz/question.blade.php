@@ -45,22 +45,22 @@
                             for (var i = 0; i < this.question.propositions.length; i++) {
                                 if(this.question.propositions[i].label.length <= 10)
                                 {
-                                    fontSize = `font-size:4.5rem`;
+                                    fontSize = `font-size:3.5rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 20)
                                 {
-                                    fontSize = `font-size:4rem`;
+                                    fontSize = `font-size:3rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 30)
                                 {
-                                    fontSize = `font-size:3.5rem`;
+                                    fontSize = `font-size:2.5rem`;
                                 }
                                 else if(this.question.propositions[i].label.length <= 40)
                                 {
-                                    fontSize = `font-size:3rem`;
+                                    fontSize = `font-size:2rem`;
                                 }
                                 else{
-                                    fontSize = `font-size:2.5rem`;
+                                    fontSize = `font-size:1.5rem`;
                                 }
                                 var bubbleContainer = document.createElement('div');
                                 bubbleContainer.setAttribute('class', `bubble-container col-${12 / parseInt(this.question.propositions.length)}`);
