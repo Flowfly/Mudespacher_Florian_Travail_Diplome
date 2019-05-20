@@ -2,7 +2,7 @@
     <v-layout row wrap class="waiting-container">
             <v-layout align-center justify-center>
                 <div style="text-align: -webkit-center;">
-                    <h1>En attente des autres joueurs</h1>
+                    <h1>{{text}}</h1>
                     <div class="spinner">
                         <div class="cube1"></div>
                         <div class="cube2"></div>
@@ -16,6 +16,15 @@
 <script>
     export default {
         name: "Waiting",
+        data: () => ({
+            text: "",
+        }),
+        props:{
+            waitingText: String,
+        },
+        mounted() {
+            this.text = this.waitingText;
+        }
     }
 </script>
 

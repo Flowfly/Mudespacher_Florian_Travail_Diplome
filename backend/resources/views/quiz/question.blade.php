@@ -43,19 +43,15 @@
                             var propositions = document.querySelector('#propositions');
                             propositions.innerHTML = "";
                             for (var i = 0; i < this.question.propositions.length; i++) {
-                                if(this.question.propositions[i].label.length <= 10)
+                                if(this.question.propositions[i].label.length <= 15)
                                 {
-                                    fontSize = `font-size:3.5rem`;
+                                    fontSize = `font-size:2.7rem`;
                                 }
-                                else if(this.question.propositions[i].label.length <= 20)
-                                {
-                                    fontSize = `font-size:3rem`;
-                                }
-                                else if(this.question.propositions[i].label.length <= 30)
+                                else if(this.question.propositions[i].label.length <= 25)
                                 {
                                     fontSize = `font-size:2.5rem`;
                                 }
-                                else if(this.question.propositions[i].label.length <= 40)
+                                else if(this.question.propositions[i].label.length <= 35)
                                 {
                                     fontSize = `font-size:2rem`;
                                 }

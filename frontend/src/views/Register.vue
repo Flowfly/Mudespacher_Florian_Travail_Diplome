@@ -1,22 +1,29 @@
 <template>
-    <v-container v-model="valid">
-        <v-container fluid fill-height hcenter>
-            <registerform/>
-        </v-container>
+    <v-container v-model="valid" class="hcenter" >
+            <registerform v-show="!isWaiting" v-on:btn-play-clicked="userClicked"/>
+            <waiting :waiting-text="`Chargement en cours`" v-show="isWaiting"/>
     </v-container>
 </template>
 
 <script>
     import registerform from '../components/RegisterForm'
+    import waiting from '../components/Waiting'
 
     export default {
         name: "Register",
         data: () => ({
             valid: false,
+            isWaiting: false,
         }),
         components: {
             registerform,
+            waiting,
         },
+        methods:{
+            userClicked(value){
+                this.isWaiting = value;
+            },
+        }
     }
 </script>
 

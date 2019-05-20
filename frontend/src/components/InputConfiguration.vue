@@ -114,8 +114,7 @@
         }
         ,
         computed: {
-            ...
-                mapGetters(['InterfaceSettings'])
+            ...mapGetters(['InterfaceSettings'])
         }
         ,
         mounted() {

@@ -1,9 +1,4 @@
 body {
-    height: 100%;
     margin: 0;
     padding: 0;
-}
-#app {
-    height: 102vh;
-    width:102vw;
 }

@@ -1,14 +1,14 @@
 <template>
     <v-layout row wrap align-center justify-center @keydown.enter="submitUser">
-        <v-flex v-show="displayAlert" xs8></v-flex>
-        <v-flex v-show="displayAlert" xs3>
+        <v-flex v-show="displayAlert" xs1></v-flex>
+        <v-flex v-show="displayAlert" xs10>
             <v-alert id="alert-box" :dismissible="true" @click="closeAlert" :value="true" color="error">
                 {{alertMessage}}
             </v-alert>
         </v-flex>
         <v-flex v-show="displayAlert" xs1></v-flex>
         <v-flex xs1></v-flex>
-        <v-flex xs10 style="text-align: center;">
+        <v-flex xs10 style="text-align: center; margin-bottom: 1rem;">
             <v-btn
                     color="white"
                     large
@@ -227,8 +227,8 @@
                 return this.allowed_dates.indexOf(val) !== -1
             },
             submitUser() {
-
                 if (this.canClick) {
+                    this.$emit('btn-play-clicked', true);
                     this.canClick = false;
                     this.alertMessage = '';
                     var datas = {
@@ -254,6 +254,7 @@
                                             this.$router.push('/answer');
                                         }
                                     }).fail((error) => {
+                                    this.$emit('btn-play-clicked', false);
                                     this.displayAlert = true;
                                     document.querySelector("#alert-box").setAttribute("style", "display:flex;");
                                     this.alertMessage = error.responseJSON.message;
@@ -269,6 +270,7 @@
                             }
                         })
                         .fail((error) => {
+                            this.$emit('btn-play-clicked', false);
                             this.displayAlert = true;
                             document.querySelector("#alert-box").setAttribute("style", "display:flex;");
                             var errorMessage = "";

@@ -18,7 +18,7 @@
                 <h3 class="participants" v-if="users.length <= 0">Aucun participant pour le moment</h3>
                 <h3 class="animated bounceInRight participants" v-else v-for="(value, key) in users">
                     @{{users[key].user.username }}</h3>
-                <input v-if="users.length > 0" type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn_start"
+                <input v-if="users.length > 0" type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn-start"
                        class="btn-start" @click="startGame">
             @else
                 <div>
@@ -28,7 +28,7 @@
                     <h3 class="animated bounceInRight participants" v-if="users.length > 0"
                         v-for="(value, key) in users">
                         @{{users[key].user.username }}</h3>
-                        <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn_start"
+                        <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn-start"
                                class="btn-start" @click="startGame">
                 </div>
             @endif
@@ -70,8 +70,16 @@
                         })
                 },
                 startGame() {
-                    this.isGameStarting = true;
-                    this.gameTimer = setInterval(this.timerCheck, 1000);
+                    document.querySelector("#btn-start").setAttribute("src", "{{asset('../../img/quiz/btn_play_pressed.png')}}");
+                    var sound = new Audio('../assets/sounds/btn_press.mp3');
+                    var countdown = new Audio('../assets/sounds/countdown.wav');
+
+                    setTimeout(() => {
+                        document.querySelector("#btn-start").setAttribute("src", "{{asset('../../img/quiz/btn_play.png')}}");
+                        this.isGameStarting = true;
+                        this.gameTimer = setInterval(this.timerCheck, 1000);
+                        countdown.play();
+                    }, 100);
                 },
                 timerCheck() {
                     if (this.leftTime === 0) {

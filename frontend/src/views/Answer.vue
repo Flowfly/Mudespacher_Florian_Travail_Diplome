@@ -7,7 +7,7 @@
                 </v-alert>
             </v-flex>
         </v-layout>
-        <waiting v-if="questionData !== ''" v-show="isWaiting"/>
+        <waiting :waiting-text="`En attente des autres joueurs`" v-if="questionData !== ''" v-show="isWaiting"/>
 
 
         <v-layout row wrap v-if="questionData !== ''" v-show="!isWaiting" class="answer-container">
@@ -128,7 +128,6 @@
                         };
                         this.userAnswer(infos)
                             .done((response) => {
-                                this.clearTimer();
                                 this.isWaiting = !this.isWaiting;
                             })
                             .fail((error) => {
@@ -146,37 +145,31 @@
                 }
             },
             waitingTimeCheck() {
-                if (this.$route.name === 'answer') {
-                    if (this.timeToWait === 0) {
-                        this.clearTimer();
-                        for (var i = 0; i < this.questionData.propositions.length; i++) {
-                            if (this.questionData.propositions[i].is_right_answer === 0) {
-                                this.falseAnswerId = this.questionData.propositions[i].id;
-                                break;
-                            }
+                if (this.timeToWait === 0) {
+                    //this.clearTimer();
+                    for (var i = 0; i < this.questionData.propositions.length; i++) {
+                        if (this.questionData.propositions[i].is_right_answer === 0) {
+                            this.falseAnswerId = this.questionData.propositions[i].id;
+                            break;
                         }
-                        let infos = {
-                            'proposition_id': this.falseAnswerId,
-                            'user_id': this.UserInfos.id,
-                            'session_id': this.SessionId,
-                        };
-                        this.userAnswer(infos)
-                            .done((response) => {
-                                if (response.status === 'success') {
-                                    this.isWaiting = !this.isWaiting;
-                                }
-                            })
-                            .fail((error) => {
-                                console.log(error);
-                            });
-                    } else {
-                        console.log('timer -1');
-                        this.timeToWait = this.timeToWait - 1;
                     }
+                    let infos = {
+                        'proposition_id': this.falseAnswerId,
+                        'user_id': this.UserInfos.id,
+                        'session_id': this.SessionId,
+                    };
+                    this.userAnswer(infos)
+                        .done((response) => {
+                            if (response.status === 'success') {
+                                this.isWaiting = !this.isWaiting;
+                            }
+                        })
+                        .fail((error) => {
+                            console.log(error);
+                        });
                 } else {
-                    this.clearTimer();
-                    this.timer =
-                        null;
+                    console.log('timer -1');
+                    this.timeToWait = this.timeToWait - 1;
                 }
             },
             clearTimer() {
@@ -216,7 +209,7 @@
                 window.Echo.channel(`change-question-${this.SessionId}`)
                     .listen('ChangeQuestion', (response) => {
                         console.log('question changée');
-                        this.timer = setInterval(this.waitingTimeCheck, 1000);
+                        this.timeToWait = CONST.TIME_TO_ANSWER;
                         this.questionData = response.question;
                         this.answerStyle(response.question.propositions);
                         this.isWaiting = !this.isWaiting;
@@ -228,12 +221,15 @@
         },
         mounted() {
             this.listen();
-            this.isWaiting = false;
+            this.isWaiting = true;
             this.displayError = false;
             this.fillAnswerComponents();
             this.errorImg.src = require('../assets/img/answer_error.png');
             this.successImg.src = require('../assets/img/answer_success.png');
             this.defaultImg.src = require('../assets/img/answer.png');
+        },
+        beforeDestroy() {
+            this.clearTimer();
         },
         destroyed() {
             this.clearTimer();
@@ -288,10 +284,6 @@
             background-position: center;
             background-size: cover;
             position: relative;
-        }
-
-        .answer-box-container {
-            display: flex;
         }
 
         .question-text {
@@ -362,9 +354,6 @@
             position: relative;
         }
 
-        .answer-box-container {
-            display: flex;
-        }
 
         .question-title {
             font-size: 40pt;
@@ -376,6 +365,12 @@
 
         .question-text {
             font-size: 23pt;
+        }
+    }
+
+    @media (orientation: landscape){
+        .answer-box-container {
+            display: flex;
         }
     }
 </style>

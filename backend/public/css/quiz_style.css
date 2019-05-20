@@ -13,7 +13,9 @@ body{
 }
 .btn-start{
     width: 20rem;
+    outline: none;
 }
+
 .bubble-text{
     color:#fff3cc;
     font-size: 20pt;
