@@ -1,5 +1,5 @@
 <template>
-        <p class="hcenter answer-text">{{ this.question.propositions[this.propositionNumber].label
+        <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label
             }}</p>
 
 </template>
@@ -25,43 +25,44 @@
 </script>
 
 <style scoped>
-
     .answer-text{
-        width:70%;
+        display:flex;
+        text-align: center;
+        justify-content: center;
     }
 
     /* Extra small devices (portrait phones, less than 576px)*/
     @media (max-width: 575.98px) {
         .answer-text{
-            font-size: 15pt;
+            font-size: 1.5rem;
         }
     }
 
     /* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) and (max-width: 767.98px) {
         .answer-text{
-            font-size: 10pt;
+            font-size: 1rem;
         }
     }
 
     /* Medium devices (tablets, 768px and up)*/
     @media (min-width: 768px) and (max-width: 991.98px) {
         .answer-text{
-            font-size: 20pt;
+            font-size: 1.5rem;
         }
     }
 
     /* Large devices (desktops, 992px and up)*/
     @media (min-width: 992px) and (max-width: 1199.98px) {
         .answer-text{
-            font-size: 30pt;
+            font-size: 2rem;
         }
     }
 
     /* Extra large devices (large desktops, 1200px and up)*/
     @media (min-width: 1200px) {
         .answer-text{
-            font-size: 15pt;
+            font-size: 2rem;
         }
     }
 

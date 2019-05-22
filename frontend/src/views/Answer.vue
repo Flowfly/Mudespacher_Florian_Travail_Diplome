@@ -10,22 +10,23 @@
         <waiting :waiting-text="`En attente des autres joueurs`" v-if="questionData !== ''" v-show="isWaiting"/>
 
 
-        <v-layout row wrap v-if="questionData !== ''" v-show="!isWaiting" class="answer-container">
-            <v-layout align-center justify-center d-inline-block class="hcenter">
-                <v-flex style="text-align: center;">
+        <v-layout row wrap v-if="questionData !== ''" v-show="!isWaiting" class="answer-parent">
+            <v-layout align-center justify-center class="answer-container">
+                <v-flex style="text-align: center; display:flex; width:100%; justify-content: center;">
                     <h2 v-model="timeToWait" class="remaining-time">Temps restant : {{timeToWait}}</h2>
                 </v-flex>
-                <v-flex style="text-align: center;">
+                <v-flex style="text-align: center; display:flex; width:100%; justify-content: center;">
                     <h1 class="question-title">Question à {{questionData.points}} points !</h1>
+                </v-flex>
+                <v-flex style="text-align: center; display:flex; width:100%; justify-content: center;">
                     <h1 class="question-text">{{questionData.label}}</h1>
                 </v-flex>
-                <center class="answer-box-container">
+                <div class="answer-box-container">
                     <v-flex v-for="(value, key) in questionData.propositions"
                             class="answer" :id="`bubble-${key}`" @click="answerQuestion(key)">
                         <answercomponent :propositionNumber="key" :question="questionData"/>
                     </v-flex>
-                </center>
-
+                </div>
             </v-layout>
         </v-layout>
     </v-container>
@@ -73,22 +74,7 @@
         methods: {
             answerStyle(propositions) {
                 var fontSize = "";
-                for (var i = 0; i < propositions.length; i++) {
-                    if (propositions[i].label.length <= 10) {
-                        fontSize = `font-size:30pt`;
-                    } else if (propositions[i].label.length <= 20) {
-                        fontSize = `font-size:25pt`;
-                    } else if (propositions[i].label.length <= 30) {
-                        fontSize = `font-size:20pt`;
-                    } else if (propositions[i].label.length <= 40) {
-                        fontSize = `font-size:15pt`;
-                    } else {
-                        fontSize = `font-size:10pt`;
-                    }
-                    var div = document.querySelector(`#bubble-${i}`);
-                    if (div !== null)
-                        div.setAttribute('style', fontSize);
-                }
+
             },
             fillAnswerComponents() {
                 this.getActualQuestion(this.SessionId)
@@ -240,14 +226,26 @@
 </script>
 
 <style scoped>
-    .hcenter {
-        position: absolute;
-        top: 50%;
-        margin: 0 -50% 0 0;
-        transform: translate(-50%, -50%);
-        left: 50%;
+    .answer-parent{
+        display:flex;
+        align-items:center;
     }
-
+    .answer-container{
+        display:flex;
+        flex-wrap: wrap;
+    }
+    .answer-box-container{
+        display:flex;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
+    .answer{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex:0;
+        margin: 1% 1% 1% 1%;
+    }
     .answer-main {
         height: 100%;
     }
@@ -260,34 +258,48 @@
 
     @media (max-width: 575.98px) {
         .answer {
-            height: 11rem;
-            width: 25rem;
+            min-height: 130px;
+            min-width: 250px;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
-            position: relative;
         }
 
         .question-text {
-            font-size: 15pt;
+            font-size: 1.3rem;
+        }
+
+        .remaining-time{
+            font-size: 1rem;
+        }
+
+        .question-title{
+            font-size: 2rem;
         }
     }
 
     /* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) and (max-width: 767.98px) {
         .answer {
-            height: 14rem;
-            width: 12rem;
+            min-height: 100px;
+            min-width: 200px;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
-            position: relative;
         }
 
         .question-text {
-            font-size: 15pt;
+            font-size: 1rem;
+        }
+
+        .remaining-time{
+            font-size:0.8rem;
+        }
+
+        .question-title{
+            font-size:1.5rem;
         }
 
     }
@@ -295,63 +307,60 @@
     /* Medium devices (tablets, 768px and up)*/
     @media (min-width: 768px) and (max-width: 991.98px) {
         .answer {
-            height: 13rem;
-            width: 30rem;
+            min-height: 150px;
+            min-width: 300px;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
-            position: relative;
         }
 
         .question-text {
-            font-size: 25pt;
+            font-size: 1.5rem;
         }
 
         .question-title {
-            font-size: 40pt;
+            font-size: 2rem;
         }
 
         .remaining-time {
-            font-size: 20pt;
+            font-size: 1rem;
         }
     }
 
     /* Large devices (desktops, 992px and up)*/
     @media (min-width: 992px) and (max-width: 1199.98px) {
         .answer {
-            height: 20rem;
-            width: 40rem;
+            min-height: 170px;
+            min-width: 330px;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
-            position: relative;
         }
 
         .question-text {
-            font-size: 30pt;
+            font-size: 2rem;
         }
 
         .question-title {
-            font-size: 50pt;
+            font-size: 2.5rem;
         }
 
         .remaining-time {
-            font-size: 30pt;
+            font-size: 1.5rem;
         }
     }
 
     /* Extra large devices (large desktops, 1200px and up)*/
     @media (min-width: 1200px) {
         .answer {
-            height: 15rem;
-            width: 25rem;
+            min-height: 150px;
+            min-width: 300px;
             cursor: pointer;
             background-image: url("../assets/img/answer.png");
             background-position: center;
             background-size: cover;
-            position: relative;
         }
 
 
@@ -370,7 +379,13 @@
 
     @media (orientation: landscape){
         .answer-box-container {
-            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    @media(orientation:portrait){
+        .answer-box-container{
+            flex-direction: column;
         }
     }
 </style>
