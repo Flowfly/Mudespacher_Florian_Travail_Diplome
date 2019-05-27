@@ -1,9 +1,11 @@
 const TIME_TO_ANSWER = 50;//in seconds
 const WEB_SOCKET_SERVICE = {
     broadcaster: 'pusher',
-    key: 'c04beebc0bd8d8c9866f',
+    key: 'rk9np5o8ho728w4kk',
     cluster: 'eu',
-    encrypted: true,
+    wsHost: window.location.hostname,
+    wsPort:6001,
+    //encrypted: false,
 };
 const REGISTRATION_RULES = {
     username: {

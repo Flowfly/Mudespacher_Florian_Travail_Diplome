@@ -44,7 +44,9 @@
         broadcaster: CONST.WEB_SOCKET_SERVICE.broadcaster,
         key: CONST.WEB_SOCKET_SERVICE.key,
         cluster: CONST.WEB_SOCKET_SERVICE.cluster,
-        encrypted: CONST.WEB_SOCKET_SERVICE.encrypted,
+        //encrypted: CONST.WEB_SOCKET_SERVICE.encrypted,
+        wsHost: CONST.WEB_SOCKET_SERVICE.wsHost,
+        wsPort: CONST.WEB_SOCKET_SERVICE.wsPort,
     });
 
     export default {

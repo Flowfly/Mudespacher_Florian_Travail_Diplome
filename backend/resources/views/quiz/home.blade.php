@@ -62,7 +62,7 @@
             }),
             methods: {
                 listen() {
-                    Echo.channel('user-registration-{!! request('session_id') !!}')
+                    window.Echo.channel('user-registration-{!! request('session_id') !!}')
                         .listen('UserRegistred', (user) => {
                             this.users.push(user);
                             var sound = new Audio('../../assets/sounds/user_registered.mp3');
@@ -87,7 +87,7 @@
                             "url": URI,
                             "async": true,
                             "crossDomain": true,
-                            "method": "POST",
+                            "method": "GET",
                         };
                         $.ajax(settings)
                             .done((response) => {
