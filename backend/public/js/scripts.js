@@ -7,7 +7,7 @@ const MUSICAL_QUESTION_TYPE_ID = 3;
 /**
  * Function that allows to add a proposition field to the page
  */
-function addProposition(divToFill) {
+function addProposition(divToFill, isEditing) {
     var lastId = (parseInt(divToFill.lastElementChild.id.split('-')[1]) + 1);
     console.log(lastId);
     if (lastId <= MAX_PROPOSITION_NUMBER) {
@@ -15,7 +15,7 @@ function addProposition(divToFill) {
         var inputTextToAdd = document.createElement('input');
         inputTextToAdd.setAttribute('type', 'text');
         inputTextToAdd.setAttribute('class', 'form-control col-10');
-        inputTextToAdd.setAttribute('name', 'prop-' + lastId);
+        inputTextToAdd.setAttribute('name', `prop-${isEditing ? 'add' : lastId}`);
         inputTextToAdd.setAttribute('required', true);
 
         //Creation of the radio input that allows to set if the proposition is the right one or not

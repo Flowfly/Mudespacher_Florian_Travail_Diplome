@@ -126,7 +126,7 @@
                 checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
             });
             $('#add-proposition').on('click', () => {
-                addProposition(document.querySelector('#proposition-group'));
+                addProposition(document.querySelector('#proposition-group'), true);
             });
         });
     </script>

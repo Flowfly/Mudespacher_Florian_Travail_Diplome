@@ -118,7 +118,7 @@
                 checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
             });
             $('#add-proposition').on('click', () => {
-                addProposition(document.querySelector('#proposition-group'));
+                addProposition(document.querySelector('#proposition-group'), false);
             });
             $('#remove-proposition').on('click', () => {
                 removeProposition(document.querySelector('#proposition-group'));
