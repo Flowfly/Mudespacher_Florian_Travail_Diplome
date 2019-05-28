@@ -12,7 +12,7 @@
                     </div>
                 @endif
             @endif
-            <form action="{{request('id')}}/update" method="post">
+            <form action="{{request('id')}}/update" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="question_label">Question :</label>
@@ -62,28 +62,40 @@
                         @endforeach
                     @endif
                 </div>
+                <div class="form-group" id="optional-field">
 
-                <label>Propositions :</label>
+                </div>
+                <div class="form-group">
+                    <label>Propositions :</label>
+                    <span id="proposition-number">{{count($question->propositions)}}</span>
+                    <span>
+                            <span class="btn btn-success" id="add-proposition"><i class="fas fa-plus"></i></span>
+                        </span>
+                </div>
+
                 @if(count($question->propositions) == 0)
                     <p>Aucune réponse pour cette question.</p>
                 @else
-                    @foreach($question->propositions as $proposition)
-                        <div class="form-group" style="display: flex;">
-                            <input type="text"
-                                   class="form-control {{$errors->has("prop-$proposition->id") ? 'is-invalid' : ''}} col-10"
-                                   id="prop-{{$proposition->id}}"
-                                   name="prop-{{$proposition->id}}" value="{{$proposition->label}}">
-                            <input type="radio" name="isGoodAnswer"
-                                   {{$proposition->is_right_answer == 1 ? 'checked' : ''}} value="{{$proposition->id}}"
-                                   class="form-control col-1"> Bonne réponse
-                            @if($errors->has('isGoodAnswer'))
-                                @foreach($errors->get("isGoodAnswer") as $message)
-                                    <p class="animated shake invalid-feedback">{{$message}}</p>
-                                @endforeach
-                            @endif
-                            <br>
-                        </div>
-                    @endforeach
+                    <div id="proposition-group">
+                        @for($i = 0; $i < count($question->propositions); $i++)
+                            <div class="form-group" id="prop-{{$i}}" style="display: flex;">
+                                <input type="text"
+                                       class="form-control {{$errors->has("prop-" . $question->propositions[$i]->id) ? 'is-invalid' : ''}} col-10"
+                                       name="prop-{{$question->propositions[$i]->id}}"
+                                       value="{{$question->propositions[$i]->label}}">
+                                <input type="radio" name="isGoodAnswer"
+                                       {{$question->propositions[$i]->is_right_answer == 1 ? 'checked' : ''}} value="{{$question->propositions[$i]->id}}"
+                                       class="form-control col-1"> Bonne réponse
+                                @if($errors->has('isGoodAnswer'))
+                                    @foreach($errors->get("isGoodAnswer") as $message)
+                                        <p class="animated shake invalid-feedback">{{$message}}</p>
+                                    @endforeach
+                                @endif
+                                <br>
+                            </div>
+                        @endfor
+                    </div>
+
                 @endif
                 @if($errors->has("prop"))
                     @foreach($errors->get("prop") as $message)
@@ -104,4 +116,18 @@
         @endforeach
 
     </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('../../js/scripts.js')}}"></script>
+    <script>
+        $(document).ready(() => {
+            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            $('#question_type').on('change', () => {
+                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            });
+            $('#add-proposition').on('click', () => {
+                addProposition(document.querySelector('#proposition-group'));
+            });
+        });
+    </script>
 @endsection

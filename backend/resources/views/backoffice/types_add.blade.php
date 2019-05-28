@@ -6,9 +6,6 @@
             <form action="../post-type" method="post">
                 @csrf
                 <div class="form-group">
-                    <h3>
-                        <label label for="name">Ajouter un nouveau type :</label>
-                    </h3>
                     @if(session('result'))
                         @if(session('result') == 1)
                             <p class="alert alert-success animated bounceInRight">
@@ -16,6 +13,9 @@
                             </p>
                         @endif
                     @endif
+                    <h3>
+                        <label label for="name">Ajouter un nouveau type :</label>
+                    </h3>
                 </div>
                 <div class="form-group">
                     <input class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}" type="text" required name="name" id="name"

@@ -2,9 +2,6 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h3>
-                Ajouter une nouvelle question :
-            </h3>
             @if(session('result'))
                 @if(session('result') == 1)
                     <div class="alert alert-success animated bounceInRight col-12">
@@ -12,30 +9,11 @@
                     </div>
                 @endif
             @endif
-            <form action="../post-question" method="post">
+            <h3>
+                Ajouter une nouvelle question :
+            </h3>
+            <form action="../post-question" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                    <label for="question_label">Texte :</label>
-                    <input type="text" name="question_label" id="question_label" class="form-control {{$errors->has('question_label') ? 'is-invalid' : ''}}" required
-                           value="{{old('question_label')}}">
-                    @if($errors->has('question_label'))
-                        @foreach($errors->get('question_label') as $message)
-                            <p class="animated shake invalid-feedback">{{$message}}</p>
-                        @endforeach
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <label for="question_points">Points :</label>
-                    <input type="number" class="form-control {{$errors->has('question_points') ? 'is-invalid' : ''}}" min="0" max="100" id="question_points"
-                           name="question_points" required value="{{old('question_points')}}">
-
-                    @if($errors->has('question_points'))
-                    @foreach($errors->get('question_points') as $message)
-                            <p class="animated shake invalid-feedback">{{$message}}</p>
-                        @endforeach
-                    @endif
-                </div>
                 <div class="form-group">
                     <label for="question_type">Type :</label>
                     <select class="form-control {{$errors->has('question_type') ? 'is-invalid' : ''}}" name="question_type" id="question_type" required>
@@ -52,8 +30,27 @@
                         @endforeach
                     @endif
                 </div>
+                <div class="form-group">
+                    <label for="question_label">Texte :</label>
+                    <input type="text" name="question_label" id="question_label" class="form-control {{$errors->has('question_label') ? 'is-invalid' : ''}}" required
+                           value="{{old('question_label')}}">
+                    @if($errors->has('question_label'))
+                        @foreach($errors->get('question_label') as $message)
+                            <p class="animated shake invalid-feedback">{{$message}}</p>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="question_points">Points :</label>
+                    <input type="number" class="form-control {{$errors->has('question_points') ? 'is-invalid' : ''}}" min="0" max="100" id="question_points"
+                           name="question_points" required value="{{old('question_points')}}">
 
-
+                    @if($errors->has('question_points'))
+                    @foreach($errors->get('question_points') as $message)
+                            <p class="animated shake invalid-feedback">{{$message}}</p>
+                        @endforeach
+                    @endif
+                </div>
                 <div class="form-group">
                     <label for="question_tag">Catégorie :</label>
                     <select class="form-control {{$errors->has('question_tag') ? 'is-invalid' : ''}}" name="question_tag" id="question_tag" required>
@@ -69,13 +66,16 @@
                         @endforeach
                     @endif
                 </div>
+                <div class="form-group" id="optional-field">
+
+                </div>
 
                 <div class="col-12">
                     <span>Nombre de réponses : </span>
                     <span id="proposition-number">2</span>
                     <span>
-                            <span class="btn btn-success" onclick="addProposition()"><i class="fas fa-plus"></i></span>
-                            <span class="btn btn-danger" onclick="removeProposition()"><i
+                            <span class="btn btn-success" id="add-proposition"><i class="fas fa-plus"></i></span>
+                            <span class="btn btn-danger" id="remove-proposition"><i
                                         class="fas fa-minus"></i></span>
                         </span>
                 </div>
@@ -110,56 +110,19 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="{{asset('../../js/scripts.js')}}"></script>
     <script>
-        const MIN_PROPOSITION_NUMBER = 1; //0 means 1 answer, 1 means 2 answers etc.
-        const MAX_PROPOSITION_NUMBER = 3; //3 means 4 answers, 5 means 6 answers etc.
-
-        function addProposition() {
-            var group = document.querySelector('#proposition-group');
-            var lastId = (parseInt(group.lastElementChild.id.split('-')[1]) + 1);
-            if (lastId <= MAX_PROPOSITION_NUMBER) {
-                //Creation of the text input that allows to add the text of the proposition
-                var inputTextToAdd = document.createElement('input');
-                inputTextToAdd.setAttribute('type', 'text');
-                inputTextToAdd.setAttribute('class', 'form-control col-10');
-                inputTextToAdd.setAttribute('name', 'prop-' + lastId);
-                inputTextToAdd.setAttribute('required', true);
-
-                //Creation of the radio input that allows to set if the proposition is the right one or not
-                var inputRadioToAdd = document.createElement('input');
-                inputRadioToAdd.setAttribute('type', 'radio');
-                inputRadioToAdd.setAttribute('name', 'isGoodAnswer');
-                inputRadioToAdd.setAttribute('class', 'form-control col-1');
-                inputRadioToAdd.setAttribute('value', lastId);
-
-                //Creation of the container
-                var container = document.createElement('div');
-                container.setAttribute('id', 'prop-' + lastId);
-                container.setAttribute('style', 'display:flex;');
-                container.setAttribute('class', 'form-group');
-
-                //Adding the elements into the container
-                container.appendChild(inputTextToAdd);
-                container.appendChild(inputRadioToAdd);
-                container.innerHTML += "Bonne réponse";
-                //Adding the container to the group
-                group.appendChild(container);
-
-
-                //Changing the text "Number of elements"
-                document.querySelector('#proposition-number').innerHTML = parseInt(lastId) + 1;
-            }
-
-        }
-
-        function removeProposition() {
-            var group = document.querySelector('#proposition-group');
-            var lastId = group.lastElementChild.id.split('-')[1];
-            if (lastId > MIN_PROPOSITION_NUMBER) {
-                var lastElement = group.lastElementChild;
-                group.removeChild(lastElement);
-                document.querySelector('#proposition-number').innerHTML = lastId;
-            }
-        }
+        $(document).ready(() => {
+            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            $("#question_type").on('change', () => {
+                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            });
+            $('#add-proposition').on('click', () => {
+                addProposition(document.querySelector('#proposition-group'));
+            });
+            $('#remove-proposition').on('click', () => {
+                removeProposition(document.querySelector('#proposition-group'));
+            })
+        });
     </script>
 @endsection

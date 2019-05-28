@@ -67,6 +67,10 @@ return [
             'driver' => 'local',
             'root' => public_path() . '/img/quiz',
         ],
+        'questions_sounds' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/sounds/questions',
+        ]
     ],
 
 ];

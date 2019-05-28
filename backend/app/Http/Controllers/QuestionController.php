@@ -21,11 +21,20 @@ class QuestionController extends Controller
 
     public function submit(QuestionSubmit $request)
     {
+        if($request->file('question-file') != null){
+            $filename = date('mdYHis') . uniqid() . '.mp3';
+            $request->file('question-file')->storeAs('/', $filename, 'questions_sounds');
+
+        }
+        else{
+            $filename = null;
+        }
         $questionToAdd = new Question();
         $questionToAdd->label = $request->question_label;
         $questionToAdd->points = $request->question_points;
         $questionToAdd->type_id = $request->question_type;
         $questionToAdd->tag_id = $request->question_tag;
+        $questionToAdd->file = $filename;
         $result = $questionToAdd->saveOrFail();
         if ($result) {
             for ($i = 0; $i < count($request->all()); $i++) {
@@ -79,8 +88,17 @@ class QuestionController extends Controller
     {
         $message = "";
         $editedQuestion = Question::where('id', $request->id)->with(['type', 'tag', 'propositions'])->get()[0];
+        if($request->file('question-file') != null){
+            $filename = $editedQuestion->file;
+            $request->file('question-file')->storeAs('/', $filename, 'questions_sounds');
+
+        }
+        else{
+            $filename = null;
+        }
         $editedQuestion->label = $request->question_label;
         $editedQuestion->points = $request->question_points;
+        $editedQuestion->file = $filename;
         $editedQuestion->type_id = $request->question_type;
         $editedQuestion->tag_id = $request->question_tag;
 
@@ -90,7 +108,7 @@ class QuestionController extends Controller
         {
             for ($i = 0; $i < count($request->all()); $i++) {
                 $tmp = explode('-', $request->keys()[$i]);
-
+                
                 if ($tmp[0] == 'prop') {
 
                     $propositionToAdd = Proposition::where('id', $tmp[1])->get()[0];
@@ -101,7 +119,6 @@ class QuestionController extends Controller
                     if (!$result)
                         break;
                 }
-
             }
             $message = "Question modifiée avec succès !";
         }
