@@ -209,7 +209,7 @@
         },
         mounted() {
             this.listen();
-            this.isWaiting = false;
+            this.isWaiting = true;
             this.displayError = false;
             this.fillAnswerComponents();
             this.errorImg.src = require('../assets/img/answer_error.png');

@@ -26,6 +26,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Question</th>
                         <th scope="col">Points</th>
+                        <th scope="col">Nombre de fois posée</th>
                         <th scope="col">Type</th>
                         <th scope="col">Catégorie</th>
                         <th scope="col">Réponses</th>
@@ -39,6 +40,7 @@
                             <th scope="row">{{$question->id}}</th>
                             <td>{{$question->label}}</td>
                             <td>{{$question->points}}</td>
+                            <td>{{$question->number_of_times_asked}}</td>
                             <td><a href="/backoffice/types/{{$question->type->id}}/questions/">{{$question->type->label}}</a></td>
                             <td><a href="/backoffice/tags/{{$question->tag->id}}/questions/">{{$question->tag->label}}</a></td>
                             <td>

@@ -21,10 +21,10 @@ class QuestionController extends Controller
 
     public function submit(QuestionSubmit $request)
     {
+        $numberOfTimesAskedAverage = intval(DB::table('questions')->average('number_of_times_asked'));
         if ($request->file('question-file') != null) {
             $filename = date('mdYHis') . uniqid() . '.mp3';
             $request->file('question-file')->storeAs('/', $filename, 'questions_sounds');
-
         } else {
             $filename = null;
         }
@@ -34,6 +34,7 @@ class QuestionController extends Controller
         $questionToAdd->type_id = $request->question_type;
         $questionToAdd->tag_id = $request->question_tag;
         $questionToAdd->file = $filename;
+        $questionToAdd->number_of_times_asked = $numberOfTimesAskedAverage;
         $result = $questionToAdd->saveOrFail();
         if ($result) {
             for ($i = 0; $i < count($request->all()); $i++) {
