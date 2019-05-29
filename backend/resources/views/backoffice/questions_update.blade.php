@@ -79,8 +79,10 @@
                     <div id="proposition-group">
                         @for($i = 0; $i < count($question->propositions); $i++)
                             <div class="form-group" id="prop-{{$i}}" style="display: flex;">
+                                <a href="/backoffice/propositions/delete/{{$question->propositions[$i]->id}}" class="col-1"><i class="fas fa-times"
+                                                                                            style="color:red;"></i></a>
                                 <input type="text"
-                                       class="form-control {{$errors->has("prop-" . $question->propositions[$i]->id) ? 'is-invalid' : ''}} col-10"
+                                       class="form-control {{$errors->has("prop-" . $question->propositions[$i]->id) ? 'is-invalid' : ''}} col-9"
                                        name="prop-{{$question->propositions[$i]->id}}"
                                        value="{{$question->propositions[$i]->label}}">
                                 <input type="radio" name="isGoodAnswer"
@@ -121,9 +123,9 @@
     <script src="{{asset('../../js/scripts.js')}}"></script>
     <script>
         $(document).ready(() => {
-            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'), true);
             $('#question_type').on('change', () => {
-                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'), true);
             });
             $('#add-proposition').on('click', () => {
                 addProposition(document.querySelector('#proposition-group'), true);

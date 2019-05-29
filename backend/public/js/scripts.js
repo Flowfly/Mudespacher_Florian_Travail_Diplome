@@ -73,7 +73,7 @@ function setAttributes(el, attrs) {
  * @param typeNumber The id of the type
  * @param divToFill The div to fill. Needs to be to the jQuery form. Example : $("#a-div")
  */
-function checkQuestionType(typeNumber, divToFill) {
+function checkQuestionType(typeNumber, divToFill, isEditing) {
     typeNumber = parseInt(typeNumber);
     if (typeNumber === MUSICAL_QUESTION_TYPE_ID) {
         var label = document.createElement('label');
@@ -83,10 +83,14 @@ function checkQuestionType(typeNumber, divToFill) {
         setAttributes(fileInput, {
             'type': 'file',
             'id': 'question-file',
-            'required': true,
             'accept': 'audio/*',
             'name': 'question-file'
         });
+        if(!isEditing) {
+            setAttributes(fileInput, {
+                'required' : true,
+            })
+        }
         divToFill.append(label)
             .append('<br>')
             .append(fileInput);

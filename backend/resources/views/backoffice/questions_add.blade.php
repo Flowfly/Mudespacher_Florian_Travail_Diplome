@@ -18,7 +18,7 @@
                     <label for="question_type">Type :</label>
                     <select class="form-control {{$errors->has('question_type') ? 'is-invalid' : ''}}" name="question_type" id="question_type" required>
                         @foreach($types as $type)
-                            <option value="{{$type->id}}">{{$type->label}}</option>
+                            <option {{old('question_type') == $type->id ? 'selected' : ''}} value="{{$type->id}}">{{$type->label}}</option>
                         @endforeach
                     </select>
                     @if($errors->has('question_type'))
@@ -113,9 +113,9 @@
     <script src="{{asset('../../js/scripts.js')}}"></script>
     <script>
         $(document).ready(() => {
-            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+            checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'), false);
             $("#question_type").on('change', () => {
-                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'));
+                checkQuestionType(document.querySelector('#question_type').value, $('#optional-field'), false);
             });
             $('#add-proposition').on('click', () => {
                 addProposition(document.querySelector('#proposition-group'), false);

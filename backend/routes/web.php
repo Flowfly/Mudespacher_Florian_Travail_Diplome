@@ -50,6 +50,7 @@ Route::post('backoffice/questions/edit/{id}/update', 'QuestionController@update'
 //****************************************** Propositions **************************************
 //****** GET ******//
 Route::get('/backoffice/propositions/read/{id}', 'PropositionController@getAllFromQuestion');
+Route::get('/backoffice/propositions/delete/{id}', 'PropositionController@delete');
 //****** POST ******//
 //**********************************************************************************************
 //******************************************** Sessions ****************************************
