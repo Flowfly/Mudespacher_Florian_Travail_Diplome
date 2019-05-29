@@ -1,16 +1,21 @@
+html, body, #app{
+    margin:0;
+    height: 100%;
+}
 body{
     background-image: url('../img/quiz/background.png');
     color:#fff3cc;
     text-align: center;
     font-family: "Font";
 }
-.hcenter{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: 0 -50% 0 0;
-    transform: translate(-50%,-50%);
+
+#app{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
+
 .btn-start{
     width: 20rem;
     outline: none;
@@ -19,6 +24,19 @@ body{
 .bubble-text{
     color:#fff3cc;
     font-size: 20pt;
+}
+
+.bubble-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.propositions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 
@@ -51,17 +69,14 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:20rem;
-        width:60rem;
+        height:270px;
+        width:550px;
         max-width:100% !important;
         position:relative;
     }
     .bubble-text{
         max-width:20%;
         max-height:70%;
-    }
-    .propositions{
-        display:flex;
     }
 }
 
@@ -70,10 +85,8 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:20rem;
-        width:60rem;
-        max-width:100% !important;
-        position:relative;
+        height: 270px;
+        width:550px;
     }
     .bubble-text{
         max-width:25%;
@@ -86,10 +99,8 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:25rem;
-        width:50rem;
-        max-width:100% !important;
-        position:relative;
+        height:150px;
+        width:300px;
     }
     .bubble-text{
         max-width:60%;
@@ -123,20 +134,23 @@ body{
     .bubble-container{
         background-size: cover;
         background-position: center;
-        height:15rem;
-        width:20rem;
-        position:relative;
+        height:150px;
+        width:310px;
     }
     .bubble-text{
         max-width:70%;
         max-height:70%;
-        /*margin:0;
-        transform: translate(0, -50%);
-        position:absolute;
-        top:50%;
-        left:15%;*/
     }
+}
+
+@media (orientation: portrait){
     .propositions{
-        display:flex;
+        flex-direction: column;
+    }
+}
+
+@media (orientation: landscape){
+    .propositions{
+        flex-direction: row;
     }
 }

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div class="container-fluid hcenter" id="app">
+<div id="app">
     @yield('content')
 </div>
 

@@ -1,24 +1,27 @@
 @extends('quiz/layout')
 @section('content')
-    <div class="col-12" v-show="isGameStarting">
+    <div v-show="isGameStarting">
         <h1>La partie va commencer dans :</h1>
         <div id="left-time-container">
             <h2 id="left-time" class="animated fadeIn">@{{ leftTime }}</h2>
         </div>
     </div>
-    <div class="col-12" v-show="!isGameStarting">
-        <div class="col-12">
+    <div v-show="!isGameStarting">
+        <div>
             <h1 class="welcome-text">Bienvenue dans le quiz de Digital Turn !</h1>
+        </div>
+        <div>
             <h1 class="instructions-text">Veuillez vous munir d'une tablette et vous inscrire pour participer</h1>
         </div>
         <hr>
-        <div class="col-12">
+        <div>
             <h2 class="users-title">Participants :</h2>
             @if(count($users) == 0)
                 <h3 class="participants" v-if="users.length <= 0">Aucun participant pour le moment</h3>
                 <h3 class="animated bounceInRight participants" v-else v-for="(value, key) in users">
                     @{{users[key].user.username }}</h3>
-                <input v-if="users.length > 0" type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn-start"
+                <input v-if="users.length > 0" type="image" src="{{asset('../../img/quiz/btn_play.png')}}"
+                       id="btn-start"
                        class="btn-start" @click="startGame">
             @else
                 <div>
@@ -28,21 +31,12 @@
                     <h3 class="animated bounceInRight participants" v-if="users.length > 0"
                         v-for="(value, key) in users">
                         @{{users[key].user.username }}</h3>
-                        <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn-start"
-                               class="btn-start" @click="startGame">
+                    <input type="image" src="{{asset('../../img/quiz/btn_play.png')}}" id="btn-start"
+                           class="btn-start" @click="startGame">
                 </div>
             @endif
         </div>
-        <div class="col-12">
-        <!--<form action="/{{request('session_id')}}" method="post">
-            csrf
-            <input type="image" src="" alt="button start" class="btn-start">
-        </form>-->
-
-            </input>
-        </div>
     </div>
-
 @endsection
 @section('scripts')
     <script

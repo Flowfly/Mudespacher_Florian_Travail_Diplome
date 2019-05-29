@@ -1,29 +1,21 @@
 @extends('quiz/layout')
 @section('content')
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-10">
+    <div>
+        <div style="width:100%;">
             <h1 class="question-title" id="question-label" style="font-weight: bold;">{{$question->label}}</h1>
             <div hidden id="question-type" value="{{$question->type_id}}"></div>
             <hr>
         </div>
-        <div class="col"></div>
-    </div>
-        <div class="row">
-            <div class="col"></div>
-            <div class="propositions col-10" id="propositions">
-                @for($i = 0; $i < count($question->propositions); $i++)
-                    <div class="bubble-container col-{{12/count($question->propositions)}}"
-                         style="background-image: url({{asset("../../img/quiz/answer" . ($i+1) . ".png")}})">
-                        <p class="hcenter bubble-text"
-                           id="proposition-{{$i}}">{{$question->propositions[$i]->label}}</p>
-                    </div>
-                @endfor
-            </div>
-            <div class="col"></div>
+        <div class="propositions" id="propositions">
+            @for($i = 0; $i < count($question->propositions); $i++)
+                <div class="bubble-container"
+                     style="background-image: url({{asset("../../img/quiz/answer" . ($i+1) . ".png")}})">
+                    <p class="bubble-text"
+                       id="proposition-{{$i}}">{{$question->propositions[$i]->label}}</p>
+                </div>
+            @endfor
         </div>
-
-
+    </div>
 @endsection
 
 @section('scripts')
@@ -46,19 +38,13 @@
                             var propositions = document.querySelector('#propositions');
                             propositions.innerHTML = "";
                             for (var i = 0; i < this.question.propositions.length; i++) {
-                                if(this.question.propositions[i].label.length <= 15)
-                                {
+                                if (this.question.propositions[i].label.length <= 15) {
                                     fontSize = `font-size:2.7rem`;
-                                }
-                                else if(this.question.propositions[i].label.length <= 25)
-                                {
+                                } else if (this.question.propositions[i].label.length <= 25) {
                                     fontSize = `font-size:2.5rem`;
-                                }
-                                else if(this.question.propositions[i].label.length <= 35)
-                                {
+                                } else if (this.question.propositions[i].label.length <= 35) {
                                     fontSize = `font-size:2rem`;
-                                }
-                                else{
+                                } else {
                                     fontSize = `font-size:1.5rem`;
                                 }
                                 var bubbleContainer = document.createElement('div');
@@ -78,15 +64,13 @@
                             document.location.href = "/{!! request('session_id') !!}/end";
                         });
                 },
-                questionTypeCheck(){
-                    if(document.querySelector('#question-type').getAttribute('value') === '3')
-                    {
+                questionTypeCheck() {
+                    if (document.querySelector('#question-type').getAttribute('value') === '3') {
                         this.sound.setAttribute('src', '{!! asset('../../assets/sounds/questions/' . $question->file) !!}');
                         console.log(this.sound);
                         this.sound.load();
                         this.sound.play();
-                    }
-                    else{
+                    } else {
                         console.log(document.querySelector('#question-type').getAttribute('value'));
                     }
                 },

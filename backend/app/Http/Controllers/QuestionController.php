@@ -90,11 +90,11 @@ class QuestionController extends Controller
         $message = "";
         $editedQuestion = Question::where('id', $request->id)->with(['type', 'tag', 'propositions'])->get()[0];
         if ($request->file('question-file') != null) {
-            $filename = $editedQuestion->file;
+            $filename = $editedQuestion->file == null ? date('mdYHis') . uniqid() . '.mp3' : $editedQuestion->file;
             $request->file('question-file')->storeAs('/', $filename, 'questions_sounds');
-
-        } else {
-            $filename = null;
+        }
+        else{
+            $filename = $editedQuestion->file;
         }
         $editedQuestion->label = $request->question_label;
         $editedQuestion->points = $request->question_points;
