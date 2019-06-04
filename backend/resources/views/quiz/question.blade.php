@@ -35,17 +35,18 @@
                             var fontSize = "";
 
                             document.querySelector('#question-label').innerHTML = this.question.label;
+                            document.querySelector('#question-type').setAttribute('value', this.question.type_id);
                             var propositions = document.querySelector('#propositions');
                             propositions.innerHTML = "";
                             for (var i = 0; i < this.question.propositions.length; i++) {
                                 if (this.question.propositions[i].label.length <= 15) {
-                                    fontSize = `font-size:2.7rem`;
-                                } else if (this.question.propositions[i].label.length <= 25) {
-                                    fontSize = `font-size:2.5rem`;
-                                } else if (this.question.propositions[i].label.length <= 35) {
                                     fontSize = `font-size:2rem`;
-                                } else {
+                                } else if (this.question.propositions[i].label.length <= 25) {
+                                    fontSize = `font-size:1.7rem`;
+                                } else if (this.question.propositions[i].label.length <= 35) {
                                     fontSize = `font-size:1.5rem`;
+                                } else {
+                                    fontSize = `font-size:1.3rem`;
                                 }
                                 var bubbleContainer = document.createElement('div');
                                 bubbleContainer.setAttribute('class', `bubble-container col-${12 / parseInt(this.question.propositions.length)}`);
@@ -56,8 +57,8 @@
                                 proposition.innerHTML = this.question.propositions[i].label;
                                 bubbleContainer.appendChild(proposition);
                                 propositions.appendChild(bubbleContainer);
-                                this.questionTypeCheck();
                             }
+                            this.questionTypeCheck();
                         });
                     Echo.channel('finish-game-{!! request('session_id') !!}')
                         .listen('FinishGame', () => {
@@ -65,13 +66,12 @@
                         });
                 },
                 questionTypeCheck() {
+                    console.log(document.querySelector('#question-type').getAttribute('value'));
                     if (document.querySelector('#question-type').getAttribute('value') === '3') {
-                        this.sound.setAttribute('src', '{!! asset('../../assets/sounds/questions/' . $question->file) !!}');
-                        console.log(this.sound);
+                        console.log(this.question);
+                        this.sound.setAttribute('src', '{!! asset('../../assets/sounds/questions/') !!}/' + this.question.file);
                         this.sound.load();
                         this.sound.play();
-                    } else {
-                        console.log(document.querySelector('#question-type').getAttribute('value'));
                     }
                 },
             },

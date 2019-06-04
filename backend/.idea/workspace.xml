@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Answer.vue" afterDir="false" />
-    </list>
+    <list default="true" id="fc1ec61b-f3fc-412a-b8fa-d1c722b0a904" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,16 @@
         <entry file="file://$PROJECT_DIR$/public/css/quiz_style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -45,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="156" column="9" lean-forward="true" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="9" />
+            <state relative-caret-position="3612">
+              <caret line="323" column="59" selection-start-line="323" selection-start-column="59" selection-end-line="323" selection-end-column="59" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
                 <element signature="e#480#512#0#PHP" />
@@ -56,19 +63,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuestionController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/backoffice/questions_read.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="36" column="75" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="75" />
+            <state relative-caret-position="61">
+              <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/backoffice/questions_read.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
+            <state relative-caret-position="322">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -77,16 +84,16 @@
         <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="475">
-              <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+            <state relative-caret-position="383">
+              <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
               <folding>
                 <element signature="e#67#86#0#HTML" expanded="true" />
               </folding>
@@ -165,8 +172,6 @@
         <option value="$PROJECT_DIR$/config/constants.php" />
         <option value="$PROJECT_DIR$/public/js/sticky-kit.js" />
         <option value="$PROJECT_DIR$/resources/views/backoffice/configuration.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AnswerController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" />
         <option value="$PROJECT_DIR$/tests/Unit/AnswerTest.php" />
@@ -188,11 +193,13 @@
         <option value="$PROJECT_DIR$/public/js/scripts.js" />
         <option value="$PROJECT_DIR$/resources/views/quiz/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/quiz/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/quiz/question.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/quiz/end.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/quiz_style.css" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" />
         <option value="$PROJECT_DIR$/resources/views/backoffice/questions_read.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/public/css/quiz_style.css" />
+        <option value="$PROJECT_DIR$/resources/views/quiz/question.blade.php" />
       </list>
     </option>
   </component>
@@ -484,12 +491,12 @@
       <workItem from="1558341636765" duration="94000" />
       <workItem from="1558341761157" duration="6535000" />
       <workItem from="1558513588064" duration="8423000" />
-      <workItem from="1558946910687" duration="38722000" />
+      <workItem from="1558946910687" duration="50259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405880000" />
+    <option name="totallyTimeSpent" value="417417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -510,7 +517,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32916668" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50201344" side_tool="true" weight="0.27083334" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49798658" weight="0.27083334" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49798658" visible="true" weight="0.27083334" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -550,16 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2852">
-          <caret line="134" column="40" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -728,13 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backoffice/types_add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -776,24 +766,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backoffice/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backoffice/theme.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="52" column="83" selection-start-line="52" selection-start-column="83" selection-end-line="52" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -849,37 +825,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backoffice/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="567">
+          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backoffice/questions_read.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3059">
+          <caret line="133" column="50" selection-start-line="133" selection-start-column="50" selection-end-line="133" selection-end-column="50" />
           <folding>
-            <element signature="e#67#86#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/quiz_style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="156" column="9" lean-forward="true" selection-start-line="156" selection-start-column="9" selection-end-line="156" selection-end-column="9" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-            <element signature="e#480#512#0#PHP" />
+            <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -891,10 +856,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backoffice/questions_read.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/end.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="42" column="66" selection-start-line="42" selection-start-column="66" selection-end-line="42" selection-end-column="66" />
+        <state relative-caret-position="475">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SessionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3612">
+          <caret line="323" column="59" selection-start-line="323" selection-start-column="59" selection-end-line="323" selection-end-column="59" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+            <element signature="e#480#512#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/quiz_style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/quiz/question.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+          <folding>
+            <element signature="e#67#86#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

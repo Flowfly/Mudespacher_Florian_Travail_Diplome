@@ -19,18 +19,6 @@ Route::get('/session/{session_id}/ranking', 'SessionController@getRankingAPI');
 Route::get('/session/{session_id}/did-all-users-answered', 'AnswerController@didAllUsersAnswered');
 Route::get('/session/{session_id}/{user_id}/ranking', 'SessionController@getUserRanking');
 
-Route::get('/test', function () {
-    return response()
-        ->json(\App\Session::with('users')->get());
-
-            /*\App\AnswerUser::query()
-            ->select('propositions.label as proposition_label', 'questions.label as question_label', 'sessions.label as session_label', 'sessions.*', 'propositions.*', 'users.*', 'questions.*')
-            ->join('propositions', 'answer_user.proposition_id', '=', 'propositions.id')
-            ->join('questions', 'answer_user.proposition_id', '=', 'questions.id')
-            ->join('users', 'answer_user.user_id', '=', 'users.id')
-            ->join('sessions', 'answer_user.session_id', '=', 'sessions.id')
-            ->get());*/
-});
 
 Route::post('/session/create', 'SessionController@createSession');
 Route::post('/session/subscribe-user', 'SessionController@subscribeUser');

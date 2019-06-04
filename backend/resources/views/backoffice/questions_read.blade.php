@@ -34,15 +34,19 @@
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="questions-container">
                     @foreach($questions as $question)
                         <tr>
                             <th scope="row">{{$question->id}}</th>
                             <td>{{$question->label}}</td>
                             <td>{{$question->points}}</td>
                             <td>{{$question->number_of_times_asked}}</td>
-                            <td><a href="/backoffice/types/{{$question->type->id}}/questions/">{{$question->type->label}}</a></td>
-                            <td><a href="/backoffice/tags/{{$question->tag->id}}/questions/">{{$question->tag->label}}</a></td>
+                            <td>
+                                <a href="/backoffice/types/{{$question->type->id}}/questions/">{{$question->type->label}}</a>
+                            </td>
+                            <td>
+                                <a href="/backoffice/tags/{{$question->tag->id}}/questions/">{{$question->tag->label}}</a>
+                            </td>
                             <td>
                                 <a href="/backoffice/propositions/read/{{$question->id}}">{{count($question->propositions) }}
                                     <i
@@ -68,4 +72,10 @@
         </div>
         <div class="col"></div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+
+    </script>
 @endsection

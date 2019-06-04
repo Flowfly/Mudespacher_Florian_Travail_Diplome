@@ -38,7 +38,10 @@ body{
     align-items: center;
     flex-wrap: wrap;
 }
-
+.bubble-container{
+    background-size: cover;
+    background-position: center;
+}
 
 
 @font-face {
@@ -49,8 +52,6 @@ body{
 
 @media (max-width: 575.98px) {
     .bubble-container{
-        background-size: cover;
-        background-position: center;
         height:20vh;
         width:20vw;
         position:relative;
@@ -59,16 +60,11 @@ body{
         max-width:60%;
         max-height:40%;
     }
-    .home-text{
-
-    }
 }
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) and (max-width: 767.98px) {
     .bubble-container{
-        background-size: cover;
-        background-position: center;
         height:270px;
         width:550px;
         max-width:100% !important;
@@ -83,8 +79,6 @@ body{
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
     .bubble-container{
-        background-size: cover;
-        background-position: center;
         height: 270px;
         width:550px;
     }
@@ -97,8 +91,6 @@ body{
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
     .bubble-container{
-        background-size: cover;
-        background-position: center;
         height:150px;
         width:300px;
     }
@@ -132,10 +124,8 @@ body{
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     .bubble-container{
-        background-size: cover;
-        background-position: center;
-        height:150px;
-        width:310px;
+        height:190px;
+        width:350px;
     }
     .bubble-text{
         max-width:70%;

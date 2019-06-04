@@ -1,6 +1,6 @@
 import JQuery from 'jquery'
 
-const API_ENDPOINT = "http://localhost/api/";
+const API_ENDPOINT = "http://192.168.0.112/api/";
 
 function getActualQuestion(id) {
     var settings = {

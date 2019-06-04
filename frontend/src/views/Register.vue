@@ -1,5 +1,5 @@
 <template>
-    <v-container v-model="valid" class="hcenter" >
+    <v-container v-model="valid" class="hcenter">
             <registerform v-show="!isWaiting" v-on:btn-play-clicked="userClicked"/>
             <waiting :waiting-text="`Chargement en cours`" v-show="isWaiting"/>
     </v-container>
