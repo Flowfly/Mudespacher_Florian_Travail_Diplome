@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -17,24 +21,41 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
     const NUMBER_OF_DISPLAYED_USERS_PER_PAGE = 10;
     //<editor-fold desc="Backoffice">
+
+    /*** Allows to return a view that displays all the users
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAll(Request $request)
     {
         return view('/backoffice/users_read', ['users' => isset($request->id) ? DB::table('teams')->select('users.*')->join('users', 'teams.id', 'users.id')->where('teams.id', '=', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_USERS_PER_PAGE')) : User::paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_USERS_PER_PAGE'))]);
 
     }
 
+    /*** Allows to return a view that allows to edit users
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editGetInfos(Request $request)
     {
         return view('/backoffice/users_update', ['user' => User::where('id', $request->id)->get()[0]]);
     }
 
+    /*** Allows to return a view that allows to add users
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function addGetInfos()
     {
         return view('/backoffice/users_add');
     }
 
+    /*** Allows to edit an user from the database
+     * @param UserEdit $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UserEdit $request)
     {
         $user = User::findOrFail($request->id);
@@ -53,6 +74,11 @@ class UserController extends Controller
         return back()->withErrors(['user' => 'Utilisateur introuvable']);
     }
 
+
+    /*** Allows to delete a user from the database
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request)
     {
         $result = $this->deleteUser($request);
@@ -61,19 +87,29 @@ class UserController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
+    /*** Allows to return a view that display the information of one user
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getUserInfos(Request $request)
     {
         return view('/backoffice/user_read')->with(['user' => User::where('id', $request->id)->with('teams')->firstOrFail()]);
     }
 
 
-
+    /*** Allows to add an user in the database
+     * @param UserSubmit $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function submit(UserSubmit $request)
     {
         $userAdded = $this->addUser($request);
         return back()->with(['result' => $userAdded[0], 'message' => $userAdded[1]]);
     }
 
+    /*** Allows to generate users in database
+     *
+     */
     public function generate()
     {
         for ($i = 0; $i < 10; $i++) {

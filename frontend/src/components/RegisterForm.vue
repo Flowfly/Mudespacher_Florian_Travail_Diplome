@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-layout row wrap align-center justify-center @keydown.enter="submitUser">
         <v-flex v-show="displayAlert" xs1></v-flex>

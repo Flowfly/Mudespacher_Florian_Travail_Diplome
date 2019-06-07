@@ -1,6 +1,12 @@
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
+
 import JQuery from 'jquery'
 
-const API_ENDPOINT = "http://192.168.0.112/api/";
+
+const API_ENDPOINT = "http://localhost/api/";
 
 function getActualQuestion(id) {
     var settings = {

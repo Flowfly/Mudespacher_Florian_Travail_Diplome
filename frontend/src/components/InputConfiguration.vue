@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-layout row wrap align-center justify-center>
         <v-flex xs1></v-flex>

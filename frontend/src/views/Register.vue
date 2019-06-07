@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-container v-model="valid" class="hcenter">
             <registerform v-show="!isWaiting" v-on:btn-play-clicked="userClicked"/>

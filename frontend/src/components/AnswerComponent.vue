@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
         <p class="answer-text">{{ this.question.propositions[this.propositionNumber].label
             }}</p>
@@ -13,11 +18,6 @@
         props:
             ['question', 'propositionNumber'],
         mounted() {
-            //console.log(this.question.propositions[this.propositionNumber].label.length > 30);
-            /*if (this.question.propositions[this.propositionNumber].label.length > 30) {
-                document.querySelector(".answer-text").setAttribute('style', 'font-size: 170%;');
-            }*/
-            //console.log(document.querySelector('#bubble').style.backgroundImage)
         },
         methods: {
         }

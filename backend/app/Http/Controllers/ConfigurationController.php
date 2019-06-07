@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -7,11 +11,18 @@ use Illuminate\Http\Request;
 
 class ConfigurationController extends Controller
 {
+    /*** Allows to return the configuration  view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('/backoffice/configuration')->with(['configuration' => Configuration::all()]);
     }
 
+    /*** Allows to update the configuration fields located in the database which are used for the quiz
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         $result = true;

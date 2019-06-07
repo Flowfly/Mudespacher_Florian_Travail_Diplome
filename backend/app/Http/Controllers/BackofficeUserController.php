@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -8,12 +12,19 @@ use Illuminate\Support\Facades\Auth;
 
 class BackofficeUserController extends Controller
 {
+    /*** Allows to return the login view of the backoffice
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function homeLogin(){
         if(\auth()->check())
             return redirect('/backoffice/');
 
         return view('backoffice/login');
     }
+
+    /*** Allows to return the register view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function homeRegister()
     {
         if(\auth()->check())
@@ -22,6 +33,11 @@ class BackofficeUserController extends Controller
         return view('/backoffice/register');
     }
 
+    /*** Allows to register an user to the database
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
+     */
     public function register(Request $request){
         $request->validate($this->getRules(false));
 
@@ -41,6 +57,11 @@ class BackofficeUserController extends Controller
 
     }
 
+
+    /*** Allows to log a user into the backoffice
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login(Request $request)
     {
         $request->validate($this->getRules(true));
@@ -56,15 +77,26 @@ class BackofficeUserController extends Controller
             ]);
     }
 
+    /*** Allows to log a user out of the backoffice
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function logout(){
         auth()->logout();
         return redirect('/backoffice/login');
     }
 
+
+    /*** Allows to return the myAccount view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function myAccount(){
         return view('/backoffice/account');
     }
 
+    /*** Allows to change the backoffice scheme
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeTheme(Request $request)
     {
         switch ($request->theme)
@@ -90,6 +122,10 @@ class BackofficeUserController extends Controller
         return back();
     }
 
+    /*** Allows to change the password of a user
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changePassword(Request $request){
         $request->validate($this->getRules(false));
         $user = \auth()->user();

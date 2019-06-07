@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -12,6 +16,11 @@ use Illuminate\Http\Request;
 
 class AnswerController extends Controller
 {
+    /*** Allows to register an answer to the database. The function take a request that contains user ID, proposition ID, question ID and session ID
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
     public function answer(Request $request)
     {
         $response = "";
@@ -66,6 +75,10 @@ class AnswerController extends Controller
         return response()->json(['status' => $result ? 'success' : 'error', 'message' => $message], $result ? 200 : 422);
     }
 
+    /*** Allows to know if all the user answered to the current question
+     * @param Request $request
+     * @return bool
+     */
     public function didAllUsersAnswered(Request $request)
     {
         $sessionUsers = User::query()->join('user_session', 'users.id', 'user_session.user_id')->where('session_id', '=', $request->session_id)->get();

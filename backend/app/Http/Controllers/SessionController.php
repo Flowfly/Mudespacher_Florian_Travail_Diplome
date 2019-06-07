@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -22,6 +26,10 @@ class SessionController extends Controller
 {
 
     //<editor-fold desc="Backoffice"
+    /*** Allows to start the session of the quiz
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function startSessionQuiz(Request $request)
     {
         $result = $this->startSession($request);
@@ -29,16 +37,27 @@ class SessionController extends Controller
         return $result[0] ? redirect("/" . $result[1]->id . "/question") : back()->with(['result' => $result[0]]);
     }
 
+    /*** Allows to return the reading view of the sessions with all sessions
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAll()
     {
         return view('/backoffice/sessions_read')->with(['sessions' => Session::with(['question', 'users', 'answers', 'tag'])->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_SESSIONS_PER_PAGE'))]);
     }
 
+    /*** Allows to return the view that allows to add session in the backoffice
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function addGetInfos()
     {
         return view('/backoffice/sessions_add')->with(['tags' => Tag::all()]);
     }
 
+    /*** Allows to add a session in the database from the backoffice
+     * @param SessionSubmit $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function submit(SessionSubmit $request)
     {
         $tagId = 0;
@@ -58,6 +77,11 @@ class SessionController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
+
+    /*** Allows to delete a session from the database
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request)
     {
         $session = Session::findOrFail($request->id);
@@ -71,11 +95,19 @@ class SessionController extends Controller
         return back()->with(['result' => $result ? 'success' : 'error', 'message' => $message]);
     }
 
+    /*** Allows to return the view that allows to edit session in the backoffice
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editGetInfos(Request $request)
     {
         return view('/backoffice/sessions_update')->with(['session' => Session::findOrFail($request->id), 'tags' => Tag::all()]);
     }
 
+    /*** Allows to edit a session from the database
+     * @param SessionEdit $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(SessionEdit $request)
     {
         $tagId = 0;
@@ -93,6 +125,10 @@ class SessionController extends Controller
     }
 
 
+    /*** Allows to restart a session from the backoffice
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function restartSessionBackoffice(Request $request)
     {
         $result = $this->restartSession($request);
@@ -102,6 +138,10 @@ class SessionController extends Controller
     //</editor-fold>
 
     //<editor-fold desc="API">
+    /*** Allows to retrieve the current question of the session
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getActualQuestion(Request $request)
     {
         $sessionID = $request->session_id;
@@ -115,6 +155,10 @@ class SessionController extends Controller
         return response()->json(['status' => count($query) == 0 ? 'error' : 'success', 'message' => count($query) == 0 ? 'Impossible de récupérer la question de la session. Veuillez contacter un administrateur.' : 'Question récupérée.', 'data' => count($query) == 0 ? '' : $query[0]], count($query) == 0 ? 422 : 200);
     }
 
+    /*** Allows to go to the next question of the quiz
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function nextQuestion(Request $request)
     {
         $result = false;
@@ -132,6 +176,10 @@ class SessionController extends Controller
         return response()->json(['status' => $result ? 'success' : 'error', 'data' => $session]);
     }
 
+    /*** Allows to end a session
+     * @param $sessionId
+     * @return bool
+     */
     public function finishSession($sessionId)
     {
         $session = Session::findOrFail($sessionId);
@@ -147,6 +195,10 @@ class SessionController extends Controller
         return $result;
     }
 
+    /*** Allows to pick a random question for the concerned session
+     * @param null $id
+     * @return mixed
+     */
     public function pickRandomQuestion($id = NULL)
     {
 
@@ -164,6 +216,12 @@ class SessionController extends Controller
         return $questions[0]->id;
     }
 
+
+    /*** Allows to add a session in the database from the API
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
     public function createSession(Request $request)
     {
         $response = "";
@@ -186,6 +244,10 @@ class SessionController extends Controller
         return response()->json($response);
     }
 
+    /*** Allows to start a session from the session
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function startSessionAPI(Request $request)
     {
         $result = $this->startSession($request);
@@ -196,16 +258,27 @@ class SessionController extends Controller
             'session' => $result[1]]);
     }
 
+    /*** Allows to retrieves the session data
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getSessionInfos(Request $request)
     {
         return response()->json(Session::findOrFail($request->session_id));
     }
 
+    /*** Allows to retrieve all session that are not started
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAllNotStartedSessions()
     {
         return response()->json([Session::where('status', 'Not started')->get()]);
     }
 
+    /*** Allows to subscribe an user to a game session
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function subscribeUser(Request $request)
     {
         $session = Session::find($request->session_id);
@@ -238,6 +311,10 @@ class SessionController extends Controller
         return response()->json(['status' => $wasCorrectlyInserted ? 'success' : 'error', 'message' => $message], $wasCorrectlyInserted ? 200 : 422);
     }
 
+    /*** Allows to retrieve the ranking of the session
+     * @param Request $request
+     * @return array
+     */
     public function getRanking(Request $request)
     {
         $sessionAnswers = Answer::where('session_id', $request->session_id)->with(['user', 'question', 'proposition', 'session'])->get();
@@ -278,11 +355,19 @@ class SessionController extends Controller
         return array_slice($sortedScores, 0, Config::get('constants.sessions.NUMBER_OF_DISPLAYED_USERS'));
     }
 
+    /*** Allows to retrieve the ranking in JSON format
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getRankingAPI(Request $request)
     {
         return response()->json($this->getRanking($request));
     }
 
+    /*** Allows to retrieve the ranking of a specific user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getUserRanking(Request $request)
     {
         $answers = Answer::with(['question', 'proposition', 'user'])
@@ -304,6 +389,10 @@ class SessionController extends Controller
 
     //</editor-fold>
 
+    /*** Allows to start a session
+     * @param Request $request
+     * @return array
+     */
     public function startSession(Request $request)
     {
         $session = Session::findOrFail($request->session_id);

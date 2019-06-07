@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-container fluid fill-height d-block v-if="questionData !== null" class="answer-main">
         <v-layout row wrap justify-center style="text-align: center;" v-show="displayError">

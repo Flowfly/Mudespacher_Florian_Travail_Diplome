@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-app dark>
         <v-content class="content">
@@ -16,11 +21,20 @@
             return {}
         },
         mounted() {
-            AndroidFullScreen.immersiveMode();
+
             document.addEventListener("backbutton", () => {
                 //used to cancel the back button
                 console.log('back button canceled');
             }, false);
+
+            document.addEventListener("keyboardWillShow", () => {
+                AndroidFullScreen.leanMode();
+                console.log('keyboard show');
+            });
+            document.addEventListener("keyboardWillHide", () => {
+                AndroidFullScreen.immersiveMode();
+                console.log('keyboard hide');
+            });
         }
 
     }

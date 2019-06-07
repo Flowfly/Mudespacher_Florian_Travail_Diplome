@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -11,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
+    /*** Allows to add a type in the database
+     * @param TypeSubmit $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function submit(TypeSubmit $request){
         $type = new Type();
         $type->label = $request->name;
@@ -22,14 +31,25 @@ class TypeController extends Controller
         return back()->with(['result' => $result , 'message' => $message]);
     }
 
+    /*** Allows to return the view that allows to add types
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function addGetInfos(){
         return view('/backoffice/types_add');
     }
 
+    /*** llows to return the view that allows to edit types
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editGetInfos(Request $request){
         return view('/backoffice/types_update', ['type' => Type::where('id', $request->id)->get()[0]]);
     }
 
+    /*** Allows to edit a type from the database
+     * @param TypeEdit $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(TypeEdit $request)
     {
         $result = 0;
@@ -46,10 +66,18 @@ class TypeController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
+
+    /*** Allows to return a view that display all the types
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAll(){
         return view('/backoffice/types_read', ['types' => Type::with('questions')->get()]);
     }
 
+    /*** Allows to delete a type from the database
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request){
         $typeToDelete = Type::where('id', $request->id);
         $message = "";

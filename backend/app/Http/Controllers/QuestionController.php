@@ -1,4 +1,8 @@
 <?php
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
 
 namespace App\Http\Controllers;
 
@@ -18,7 +22,11 @@ use Illuminate\Support\Facades\DB;
 class QuestionController extends Controller
 {
     //<editor-fold desc="Backoffice">
-
+    /*** Allows to add a question to the database. The propositions of the question are also added here.
+     * @param QuestionSubmit $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function submit(QuestionSubmit $request)
     {
         $numberOfTimesAskedAverage = intval(DB::table('questions')->average('number_of_times_asked'));
@@ -37,9 +45,11 @@ class QuestionController extends Controller
         $questionToAdd->number_of_times_asked = $numberOfTimesAskedAverage;
         $result = $questionToAdd->saveOrFail();
         if ($result) {
+            //Parsing the prop field into the request. The prop field names are all starting with "prop" followed by their ID. Example : "prop-1"
             for ($i = 0; $i < count($request->all()); $i++) {
                 $tmp = explode('-', $request->keys()[$i]);
                 if ($tmp[0] == 'prop') {
+                    //Adding the prop field to the database
                     $propositionToAdd = new Proposition();
                     $propositionToAdd->label = $request->input($request->keys()[$i]);
                     $propositionToAdd->is_right_answer = $tmp[1] == $request->isGoodAnswer ? 1 : 0;
@@ -55,22 +65,36 @@ class QuestionController extends Controller
         return back()->with(['result' => $result, 'message' => $message]);
     }
 
+    /*** Allows to return the question view
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAll(Request $request)
     {
+        //Allows to return the question view with all the questions of a certain type
         if ($request->route()->getName() == "types_questions")
             $questions = Question::where('type_id', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
+        //Allows to return the question view with all the questions of a certain tag
         else if ($request->route()->getName() == "tags_questions")
             $questions = Question::where('tag_id', $request->id)->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
+        //Allows to return the question view with all the questions
         else
             $questions = Question::with(['type', 'tag', 'propositions'])->paginate(Config::get('constants.backoffice.NUMBER_OF_DISPLAYED_QUESTIONS_PER_PAGE'));
         return view('/backoffice/questions_read', ['questions' => $questions]);
     }
 
+    /*** Allows to return the question view with a specific question
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getOne(Request $request)
     {
         return view('/backoffice/questions_read', ['questions' => [Question::findOrFail($request->id)]]);
     }
 
+    /*** Allows to return the adding's question view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function addGetInfos()
     {
         $types = Type::all();
@@ -78,6 +102,10 @@ class QuestionController extends Controller
         return view('/backoffice/questions_add')->with(['types' => $types, 'tags' => $tags]);
     }
 
+    /*** Allows to return the edit's question view
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editGetInfos(Request $request)
     {
         $question = Question::where('id', $request->id)->with(['type', 'tag', 'propositions'])->get();
@@ -86,6 +114,11 @@ class QuestionController extends Controller
         return view('/backoffice/questions_update')->with(['question' => $question[0], 'types' => $types, 'tags' => $tags]);
     }
 
+    /*** Allows to update a question's field into the database
+     * @param QuestionEdit $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function update(QuestionEdit $request)
     {
         $message = "";
@@ -134,6 +167,10 @@ class QuestionController extends Controller
 
     }
 
+    /*** Allows to delete a questions from the database
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(Request $request)
     {
         $questionToDelete = Question::where('id', $request->id);

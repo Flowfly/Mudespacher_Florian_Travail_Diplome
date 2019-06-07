@@ -1,3 +1,8 @@
+/* Florian Mudespacher
+ * Quiz interactif - Diploma work
+ * CFPT - T.IS-E2A - 2019
+ */
+
 const TIME_TO_ANSWER = 50;//in seconds
 const WEB_SOCKET_SERVICE = {
     broadcaster: 'pusher',

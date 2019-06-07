@@ -1,3 +1,8 @@
+<!--
+ Florian Mudespacher
+ Quiz interactif - Diploma work
+ CFPT - T.IS-E2A - 2019
+-->
 <template>
     <v-container fluid fill-height @click="play" class="home">
         <h1 class="start scale-in-center">Appuyer pour commencer</h1>
